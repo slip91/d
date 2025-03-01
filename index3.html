@@ -1,0 +1,556 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+  <title>HealtMates</title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <meta property="og:image:alt" content="">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.png">
+
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#fafafa">
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+</head>
+<body>
+<div class="fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto w-full"  onclick="onDeletePopup(event)" id="modal_delete"
+     style="overflow: hidden; z-index: 100">
+  <div class="relative mx-auto p-4 h-[319px] w-[404px] bg-white shadow-lg sm:rounded-md">
+    <!-- Flex-контейнер для содержимого -->
+    <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto">
+      <!-- Правая часть (форма) -->
+      <div class="w-full h-auto p-4 sm:p-0 overflow-y-auto">
+        <div>
+          <h2
+            class="mb-6 text-4xl font-medium leading-none tracking-tight text-900 md:text-3xl lg:text-4xl dark:text-white"
+            style="font-size: 26px; font-weight: 400">
+            Are you sure you want to remove this partner?
+          </h2>
+          <p class="mb-4 text-base font-normal leading-none tracking-tight text-600 lg:text-base dark:text-white"
+             style="font-size: 14px; font-weight: 400">
+            You will no longer receive notifications about changes
+            in their status, and they will no longer appear in your list of regular partners.
+          </p>
+          <div class="flex flex-col">
+            <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300"
+                    style="background-color: #3ECAE3; border-radius: 42px">
+             Remove
+            </button>
+            <button class="w-full text-white py-2 px-4 transition duration-300"  onclick="onDeletePopup(event,12)"
+                    style="border-radius: 42px; border: 1px #3ECAE3;color: #3ECAE3">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto w-full" onclick="onAddPartner(event)" id="modal_partner"
+     style="overflow: hidden; z-index: 100">
+  <div class="relative mx-auto p-4 h-[319px] w-[404px] bg-white shadow-lg sm:rounded-md">
+    <!-- Flex-контейнер для содержимого -->
+    <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto">
+      <!-- Правая часть (форма) -->
+      <div class="w-full h-auto p-4 sm:p-0 overflow-y-auto">
+        <div>
+          <h2
+            class="mb-6 text-4xl font-medium leading-none tracking-tight text-900 md:text-3xl lg:text-4xl dark:text-white"
+            style="font-size: 26px; font-weight: 400">
+            Add new partner
+          </h2>
+          <p class="mb-4 text-base font-normal leading-none tracking-tight text-600 lg:text-base dark:text-white"
+             style="font-size: 14px; font-weight: 400">
+            The partner will be added to the shared list, and their status, along with any active conditions (if detected), will become accessible to you.
+          </p>
+          <div class="flex flex-col">
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="partner_link" type="text" placeholder="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto w-full" onclick="onShowQr(event)" id="modal_qr"
+     style="overflow: hidden; z-index: 100">
+  <div class="relative mx-auto p-4 h-[475px] w-[404px] bg-white shadow-lg sm:rounded-md">
+    <!-- Flex-контейнер для содержимого -->
+    <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto">
+      <!-- Правая часть (форма) -->
+      <div class="w-full h-auto p-4 sm:p-0 overflow-y-auto">
+        <h2
+          class="mb-6 text-4xl font-medium leading-none tracking-tight text-900 md:text-3xl lg:text-4xl dark:text-white"
+          style="font-size: 26px; font-weight: 400">
+          Check my status
+        </h2>
+        <div class="w-[372px] h-[372px]">
+          <div class="h-full w-full" style="background-image: url('/img/qr.png'); background-position: 70%; background-size: cover; background-repeat: no-repeat;"></div>
+<!--          <img src="/img/qr.png" width="372" height="372" />-->
+        </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" id="modal"
+     style="overflow: hidden; z-index: 100">
+  <!-- Контейнер модального окна -->
+  <div class="relative mx-auto p-4 w-full h-full sm:h-auto lg:h-auto bg-white shadow-lg sm:rounded-md">
+    <!-- Flex-контейнер для содержимого -->
+    <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto">
+      <!-- Левая часть (карта) -->
+      <div
+        class="w-full h-48 h-[60vh] lg:h-auto sm:w-2/3 flex justify-center items-center text-black sm:text-white rounded-t-md sm:rounded-l-md sm:rounded-tr-none bg-white sm:bg-[#3ECAE3]">
+        <div id="map" class="w-full h-full"></div>
+      </div>
+
+      <!-- Правая часть (форма) -->
+      <div class="w-full h-auto p-4 sm:p-0 sm:w-1/3 overflow-y-auto">
+        <!-- Кнопка закрытия -->
+        <div class="flex mb-3 justify-end">
+          <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #E5E5E5" id="ok-btn">
+            <p style="font-size: 10px; color: #4F4F4F; font-weight: 650;">X</p>
+          </button>
+        </div>
+
+        <!-- Заголовок и описание (скрыто на мобильных) -->
+        <div class="hidden lg:block md:block">
+          <h2
+            class="mb-6 text-4xl font-medium leading-none tracking-tight text-900 md:text-3xl lg:text-4xl dark:text-white"
+            style="font-size: 26px; font-weight: 400">
+            Choose a lab
+          </h2>
+          <p class="mb-4 text-base font-normal leading-none tracking-tight text-600 lg:text-base dark:text-white"
+             style="font-size: 14px; font-weight: 400">
+            Find out where you can get tested for one or more
+            of the listed conditions near you.
+          </p>
+        </div>
+
+        <!-- Карточка с информацией -->
+        <div id="card1" class="p-4 rounded-lg">
+          <div class="flex gap-2">
+            <div style="width: 40px; height: 40px; border-radius: 12px; background-color: #3ECAE3"></div>
+            <div>
+              <h1 class="text-red-800 font-medium">Lab</h1>
+            </div>
+          </div>
+          <p class="text-sm text-gray-500">Adress: Hradešínská 1930/63, 101 Vinohrady</p>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <p style="font-size: 18px; font-weight: 400">Analysis list</p>
+            <div class="flex space-x-2 mt-2">
+              <span class="bg-red-200 text-red-800 text-xs px-2 py-1 rounded-full">Syphilis</span>
+              <span class="bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full">NIV</span>
+            </div>
+
+            <button class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[200px] text-white w-auto"
+                    style="background-color: #3ECAE3; border-color: #3ECAE3">
+              Create an appointment
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container mx-auto">
+  <nav class="bg-white border-gray-200   py-2.5">
+    <div class="flex flex-wrap justify-between items-center w-full">
+      <a href="#" class="flex items-center">
+        <img src="/img/logo.png" class="mr-3 h-6 sm:h-9" alt="HealtMates"/>
+        <span class="self-center text-xl font-semibold whitespace-nowrap text-black">HealtMates</span>
+      </a>
+      <div class="ml-auto">
+        <button
+          class="hidden lg:flex bg-white py-2 px-4 rounded-full border hover:bg-gray-50 transition duration-300 lg:w-[313px] sm:w-[116px] text-white flex justify-center gap-10"
+          style="background-color: #3ECAE3">
+          <img src="/img/make.svg" alt="1231"/>
+          <p>Make an appointment</p>
+        </button>
+        <div class="flex gap-2 flex-row f lg:hidden md:hidden">
+          <button
+            class=" bg-white py-2 px-2 rounded-full border hover:bg-gray-50 transition duration-300 w-[44px] h-[44px] text-white flex justify-center gap-10"
+            style="background-color: #3ECAE3">
+            <img src="/img/make.svg" style="height: 22px; width: 22px" alt="1231"/>
+          </button>
+          <button
+            class=" bg-white py-2 px-2 rounded-full border hover:bg-gray-50 transition duration-300 w-[44px] h-[44px] text-white flex justify-center gap-10"
+            style="background-color: #3ECAE3">
+            <img src="/img/qr_mini.svg" style="height: 22px; width: 22px" alt="1231"/>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <h3 class="mb-4 text-base font-normal leading-none tracking-tight text-400 lg:text-base dark:text-white"
+      style="font-size: 22px; line-height: 38px">Your condition</h3>
+  <div class="m-auto grid-cols-2 grid lg:grid-cols-4 gap-4">
+    <div class="my-auto pr-4 grid grid-cols-2 justify-end col-span-2" style="background: #F9F9F9; border-radius: 22px">
+      <!-- Левая колонка -->
+      <div class="flex flex-col justify-center gap-2" style="padding-left: 20px; padding-top: 13px; padding-bottom: 20px">
+        <div>
+          <h1 class="text-4xl font-medium leading-none tracking-tight text-500 sm:text-4xl md:text-4xl lg:text-6xl dark:text-white" style="font-size: 52px;">
+            02
+          </h1>
+        </div>
+        <div class="mt-auto">
+          <p class="text-base font-normal leading-none tracking-tight text-600 lg:text-base dark:text-white">
+            Weeks ago
+          </p>
+        </div>
+      </div>
+
+      <!-- Правая колонка -->
+      <div class="flex flex-col justify-center" style="height: 204px; padding-bottom: 20px">
+        <div class="flex-grow flex flex-col gap-2 " style="padding-top: 20px; "> <!-- flex-grow для верхней части -->
+          <div>
+            <h1 class="text-2xl font-medium leading-none tracking-tight text-400 md:text-2xl lg:text-2xl dark:text-white">
+              Last check
+            </h1>
+          </div>
+          <div>
+            <h3 class="text-sm font-medium leading-none tracking-tight text-400 md:text-2xl lg:text-sm" style="color: #2BDD49">
+              Status clear
+            </h3>
+          </div>
+        </div>
+        <div class="mt-auto"> <!-- mt-auto для прижатия к низу -->
+          <p class="text-sm font-medium leading-none tracking-tight text-600 md:text-2xl lg:text-sm">
+            Borem ipsum dolor sit amet, consectetur adipiscing elit.
+            Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="my-auto p-4 w-full justify-start justify-between"
+         style="background: #F9F9F9; border-radius: 22px; height: 204px">
+      <h1
+        class="mb-6 text-2xl font-medium leading-none tracking-tight text-900 md:text-3xl lg:text-3xl dark:text-white"
+      >
+        Upload new results
+      </h1>
+      <div class="flex justify-between">
+        <div>
+          <img src="/img/make_big.svg" alt="make big"/>
+        </div>
+        <div class="flex" style="align-items: end">
+          <button class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[48px] text-white h-[48px]"
+                  style="background-color: #3ECAE3; border-color: #3ECAE3">
+            <img src="/img/arrow.svg" width="22" height="16" alt="">
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="my-auto p-4 justify-start" style="background: #F9F9F9; border-radius: 22px; height: 204px">
+      <h1
+        class="mb-6 text-2xl font-medium leading-none tracking-tight text-900 md:text-3xl lg:text-3xl dark:text-white">
+        Generate QR for a new partner
+      </h1>
+      <div class="flex justify-between">
+        <div>
+          <img src="/img/qr.svg" alt="make big"/>
+        </div>
+        <div class="flex" style="align-items: end">
+          <button class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[48px] text-white h-[48px]"
+                  style="background-color: #3ECAE3; border-color: #3ECAE3" onclick="onShowQr(event)">
+            <img src="/img/arrow.svg" width="22" height="16" alt="">
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="my-auto pr-4 grid grid-cols-1 lg:grid-cols-2 mg-grid-cols-2 justify-end">
+    <div class="bg-white rounded-lg p-6">
+      <h2 class="text-xl font-semibold mb-4">Last lab results</h2>
+      <p class="text-sm text-gray-600 mb-4">Here are the results of the last three uploaded tests. Please note that
+        results can be false-positive or false-negative; only regular testing can provide an accurate picture.</p>
+
+      <div class="space-y-4">
+        <div class="p-4 rounded-lg flex gap-2" style="background-color: #F9F9F9">
+          <div>
+            <div style="background: #08C671; border-radius: 50%; width: 39px; height: 39px"></div>
+          </div>
+          <div>
+            <p class="font-medium" style="color: #08C671">Everything o-kay!</p>
+            <p class="text-sm text-gray-500">01:12:2024</p>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+
+          <!-- Основной блок -->
+          <div class="p-4 rounded-lg flex flex-col gap-2 items-center" style="background-color: #F9F9F9">
+            <!-- Иконка -->
+            <div class="flex w-full gap-2">
+              <div>
+                <img src="/img/be_aware.svg" alt="Be Aware Icon">
+              </div>
+
+              <!-- Текстовый контент -->
+              <div class="flex-1">
+                <p class="font-medium" style="color: #FF3E06">Be aware!</p>
+                <p class="text-sm text-gray-500">01:12:2024</p>
+              </div>
+
+              <!-- Кнопка справа -->
+              <button
+                onclick="toggleAccordion()"
+                class="p-2 focus:outline-none"
+              >
+                <svg
+                  id="arrow"
+                  class="w-6 h-6 transform transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+            </div>
+            <div
+              id="accordionContent"
+              class="mt-2 rounded-lg hidden transition-all duration-300 flex gap-4 flex-col w-full"
+            >
+              <div class="flex gap-2 w-full">
+            <span class="text-sm pl-2 pr-2" style="background-color: #FFE2DA; border-radius: 20px ">
+                POS
+            </span>
+                <p>Syphilis</p>
+              </div>
+              <div class="flex gap-2 w-full ">
+            <span class="text-sm pl-2 pr-2 h-[19px] w-[46px]" style="background-color: #DAF6EA; border-radius: 20px">
+                NEG
+            </span>
+                <p>Hepatitis B (HBsAg, anti-HBs, anti-HBc IgM, anti-HBc total, HBeAg, anti-HBe)</p>
+              </div>
+              <button class="w-full py-2 px-4 transition duration-300"
+                      style="border-radius: 42px;  border: 1px solid #3ECAE3;color: #3ECAE3">
+                Download PDF
+              </button>
+            </div>
+          </div>
+          <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300"
+                  style="background-color: #3ECAE3; border-radius: 42px">
+            Upload new lab result
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-6">
+      <h2 class="text-xl font-semibold mb-4">Your partners</h2>
+      <p class="text-sm text-gray-600 mb-4">Remember that a diagnosed condition in a partner is a reason to retake your
+        own test, but it does not necessarily mean you are infected.</p>
+
+      <div class="flex flex-col">
+        <div class="bg-white rounded-lg" style="background-color: #F9F9F9; border-radius: 22px">
+          <div class="flex gap-4 items-center justify-between p-4 " >
+            <!-- Левая часть: аватар и информация -->
+            <div class="flex items-center flex-grow">
+              <div>
+                <img src="img/partner_default.svg" class="w-12 h-12 rounded-full" alt="Partner Avatar">
+              </div>
+              <div>
+                <div class="flex gap-2 items-center">
+                  <h3 class="font-medium text-gray-800">Partner #1</h3>
+                  <div class="w-2 h-2 bg-green-500 rounded-full"></div> <!-- Индикатор статуса -->
+                </div>
+                <p class="text-sm text-gray-500 mt-1">Last Checkup 22.01.2025</p>
+              </div>
+            </div>
+            <!-- Правая часть: кнопка удаления -->
+            <div class="flex items-center">
+              <button
+                class="rounded-full w-7 h-7 flex items-center justify-center hover:bg-gray-200 transition duration-300"
+                id="delete-btn1"
+                onclick="onDeletePopup(event,12)"
+              >
+                <p class="text-xs font-semibold text-gray-600">X</p>
+              </button>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="rounded-md py-0.5 px-2.5 border border-transparent text-sm transition-all flex gap-2"
+                 style="border-color: #FF3E06; color: #FF3E06; border-radius: 14px">
+              <img src="img/warning_small.svg" alt="123123"/> Syphilis
+            </div>
+            <div class="rounded-md py-0.5 px-2.5 border border-transparent text-sm transition-all flex gap-2"
+                 style="border-color: #FF3E06; color: #FF3E06; border-radius: 14px">
+              <img src="img/warning_small.svg" alt="123123"/>Chlamydia
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Partner #2 -->
+      <div class="flex gap-4 items-center justify-between p-4 bg-white rounded-lg" style="background-color: #F9F9F9; border-radius: 22px">
+        <!-- Левая часть: аватар и информация -->
+        <div class="flex gap-4 items-center flex-grow">
+          <div>
+            <img src="img/partner_default.svg" class="w-12 h-12 rounded-full" alt="Partner Avatar">
+          </div>
+          <div>
+            <div class="flex gap-2 items-center">
+              <h3 class="font-medium text-gray-800">Partner #2</h3>
+              <div class="w-2 h-2 bg-green-500 rounded-full"></div> <!-- Индикатор статуса -->
+            </div>
+            <p class="text-sm text-gray-500 mt-1">Last Checkup 22.01.2025</p>
+          </div>
+        </div>
+
+        <!-- Правая часть: кнопка удаления -->
+        <div class="flex items-center">
+          <button
+            class="rounded-full w-7 h-7 flex items-center justify-center hover:bg-gray-200 transition duration-300"
+            id="delete-btn2"
+            onclick="onDeletePopup(event, 11)"
+          >
+            <p class="text-xs font-semibold text-gray-600">X</p>
+          </button>
+        </div>
+      </div>
+      <!-- Add new partner -->
+      <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"
+              style="background-color: #3ECAE3; border-radius: 42px" onclick="onAddPartner(event)">
+        Add new partner
+      </button>
+    </div>
+    <div class="bg-white rounded-lg p-6 ">
+      <h2 class="pb-4 text-2xl font-medium leading-none tracking-tight text-900 md:text-2xl lg:text-2xl dark:text-white">
+        Laboratory's map
+      </h2>
+      <p class="text-sm text-gray-600 mb-4 pb-2">
+        Find out where you can get tested for one or more of the listed conditions near you.
+      </p>
+      <div class="space-y-4">
+        <!-- Select current positions -->
+        <h3 class="font-medium">Select current positions</h3>
+        <!-- Conditions -->
+        <div class="flex flex-wrap gap-4"> <!-- Добавлен flex-wrap -->
+          <div class="rounded-md py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm">
+            Syphilis
+          </div>
+          <div class="rounded-md py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm">
+            Chlamydia
+          </div>
+          <div class="rounded-md py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm">
+            Hepatitis B
+          </div>
+          <div class="rounded-md py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm">
+            Gonorrhoea
+          </div>
+          <div class="rounded-md py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm">
+            HIV
+          </div>
+        </div>
+        <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300" id="open-btn"
+                style="background-color: #3ECAE3; border-radius: 42px">
+          Show me labs
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+<script>
+  function toggleAccordion() {
+    const content = document.getElementById('accordionContent');
+    const arrow = document.getElementById('arrow');
+    content.classList.toggle('hidden');
+    arrow.classList.toggle('rotate-180');
+  }
+</script>
+<script>
+  let modal = document.getElementById('modal');
+  let btn = document.getElementById('open-btn');
+  let button = document.getElementById('ok-btn');
+
+  btn.onclick = function () {
+    modal.style.display = 'block';
+  };
+
+  button.onclick = function () {
+    modal.style.display = 'none';
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+  // delete
+
+  const onDeletePopup = (e, id) => {
+    console.log('id', id)
+    const modal = document.getElementById('modal_delete');
+    if(modal.style.display !== 'block') {
+      modal.style.display = 'block';
+    } else {
+      modal.style.display = 'none';
+    }
+  }
+
+  const onAddPartner = () => {
+    const modal = document.getElementById('modal_partner');
+    if(modal.style.display !== 'block') {
+      modal.style.display = 'block';
+    } else {
+      modal.style.display = 'none';
+    }
+  }
+
+  const onShowQr = () => {
+    const modal = document.getElementById('modal_qr');
+    if(modal.style.display !== 'block') {
+      modal.style.display = 'block';
+    } else {
+      modal.style.display = 'none';
+    }
+  }
+
+
+
+  // let modal = document.getElementById('modal');
+  // let btn = document.getElementById('open-btn');
+  // let button = document.getElementById('ok-btn');
+  //
+  // btn.onclick = function () {
+  //   modal.style.display = 'block';
+  // };
+  //
+  // button.onclick = function () {
+  //   modal.style.display = 'none';
+  // };
+  //
+  // window.onclick = function (event) {
+  //   if (event.target == modal) {
+  //     modal.style.display = "none";
+  //   }
+  // }
+</script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <meta property="og:image:alt" content="">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.png">
+
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#fafafa">
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+</head>
+<body style="overflow-x: hidden">
+<div class="h-dvh font-sans" style="background-color: #3ECAE3">
+  <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800" style="background-color: #3ECAE3">
+    <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl w-full">
+      <!-- Логотип и название -->
+      <a href="#" class="flex items-center">
+        <img src="/img/logo.png" class="mr-3 h-6 sm:h-9" alt="HealtMates" />
+        <span class="self-center text-xl font-semibold whitespace-nowrap text-white">HealtMates</span>
+      </a>
+      <div class="hidden lg:flex flex-grow justify-center"> <!-- Скрыто на мобильных, видно на lg и выше -->
+        <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+          <li>
+            <a href="#" class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white" aria-current="page">Principles</a>
+          </li>
+          <li>
+            <a href="#" class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white">Privacy & Anonymise</a>
+          </li>
+          <li>
+            <a href="#" class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white">Community</a>
+          </li>
+        </ul>
+      </div>
+      <div class="ml-auto">
+        <button class="bg-white py-2 px-4 rounded-full border hover:bg-gray-50 transition duration-300 lg:w-[200px] sm:w-[116px] text-[#3ECAE3]">
+          Sign In
+        </button>
+      </div>
+    </div>
+  </nav>
+<!--  swiper w-full h-[95%]-->
+  <div class="mySwiper m-auto grid lg:grid-cols-2 sm:grid-cols-1 gap-0" >
+      <div class="hidden" style="width: 760px; height: 681px; position: absolute; top: 540px; left: 170px; z-index: 100">
+        <h1>
+          We believe in three simple words: Test, Share, Love
+        </h1>
+        <h3>Test yourself often - Share before sex - Make love safe</h3>
+        <div class="flex gap-4">
+          <button class="bg-white text-gray-800 py-2 px-4 rounded-full border border-gray-300 hover:bg-gray-50 transition duration-300 w-[312px]" style="background-color: #F16B8F; border-color: #F16B8F">
+            Become a health mate
+          </button>
+          <button class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[200px] text-white" style="background-color: #FFFFFF33; border-color: #FFFFFF33">
+            How it work
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-wrapper" style="transform: translate3d(-317px, 0, 0);">
+      <!-- Slides -->
+      <div class="swiper-slide" style="width: 82%">
+        <img src="/img/slider1.png" alt="11"/>
+      </div>
+      <div class="swiper-slide" style="width: 82%">
+        <img src="/img/slider2.png" alt="11"/>
+      </div>
+      <div class="swiper-slide" style="width: 82%">
+        <img src="/img/slider3.png" alt="11"/>
+      </div>
+      <div class="swiper-slide" style="width: 82%">
+        <img src="/img/slider4.png" alt="11"/>
+      </div>
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+
+<div class="h-full">
+  <div class="m-auto grid lg:grid-cols-2 sm:grid-cols-1 gap-0" >
+    <div class="my-auto pr-4 grid justify-end" >
+      <img src="/img/phone.png" alt="1" style="margin: 60px" width="412" height="843" >
+    </div>
+    <div class="my-auto pr-4 grid justify-start">
+      <div class="flex w-[648px] flex-col">
+        <div>
+          <img src="/img/upload.svg">
+        </div>
+        <h3 class="mb-4 text-3xl font-medium leading-none tracking-tight text-gray-900 md:text-3xl lg:text-3xl dark:text-white whitespace-pre">
+          Your digital STI health record
+          – save results, share before sex,
+          and notify partners.</h3>
+        <p class="mb-4 text-base font-normal leading-none tracking-tight text-gray-600 lg:text-base dark:text-white whitespace-pre">
+          Keep track of your STI test results in one place
+          Receive reminders for regular check-ups
+          Feel confident about your health and your
+        </p>
+        <button class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[200px] text-white w-[424px]" style="background-color: #3ECAE3; border-color: #3ECAE3">
+          Become a health mate
+        </button>
+      </div>
+    </div>
+    <div class="my-auto pr-4 grid justify-end h-[961px]" style="background: #F16B8F; overflow: hidden">
+      <div class="w-[649px] h-[469px]">
+        <div>
+          <img src="/img/warning.svg" alt="warning">
+        </div>
+        <h2 class="mb-6 text-4xl font-medium leading-none tracking-tight text-900 text-white md:text-3xl lg:text-4xl dark:text-white whitespace-pre">
+          Your health,
+          your privacy
+        </h2>
+        <p class="mb-4 text-base font-normal leading-none tracking-tight text-600 lg:text-base dark:text-white whitespace-pre text-white">
+          No names, no personal details – you decide who sees your status
+          Secure access via QR code or private link
+          Encrypted servers and top-tier security measures</p>
+      </div>
+      <div class="flex">
+        <img src="/img/phone.png" alt="1" width="412" height="543" >
+        <div class="justify-end">
+          <img src="/img/partner_list.png" alt="1" style="margin: 5px" width="308" height="255" />
+        </div>
+      </div>
+    </div>
+    <div class="my-auto pr-4 grid justify-start h-[961px]" style="background: #3ECAE3; z-index: 100">
+      <div>
+        <img src="/img/watch.svg" alt="watch">
+      </div>
+      <div>
+        <h2 class="mb-6 text-4xl font-medium leading-none tracking-tight text-900 text-white md:text-3xl lg:text-4xl dark:text-white whitespace-pre">
+          In case of positive results
+          we notify your partners anonymously
+        </h2>
+        <p class="mb-4 text-base font-normal leading-none tracking-tight text-600 lg:text-base dark:text-white whitespace-pre text-white">If your is test positive, we send an anonymous notification to your partners. They’ll receive a message without revealing your identity.
+          You stay in control – no unnecessary personal details shared</p>
+      </div>
+      <div>
+        <img src="/img/notification_container.png" alt="1" style="margin: 40px" width="441" height="109" />
+      </div>
+    </div>
+    <div class="my-auto pr-4 grid justify-end">
+      <div class="h-[469px]">
+        <h2 class="mb-6 text-4xl font-medium leading-none tracking-tight text-900 md:text-3xl lg:text-4xl dark:text-white whitespace-pre">
+          Join a community of responsible people.
+        </h2>
+        <p class="mb-4 text-base font-normal leading-none tracking-tight text-600 lg:text-base dark:text-white whitespace-pre">
+          Using Health Mates = caring for your partners and being honest in relationships
+          The more people get tested, the safer the community becomes
+          Shift from fear and stigma to awareness and health-consciousness
+        </p>
+        <button class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[200px] text-white w-[424px]" style="background-color: #3ECAE3; border-color: #3ECAE3">
+          Become a health mate
+        </button>
+      </div>
+    </div>
+    <div>
+      <div style="height: 324px; position: relative; width: 284px;background: #20ACC5; border-radius: 22px"></div>
+      <div style="height: 324px; position: relative; top: -324px; width: 284px;background: #20ACC5;transform: rotate(-4.83deg); border-radius: 22px"></div>
+      <div style="height: 324px; position: relative; top: -648px; width: 284px;background: #20ACC5;transform: rotate(3.15deg); border-radius: 22px"></div>
+      <div style="
+        width: 284px;
+        height: 324px;
+        background: #20ACC5 url(/img/partner.png) center center no-repeat;
+        background-size: contain;
+        position: relative;
+        top: -972px;
+        z-index: 100;
+        border-radius: 22px"></div>
+    </div>
+  </div>
+</div>
+
+<div class="m-auto gap-0 h-full" style="background: #F16B8F; padding-top: 40px">
+  <div id="map" class="w-full h-[400px]"></div>
+  <div class="w-full">
+    <h2 class="mb-6 text-4xl font-medium leading-none tracking-tight text-900 md:text-3xl lg:text-4xl dark:text-white whitespace-pre">
+      Take control of your sexual health today.
+    </h2>
+    <p class="mb-4 text-base font-normal leading-none tracking-tight text-600 lg:text-base dark:text-white whitespace-pre">
+      Sign up for free & Get tested now
+    </p>
+    <button class="bg-white border-white py-2 px-4 rounded-full border transition duration-300 w-[200px]  w-[424px]">
+      Become a health mate
+    </button>
+  </div>
+</div>
+
+
+<!--<div class="m-auto grid grid-cols-2 gap-0 h-[961px]" style="background: white; overflow: hidden">-->
+<!--</div>-->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        renderBullet: function (index, className) {
+          return '<span class="' + className + '" style="background-color: white">' + "</span>";
+        },
+      },
+    });
+  </script>
+  <script src="js/app.js"></script>
+</body>
+</html>
