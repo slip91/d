@@ -258,4 +258,10 @@
   /*object-fit: contain;*/
 }
 
+body.no-scroll {
+  overflow: hidden;
+}
 
+html {
+  font-family: "Montserrat", sans-serif;
+}
