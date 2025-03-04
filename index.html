@@ -547,34 +547,9 @@
 </div>
 </body>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    var slider_wrapper = new Swiper(".mySwiper", {
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-        autoHeight: true,
-        centeredSlidesBounds: true,
-        loop: true,
-        slidesPerView: 'auto',
-        speed: 1500,
-        autoplay: {
-          delay: 1500,
-          disableOnInteraction: false,
-        },
-        renderBullet: function (index, className) {
-          return '<span class="' + className + '" style="background-color: white">' + "</span>";
-        },
-      },
-    });
-    slider_wrapper.autoplay.start();
-  });
+
 </script>
 <script src="js/app.js"></script>
-<style>
-  input:focus-visible {
-    outline: none;
-  }
-</style>
 <script>
   let modal2 = document.getElementById('login');
   let btn = document.getElementById('open-btn');
@@ -633,8 +608,7 @@
       eyeOffIcon.classList.add('hidden'); // Hide eye-off icon
     }
   }
-</script>
-<script>
+
   // Открытие popover
   document.getElementById('burger-button').addEventListener('click', function() {
     document.getElementById('menu-popover').classList.remove('hidden');
@@ -650,6 +624,28 @@
     if (event.target === this) {
       this.classList.add('hidden');
     }
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var slider_wrapper = new Swiper(".mySwiper", {
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        autoHeight: true,
+        centeredSlidesBounds: true,
+        loop: true,
+        slidesPerView: 'auto',
+        speed: 1500,
+        autoplay: {
+          delay: 1500,
+          disableOnInteraction: false,
+        },
+        renderBullet: function (index, className) {
+          return '<span class="' + className + '" style="background-color: white">' + "</span>";
+        },
+      },
+    });
+    slider_wrapper.autoplay.start();
   });
 </script>
 </html>
