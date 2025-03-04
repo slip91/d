@@ -9,3 +9,6 @@ html {
 input:focus-visible {
   outline: none;
 }
+input:checked + #checkmark {
+  opacity: 1;
+}
