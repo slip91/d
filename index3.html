@@ -203,7 +203,7 @@
       </div>
 
       <!-- Правая часть (форма) -->
-      <div class="w-full h-auto p-4 sm:p-0 sm:w-1/3 overflow-y-auto" style="overflow: hidden">
+      <div class="w-full h-auto p-4 sm:p-0 sm:w-1/3 overflow-y-auto sm: min-h-[400px]" style="overflow: scroll">
         <!-- Кнопка закрытия -->
         <div class="lg:relative absolute pt-4 pr-4 right-[30px] lg:sm:right-auto lg:flex md:flex mb-0 justify-end">
           <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #E5E5E5; cursor: pointer; overflow: hidden" id="ok-btn">
@@ -226,7 +226,7 @@
         </div>
 
         <!-- Карточка с информацией -->
-        <div id="card1" class="p-4 rounded-lg h-[75%]" >
+        <div id="card1" class="p-4 rounded-lg h-[90%] md:h-[70%]" >
           <div class="flex gap-2">
             <div style="width: 40px; height: 40px; border-radius: 12px; background-color: #3ECAE3"></div>
             <div style="display: flex; text-align: center; align-items: center;">
@@ -249,7 +249,7 @@
             >
               <svg
                 id="arrow"
-                class="w-6 h-6 transform transition-transform"
+                class="w-5 h-6 transform transition-transform"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -260,7 +260,7 @@
           </div>
           <div
             id="accordionContentLab"
-            class="mt-2 rounded-lg hidden transition-all duration-300 flex gap-4 flex-col w-full ml-[40px]"
+            class="mt-2 rounded-lg hidden transition-all duration-300 flex gap-4 flex-col w-full ml-[20px]"
           >
             <div class="flex gap-[20px] w-full">
                 <div class="flex">
@@ -327,9 +327,9 @@
         </div>
       </div>
       <a href="#" class="flex items-center">
-        <img src="/img/avatar.png" class="mr-3 h-[48px] w-[48ox] sm:h-9" alt="Healt Mates" onclick="onLoginPopup()"/>
+        <img src="/img/avatar.png" class="mr-3 h-[48px] w-[48ox] sm:h-9" alt="Health Mates" onclick="onLoginPopup()"/>
         <span class="self-center font-semibold whitespace-nowrap text-black"
-        style="font-size: 18px; line-height: 24px; font-weight: 400">Healt Mates</span>
+        style="font-size: 18px; line-height: 24px; font-weight: 400">Health Mates</span>
       </a>
       <div class="ml-auto">
         <button
@@ -552,7 +552,7 @@
               </div>
               <div>
                 <div class="flex gap-2 items-center">
-                  <h3 class="font-medium text-gray-800">Partner #1</h3>
+                  <h3 class="font-medium text-gray-800" style="font-weight: 500; font-size: 18px">Partner #1</h3>
                   <div class="w-2 h-2 bg-green-500 rounded-full"></div> <!-- Индикатор статуса -->
                 </div>
                 <p class="text-sm text-gray-500 mt-1 w-12px h-12px">Last Checkup 22.01.2025</p>
@@ -592,7 +592,7 @@
           </div>
           <div>
             <div class="flex gap-2 items-center">
-              <h3 class="font-medium text-gray-800">Partner #2</h3>
+              <h3 class="font-medium text-gray-800" style="font-weight: 500; font-size: 18px">Partner #2</h3>
               <div class="w-2 h-2 bg-green-500 rounded-full"></div> <!-- Индикатор статуса -->
             </div>
             <p class="text-sm text-gray-500 mt-1">Last Checkup 22.01.2025</p>
