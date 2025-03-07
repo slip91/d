@@ -1,0 +1,271 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+  <title>Health Mates</title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <meta property="og:image:alt" content="">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.png">
+
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#fafafa">
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+</head>
+<body>
+<div class="container mx-auto w-[90%] lg:w-[95%] md:w-[95%]" style="margin-left: 20px; margin-right: 20px">
+  <nav class="bg-white border-gray-200 py-2.5">
+    <div class="flex flex-wrap justify-between items-center w-full">
+      <div class="dropdown relative inline-flex">
+        <div id="dropdown-with-subheading" class="hidden dropdown-menu rounded-xl shadow-lg bg-white absolute top-full w-72 mt-2 divide-y divide-gray-200" aria-labelledby="dropdown-with-subheading">
+          <div class="px-4 py-3 flex gap-3 flex-col">
+            <div class="block mt-1">
+              Health Mate
+              <p style="font-weight: 400; font-size: 18px">usermail1234@gmail.com</p>
+            </div>
+            <div>
+              <button class="w-full py-2 px-4 transition duration-300 flex flex-row gap-4"
+                      style="border-radius: 42px;  border: 1px solid #3ECAE3;color: #3ECAE3; cursor: pointer">
+                <img src="/img/log_out.svg" alt="log out"/>
+                 Log out
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#" class="flex items-center">
+        <img src="/img/avatar.png" class="mr-3 h-[48px] w-[48ox] sm:h-9" alt="Health Mates" onclick="onLoginPopup()"/>
+        <span class="self-center font-semibold whitespace-nowrap text-black"
+        style="font-size: 18px; line-height: 24px; font-weight: 400">Health Mates</span>
+      </a>
+      <div class="ml-auto">
+        <button
+          class="hidden lg:flex bg-white py-2 px-4 rounded-full border hover:bg-gray-50 transition duration-300 lg:w-[313px] sm:w-[116px] text-white flex justify-center gap-2"
+          style="background-color: #3ECAE3; cursor: pointer">
+          <img src="/img/make.svg" alt="make an appointment"/>
+          <p>Make an appointment</p>
+        </button>
+        <div class="flex gap-2 flex-row f lg:hidden md:hidden">
+          <button
+            class=" bg-white py-2 px-2 rounded-full border hover:bg-gray-50 transition duration-300 w-[44px] h-[44px] text-white flex justify-center gap-10"
+            style="background-color: #3ECAE3">
+            <img src="/img/make.svg" style="height: 22px; width: 22px; margin-left: 3px" alt="upload results"/>
+          </button>
+          <button
+            class=" bg-white py-2 px-2 rounded-full border hover:bg-gray-50 transition duration-300 w-[44px] h-[44px] text-white flex justify-center gap-10"
+            style="background-color: #3ECAE3">
+            <img src="/img/qr_mini.svg" style="height: 22px; width: 22px;" alt="qr" onclick="onShowQr(event)"/>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <h3 class="mb-4 text-base font-normal leading-none tracking-tight text-400 lg:text-base"
+      style="font-size: 22px; line-height: 38px">Your condition</h3>
+  <div class="m-auto grid-cols-2 grid lg:grid-cols-4 gap-4">
+    <div class="my-auto pr-4 grid grid-cols-2 justify-end col-span-2" style="background: #F9F9F9; border-radius: 22px">
+      <!-- Левая колонка -->
+      <div class="flex flex-col justify-center gap-2" style="padding-left: 20px; padding-top: 13px; padding-bottom: 20px">
+        <div>
+          <h1 class="text-4xl font-medium leading-none tracking-tight text-500 sm:text-4xl md:text-4xl lg:text-6xl"
+              style="font-size: 80px; line-height: 84px">
+            02
+          </h1>
+        </div>
+        <div class="mt-auto">
+          <p class="text-base font-normal leading-none tracking-tight text-400 lg:text-base"
+          style="line-height: 24px; font-size: 20px">
+            Weeks ago
+          </p>
+        </div>
+      </div>
+
+      <!-- Правая колонка -->
+      <div class="flex flex-col justify-center" style="height: 204px; padding-bottom: 20px">
+        <div class="flex-grow flex flex-col gap-2 " style="padding-top: 20px; "> <!-- flex-grow для верхней части -->
+          <div>
+            <h1 class="text-2xl font-medium leading-none tracking-tight text-400 md:text-2xl lg:text-2xl ">
+              Last check
+            </h1>
+          </div>
+          <div>
+            <h3 class="text-sm font-medium leading-none tracking-tight text-400 md:text-2xl lg:text-sm" style="color: #2BDD49">
+              Status clear
+            </h3>
+          </div>
+        </div>
+        <div class="mt-auto"> <!-- mt-auto для прижатия к низу -->
+          <p class="text-sm font-medium leading-none tracking-tight text-400 md:text-2xl lg:text-sm"
+          style="font-size: 14px; font-weight: 400; ">
+            Borem ipsum dolor sit amet, consectetur adipiscing elit.
+            Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="my-auto p-4 w-full justify-start justify-between flex flex-col"
+         style="background: #F9F9F9; border-radius: 22px; height: 204px; justify-content: space-between; overflow: hidden">
+      <h1
+        class="mb-6 text-2xl font-medium leading-none tracking-tight text-500 md:text-3xl lg:text-3xl"
+      style="font-size: 22px; line-height: 26px"
+      >
+        Upload new results
+      </h1>
+      <div class="flex justify-between">
+        <div>
+          <img src="/img/make_big.svg" alt="make big" class="relative -rotate-[23deg] md:rotate-[0deg] lg:rotate-[0deg] top-[15px] md:top-[0px] lg:top-[0px] right-[10px] md:right-[0px] lg:right-[0px]"/>
+        </div>
+        <div class="flex" style="align-items: end">
+          <button class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[40px] lg:w-[48px] md:w-[48px] flex text-white h-[40px] md:h-[48px] lg:h-[48px]"
+                  style="background-color: #3ECAE3; border-color: #3ECAE3; cursor: pointer;">
+            <img src="/img/arrow.svg" width="22" height="16" class="-left-[6px] md:-left-[2px] lg:-left-[6px]" style="max-width: max-content;position: relative;" alt="Upload new results">
+            <input
+            class="cursor-pointer block py-2 px-4 w-full opacity-0 pin-r pin-t mt-[-10px] ml-[-30px]"
+            type="file"
+            >
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="my-auto p-4 w-full justify-start justify-between flex flex-col" style="background: #F9F9F9; border-radius: 22px; height: 204px; justify-content: space-between; overflow: hidden">
+      <h1
+        class="mb-2 text-2xl font-medium leading-none tracking-tight text-500 md:text-3xl lg:text-3xl"
+      style="font-size: 22px; line-height: 26px">
+        Generate QR for a new partner
+      </h1>
+      <div class="flex justify-between">
+        <div>
+          <img src="/img/qr.svg" alt="make big" class="relative -rotate-[23deg] md:rotate-[0deg] lg:rotate-[0deg] top-[15px] md:top-[0px] lg:top-[0px] right-[10px] md:right-[0px] lg:right-[0px]"/>
+        </div>
+        <div class="flex" style="align-items: end">
+          <button class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[40px] lg:w-[48px] md:w-[48px] text-white h-[40px] md:h-[48px] lg:h-[48px]"
+                  style="background-color: #3ECAE3; border-color: #3ECAE3; cursor: pointer" onclick="onShowQr(event)">
+            <img src="/img/arrow.svg" class="-left-[6px] md:-left-[2px] lg:-left-[6px]" width="22" height="16" style="max-width: max-content; position: relative;" alt="qr">
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="my-auto grid grid-cols-1 lg:grid-cols-2 mg-grid-cols-2 justify-end gap-4 pt-[40px]">
+    <div class="bg-white rounded-lg">
+      <div class="flex gap-[10px] mb-4">
+        <div style="display: flex; align-items: center">
+          <img src="img/next.svg" alt="prev" style="width: 19px; height: 22px; cursor: pointer">
+        </div>
+        <h2 class="text-xl font-semibold" style="font-size: 26px; font-weight: 400">Last lab results</h2>
+      </div>
+      <p class="text-sm mb-4" style="font-size: 14px; font-weight: 400">Here are the results of the last three uploaded tests. Please note that
+        results can be false-positive or false-negative; only regular testing can provide an accurate picture.</p>
+
+      <button type="submit" class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300"
+              style="background-color: #3ECAE3; border-radius: 42px">
+        Upload new lab result
+        <input
+          class="cursor-pointer block py-2 px-4 w-full opacity-0 pin-r pin-t mt-[-33px]"
+          type="file"
+        >
+      </button>
+
+      <div class="space-y-4" style="margin-top: 20px">
+        <div class="p-4 flex gap-2" style="background-color: #F9F9F9; border-radius: 22px">
+          <div>
+            <div style="background: #08C671; border-radius: 50%; width: 39px; height: 39px"></div>
+          </div>
+          <div>
+            <p class="font-medium" style="color: #08C671">Everything o-kay!</p>
+            <p class="text-sm text-gray-500">01:12:2024</p>
+          </div>
+        </div>
+        <div class="space-y-4">
+          <!-- Основной блок -->
+          <div class="p-4 flex flex-col gap-2 items-center" style="background-color: #F9F9F9; border-radius: 22px">
+            <!-- Иконка -->
+            <div class="flex w-full gap-2">
+              <div>
+                <img src="/img/be_aware.svg" alt="Be Aware Icon">
+              </div>
+
+              <!-- Текстовый контент -->
+              <div class="flex-1">
+                <p class="font-medium" style="color: #FF3E06">Be aware!</p>
+                <p class="text-sm" style="color: #888888; font-size: 14px">01:12:2024</p>
+              </div>
+
+              <!-- Кнопка справа -->
+              <button
+                onclick="toggleAccordion()"
+                class="p-2 focus:outline-none"
+                style="cursor: pointer"
+              >
+                <svg
+                  id="arrow"
+                  class="w-6 h-6 transform transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+            </div>
+            <div
+              id="accordionContent"
+              class="mt-2 rounded-lg hidden transition-all duration-300 flex gap-4 flex-col w-full"
+            >
+              <div class="flex gap-2 w-full">
+                <span class="text-sm pl-2 pr-2" style="background-color: #FFE2DA; border-radius: 20px; font-size: 12px; font-weight: 400; align-content: center; height: 19px">
+                    POS
+                </span>
+                <p>Syphilis</p>
+              </div>
+              <div class="flex gap-2 w-full">
+                <span class="text-sm pl-2 pr-2 h-[19px] w-[46px]" style="background-color: #DAF6EA; border-radius: 20px; font-weight: 400; align-content: center; height: 19px">
+                    NEG
+                </span>
+                <p>Hepatitis B (HBsAg, anti-HBs, anti-HBc IgM, anti-HBc total, HBeAg, anti-HBe)</p>
+              </div>
+              <button class="w-full py-2 px-4 transition duration-300"
+                      style="border-radius: 42px;  border: 1px solid #3ECAE3;color: #3ECAE3; cursor: pointer">
+                Download PDF
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+<script>
+  const onLoginPopup = () => {
+    const modal = document.getElementById('dropdown-with-subheading');
+    if(modal.classList.contains('hidden')) {
+      modal.classList.remove('hidden');
+    } else {
+      modal.classList.add('hidden');
+    }
+  }
+</script>
+</body>
+</html>
