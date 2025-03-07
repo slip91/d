@@ -172,163 +172,98 @@
         <div style="display: flex; align-items: center">
           <img src="img/next.svg" alt="prev" style="width: 19px; height: 22px; cursor: pointer">
         </div>
-        <h2 class="text-xl font-semibold" style="font-size: 26px; font-weight: 400">Last lab results</h2>
+        <h2 class="text-xl font-semibold" style="font-size: 26px; font-weight: 400">Your partners</h2>
       </div>
-      <p class="text-sm mb-4" style="font-size: 14px; font-weight: 400">Here are the results of the last three uploaded tests. Please note that
-        results can be false-positive or false-negative; only regular testing can provide an accurate picture.</p>
+      <p class="text-sm text-gray-600 mb-4">Remember that a diagnosed condition in a partner is a reason to retake your
+        own test, but it does not necessarily mean you are infected.</p>
 
       <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"
               style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer" onclick="onAddPartner(event)">
-        Upload new lab result
+        Add new partner
       </button>
-      <div class="space-y-4">
-        <div class="p-4 flex gap-2" style="background-color: #F9F9F9; border-radius: 22px">
-          <div>
-            <div style="background: #08C671; border-radius: 50%; width: 39px; height: 39px"></div>
+      <div class="flex flex-col mt-[20px]">
+        <div class="bg-white rounded-lg mb-2 pb-3 " style="background-color: #F9F9F9; border-radius: 22px">
+          <div class="flex gap-4 items-center justify-between p-4" >
+            <!-- Левая часть: аватар и информация -->
+            <div class="flex items-center flex-grow gap-4">
+              <div>
+                <img src="img/partner_default.svg" class="w-12 h-12 rounded-full" alt="Partner Avatar">
+              </div>
+              <div>
+                <div class="flex gap-2 items-center">
+                  <h3 class="font-medium text-gray-800" style="font-weight: 500; font-size: 18px">Partner #1</h3>
+                  <div class="w-2 h-2 bg-green-500 rounded-full"></div> <!-- Индикатор статуса -->
+                </div>
+                <p class="text-sm text-gray-500 mt-1 w-12px h-12px">Last Checkup 22.01.2025</p>
+              </div>
+            </div>
+            <!-- Правая часть: кнопка удаления -->
+            <div class="flex items-center">
+              <button
+                class="rounded-full w-7 h-7 flex items-center justify-center hover:bg-gray-200 transition duration-300"
+                id="delete-btn1"
+                style="cursor: pointer"
+                onclick="onDeletePopup(event,12)"
+              >
+                <p class="text-xs font-semibold text-gray-600 w-[12px] h-[12px]"><img src="img/x.svg" alt="delete"></p>
+              </button>
+            </div>
           </div>
-          <div>
-            <p class="font-medium" style="color: #08C671">Everything o-kay!</p>
-            <p class="text-sm text-gray-500">01:12:2024</p>
+          <div class="flex gap-2 ml-3">
+            <div class="rounded-md py-0.5 px-2.5 border border-transparent text-sm transition-all flex gap-2"
+                 style="border-color: #FF3E06; color: #FF3E06; border-radius: 14px">
+              <img src="img/warning_small.svg" alt="123123"/> Syphilis
+            </div>
+            <div class="rounded-md py-0.5 px-2.5 border border-transparent text-sm transition-all flex gap-2"
+                 style="border-color: #FF3E06; color: #FF3E06; border-radius: 14px">
+              <img src="img/warning_small.svg" alt="123123"/>Chlamydia
+            </div>
           </div>
         </div>
-        <div class="space-y-4">
-          <!-- Основной блок -->
-          <div class="p-4 flex flex-col gap-2 items-center" style="background-color: #F9F9F9; border-radius: 22px">
-            <!-- Иконка -->
-            <div class="flex w-full gap-2">
-              <div>
-                <img src="/img/be_aware.svg" alt="Be Aware Icon">
-              </div>
+      </div>
 
-              <!-- Текстовый контент -->
-              <div class="flex-1">
-                <p class="font-medium" style="color: #FF3E06">Be aware!</p>
-                <p class="text-sm" style="color: #888888; font-size: 14px">01:12:2024</p>
-              </div>
-
-              <!-- Кнопка справа -->
-              <button
-                onclick="toggleAccordion()"
-                class="p-2 focus:outline-none"
-                style="cursor: pointer"
-              >
-                <svg
-                  id="arrow"
-                  class="w-6 h-6 transform transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                </svg>
-              </button>
-            </div>
-            <div
-              id="accordionContent"
-              class="mt-2 rounded-lg hidden transition-all duration-300 flex gap-4 flex-col w-full"
-            >
-              <div class="flex gap-2 w-full">
-                <span class="text-sm pl-2 pr-2" style="background-color: #FFE2DA; border-radius: 20px; font-size: 12px; font-weight: 400; align-content: center; height: 19px">
-                    POS
-                </span>
-                <p>Syphilis</p>
-              </div>
-              <div class="flex gap-2 w-full">
-                <span class="text-sm pl-2 pr-2 h-[19px] w-[46px]" style="background-color: #DAF6EA; border-radius: 20px; font-weight: 400; align-content: center; height: 19px">
-                    NEG
-                </span>
-                <p>Hepatitis B (HBsAg, anti-HBs, anti-HBc IgM, anti-HBc total, HBeAg, anti-HBe)</p>
-              </div>
-              <button class="w-full py-2 px-4 transition duration-300"
-                      style="border-radius: 42px;  border: 1px solid #3ECAE3;color: #3ECAE3; cursor: pointer">
-                Download PDF
-              </button>
-            </div>
+      <!-- Partner #2 -->
+      <div class="flex gap-4 items-center justify-between p-4 bg-white rounded-lg" style="background-color: #F9F9F9; border-radius: 22px">
+        <!-- Левая часть: аватар и информация -->
+        <div class="flex gap-4 items-center flex-grow">
+          <div>
+            <img src="img/partner_default.svg" class="w-12 h-12 rounded-full" alt="Partner Avatar">
           </div>
+          <div>
+            <div class="flex gap-2 items-center">
+              <h3 class="font-medium text-gray-800" style="font-weight: 500; font-size: 18px">Partner #2</h3>
+              <div class="w-2 h-2 bg-green-500 rounded-full"></div> <!-- Индикатор статуса -->
+            </div>
+            <p class="text-sm text-gray-500 mt-1">Last Checkup 22.01.2025</p>
+          </div>
+        </div>
+
+        <!-- Правая часть: кнопка удаления -->
+        <div class="flex items-center">
+          <button
+            class="rounded-full w-7 h-7 flex items-center justify-center hover:bg-gray-200 transition duration-300"
+            id="delete-btn2"
+            style="cursor: pointer"
+            onclick="onDeletePopup(event, 11)"
+          >
+            <p class="text-xs font-semibold text-gray-600"><img src="img/x.svg" alt="delete" style="width: 12px; height: 12px"></p>
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <script src="js/app.js"></script>
-  <script>
-    function toggleAccordion() {
-      const content = document.getElementById('accordionContent');
-      const arrow = document.getElementById('arrow');
-      content.classList.toggle('hidden');
-      arrow.classList.toggle('rotate-180');
+<script>
+  const onLoginPopup = () => {
+    const modal = document.getElementById('dropdown-with-subheading');
+    if(modal.classList.contains('hidden')) {
+      modal.classList.remove('hidden');
+    } else {
+      modal.classList.add('hidden');
     }
-
-    let modal = document.getElementById('modal_map');
-    let btn = document.getElementById('open-btn');
-    let button = document.getElementById('ok-btn');
-
-    btn.onclick = function () {
-      modal.style.display = 'block';
-    };
-
-    button.onclick = function () {
-      modal.style.display = 'none';
-    };
-
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-
-    const checkbox = document.getElementById('checkbox-in-form2');
-    const container = document.getElementById('checkbox-container2');
-
-    checkbox.addEventListener('change', function () {
-      if (this.checked) {
-        container.classList.add('bg-[#3ECAE3]', 'text-white'); // Добавляем классы при checked
-        checkbox.classList.add('border-white');
-        checkbox.classList.remove('border-[#3ECAE3]');
-      } else {
-        container.classList.remove('bg-[#3ECAE3]', 'text-white');
-        checkbox.classList.add('border-[#3ECAE3]'); // Убираем классы при unchecked
-        checkbox.classList.remove('border-white');
-      }
-    });
-
-    const onLoginPopup = () => {
-      const modal = document.getElementById('dropdown-with-subheading');
-      if(modal.classList.contains('hidden')) {
-        modal.classList.remove('hidden');
-      } else {
-        modal.classList.add('hidden');
-      }
-    }
-
-    // delete
-    const onDeletePopup = (e, id) => {
-      console.log('id', id)
-      const modal = document.getElementById('modal_delete');
-      if(modal.style.display !== 'flex') {
-        modal.style.display = 'flex';
-      } else {
-        modal.style.display = 'none';
-      }
-    }
-
-    const onAddPartner = () => {
-      const modal = document.getElementById('modal_partner');
-      if(modal.style.display !== 'flex') {
-        modal.style.display = 'flex';
-      } else {
-        modal.style.display = 'none';
-      }
-    }
-
-    const onShowQr = () => {
-      const modal = document.getElementById('modal_qr');
-      if(modal.style.display !== 'flex') {
-        modal.style.display = 'flex';
-      } else {
-        modal.style.display = 'none';
-      }
-    }
-  </script>
+  }
+</script>
 </body>
 </html>
