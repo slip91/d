@@ -69,22 +69,17 @@
 </div>
 <div class="fixed hidden inset-0 bg-opacity-50 overflow-y-auto w-full" onclick="onAddPartner(event);event.stopPropagation();" id="modal_partner"
      style="overflow: hidden; z-index: 100; justify-content: center; align-items: center;  background-color: rgba(0, 0, 0, 0.3)">
-  <div class="relative mx-auto p-4 h-[210px] w-[404px] bg-white shadow-lg sm:rounded-md" onclick="event.stopPropagation();">
+  <div class="relative mx-auto p-4 h-[230px] w-[404px] bg-white shadow-lg" style="border-radius: 16px" onclick="event.stopPropagation();">
     <!-- Flex-контейнер для содержимого -->
     <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto">
       <!-- Правая часть (форма) -->
       <div class="w-full h-auto p-4 sm:p-0 overflow-y-auto">
-<!--        <div class="flex mb-3 justify-end">-->
-<!--          <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #E5E5E5; cursor: pointer" onclick="onAddPartner(event)">-->
-<!--            <p style="font-size: 10px; color: #4F4F4F; font-weight: 650;">X</p>-->
-<!--          </button>-->
-<!--        </div>-->
         <div class="lg:relative absolute right-[30px] lg:sm:right-auto lg:flex md:flex mb-3 justify-end" >
-          <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #E5E5E5; cursor: pointer" onclick="onAddPartner(event)" >
+          <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #F9F9F9; cursor: pointer" onclick="onAddPartner(event)" >
             <p style="font-size: 10px; color: #4F4F4F; font-weight: 650;">X</p>
           </button>
         </div>
-        <div class="mt-[20px]">
+        <div class="flex flex-col gap-[5px]">
           <h2
             class="mb-2 text-4xl font-medium leading-none tracking-tight text-900 md:text-3xl lg:text-4xl dark:text-white"
             style="font-size: 26px; font-weight: 400">
@@ -97,6 +92,7 @@
           <div class="relative w-full">
             <input
               type="text"
+              style="height: 48px"
               id="copy-input"
               class="w-full border-[#E9EAEC] focus:border-transparent focus:ring-1 border rounded-lg p-2 focus:!border-[#3ECAE3] outline-none"
               placeholder="Enter text to copy"
@@ -137,17 +133,51 @@
     </div>
   </div>
 </div>
+<div class="fixed hidden inset-0 bg-opacity-50 overflow-y-auto w-full" onclick="onRequestPartnership(event);event.stopPropagation();" id="partnership_request"
+     style="overflow: hidden; z-index: 100; justify-content: center; align-items: center;   background-color: rgba(0, 0, 0, 0.3)">
+  <div class="relative mx-auto p-4 h-[300px] w-[404px] bg-white shadow-lg" style="border-radius: 16px" onclick="event.stopPropagation();">
+    <!-- Flex-контейнер для содержимого -->
+    <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto">
+      <div class="w-full h-auto p-4 sm:p-0 overflow-y-auto">
+        <div class="lg:relative absolute right-[30px] lg:sm:right-auto lg:flex md:flex mb-3 justify-end" >
+          <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #F9F9F9; cursor: pointer" onclick="onRequestPartnership(event)" >
+            <p style="font-size: 10px; color: #4F4F4F; font-weight: 650;">X</p>
+          </button>
+        </div>
+        <div class="flex flex-col gap-[5px]">
+          <h2
+            class="mb-2 text-4xl font-medium leading-none tracking-tight text-900 md:text-3xl lg:text-4xl dark:text-white"
+            style="font-size: 26px; font-weight: 400">
+            You’ve got new partnership request, accept it?
+          </h2>
+          <p class="mb-4 text-base font-normal leading-none tracking-tight text-600 lg:text-base dark:text-white"
+             style="font-size: 14px; font-weight: 400">
+            The partner will be added to the shared list, and their status, along with any active conditions (if detected), will become accessible to you.
+          </p>
+          <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"
+                  style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer" onclick="onAddPartner(event)">
+            Accept
+          </button>
+          <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"
+                  style="background-color: white; border-radius: 42px; color: #3ECAE3; border-color: #3ECAE3 ; cursor: pointer" onclick="onRequestPartnership(event)">
+            Decline
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="fixed hidden inset-0 bg-opacity-50 overflow-y-auto w-full" onclick="onShowQr(event); event.stopPropagation();" id="modal_qr"
      style="overflow: hidden; z-index: 100; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.3)">
-  <div class="relative mx-auto p-4 h-[475px] w-[404px] bg-white shadow-lg sm:rounded-md" onclick="event.stopPropagation();"
-       style="transform: translate(-50%, -50%); position: absolute; top: 50%; left: 50%;">
+  <div class="relative mx-auto p-4 h-[475px] w-[404px] bg-white shadow-lg" onclick="event.stopPropagation();"
+       style="transform: translate(-50%, -50%); position: absolute; top: 50%; left: 50%; border-radius: 16px">
     <div class="flex mb-3 justify-end">
-      <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #E5E5E5; cursor: pointer" onclick="onShowQr(event)">
+      <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #F9F9F9; cursor: pointer" onclick="onShowQr(event)">
         <p style="font-size: 10px; color: #4F4F4F; font-weight: 650;">X</p>
       </button>
     </div>
     <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto">
-      <div class="w-full h-auto p-4 sm:p-0 overflow-y-auto">
+      <div class="w-full h-auto sm:p-0 overflow-y-auto">
         <h2
           class="mb-2 text-4xl font-medium leading-none tracking-tight text-900 md:text-3xl lg:text-4xl dark:text-white"
           style="font-size: 26px; font-weight: 400">
@@ -163,27 +193,26 @@
 <div class="fixed hidden inset-0 bg-opacity-50 overflow-y-auto h-full w-full" id="modal_map"
      style="overflow: hidden; z-index: 100;  background-color: rgba(0, 0, 0, 0.3)">
   <!-- Контейнер модального окна -->
-  <div class="relative mx-auto p-0 lg:p-4 md:p-4 w-full h-full sm:h-auto lg:h-auto bg-white shadow-lg sm:rounded-md max-w-[800px] my-0 ld:my-4 md:my-4 sm:my-8" onclick="event.stopPropagation();"
+  <div class="relative mx-auto w-full h-full sm:h-auto lg:h-[692px] w-[692px] bg-white shadow-lg max-w-[1311px] md:w-[90%] my-0 ld:my-4 md:my-4 sm:my-8 rounded-[0px] md:rounded-[16px] lg:rounded-[16px]" onclick="event.stopPropagation();"
        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
     <!-- Flex-контейнер для содержимого -->
-    <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto">
-      <!-- Левая часть (карта) -->
+    <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto md:h-[100%] lg:h-[100%] ">
       <div
-        class="w-full h-48 h-[60vh] lg:h-auto sm:w-2/3 flex justify-center items-center text-black sm:text-white rounded-t-md sm:rounded-l-md sm:rounded-tr-none bg-white sm:bg-[#3ECAE3]">
-        <div id="map" class="w-full h-full"></div>
+        class="w-full h-48 h-[60vh] md:h-[692px] lg:h-auto sm:w-2/3  flex justify-center items-center text-black sm:text-white rounded-t-md sm:rounded-l-md sm:rounded-tr-none bg-white sm:bg-[#3ECAE3] ">
+        <div id="map" class="w-full h-full rounded-tl-[0px] rounded-bl-[0px] md:rounded-tl-[16px] md:rounded-bl-[16px] lg:rounded-tl-[16px] lg:rounded-bl-[16px]"></div>
       </div>
 
       <!-- Правая часть (форма) -->
       <div class="w-full h-auto p-4 sm:p-0 sm:w-1/3 overflow-y-auto">
         <!-- Кнопка закрытия -->
-        <div class="lg:relative absolute right-[30px] lg:sm:right-auto lg:flex md:flex mb-3 justify-end">
-          <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #E5E5E5; cursor: pointer" id="ok-btn">
+        <div class="lg:relative absolute py-4 pr-4 right-[30px] lg:sm:right-auto lg:flex md:flex mb-0 justify-end">
+          <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #E5E5E5; cursor: pointer; overflow: hidden" id="ok-btn">
             <p style="font-size: 10px; color: #4F4F4F; font-weight: 650;">X</p>
           </button>
         </div>
 
         <!-- Заголовок и описание (скрыто на мобильных) -->
-        <div class="p-4 hidden lg:block md:block">
+        <div class="px-4 hidden lg:block md:block mt-[20px]">
           <h2
             class="mb-4 text-4xl font-medium leading-none tracking-tight text-900 md:text-3xl lg:text-4xl dark:text-white"
             style="font-size: 26px; font-weight: 400">
@@ -197,32 +226,87 @@
         </div>
 
         <!-- Карточка с информацией -->
-        <div id="card1" class="p-4 rounded-lg">
+        <div id="card1" class="p-4 rounded-lg" style="height: 500px">
           <div class="flex gap-2">
             <div style="width: 40px; height: 40px; border-radius: 12px; background-color: #3ECAE3"></div>
             <div style="display: flex; text-align: center; align-items: center;">
-              <h1 class="text-red-800 font-medium">Lab</h1>
+              <h1 class="font-medium">Lab 3</h1>
             </div>
           </div>
-          <p class="text-sm text-gray-500 mt-2">Adress: Hradešínská 1930/63, 101 Vinohrady</p>
+          <div class="flex w-full gap-2" >
+<!--            class="sm:flex-1 md: flex-0 lg:flex-0"-->
+            <div style="display: flex; align-content: center; justify-content: center; align-items: center; gap: 5px
+">
+              <div><img src="/img/clock.svg" style="height: 18px; width: 18px" alt="clock"></div>
+              <p class="font-medium" style="font-size: 14px; color: #08C671; margin-top: 10px; font-weight: 400">Open now</p>
+            </div>
+
+            <!-- Кнопка справа -->
+            <button
+              onclick="toggleAccordionLab()"
+              class="p-2 focus:outline-none"
+              style="cursor: pointer; margin-left: 13%"
+            >
+              <svg
+                id="arrow"
+                class="w-6 h-6 transform transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+          </div>
+          <div
+            id="accordionContentLab"
+            class="mt-2 rounded-lg hidden transition-all duration-300 flex gap-4 flex-col w-full ml-[40px]"
+          >
+            <div class="flex gap-[20px] w-full">
+                <div class="flex">
+                  <p>Monday</p>
+                </div>
+                <div>
+                  <p>9 AM-11 PM</p>
+                </div>
+            </div>
+            <div class="flex gap-[20px] w-full">
+              <div>
+                <p>Monday</p>
+              </div>
+              <div>
+                <p>9 AM-11 PM</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex gap-[10px]">
+            <div class="flex">
+              <img src="/img/pin.svg">
+            </div>
+            <p class="text-sm text-gray-500 mt-2">Adress: Hradešínská 1930/63, 101 Vinohrady</p>
+          </div>
+          <div style="width: 100%;
+    height: 1px;
+    border: 1px;
+    background-color: #8080808C;
+    margin-top: 10px;"></div>
           <div class="mt-4" style="display: flex; flex-direction: column; gap: 10px;">
             <p style="font-size: 18px; font-weight: 400">Analysis list</p>
             <div class="flex space-x-2 mt-2">
-              <span class="bg-red-200 text-red-800 text-xs px-2 py-1 rounded-full">Syphilis</span>
-              <span class="bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full">NIV</span>
+              <span class="text-xs px-2 py-1 rounded-full" style="background-color: #C5EFF7">Syphilis</span>
+              <span class="text-xs px-2 py-1 rounded-full" style="background-color: #C5EFF7">NIV</span>
             </div>
-
-            <button class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[200px] text-white w-auto"
-                    style="background-color: #3ECAE3; border-color: #3ECAE3">
-              Make an appointment
-            </button>
           </div>
         </div>
-      </div>
+        <button class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[200px] lg:w-[95%] text-white w-auto"
+                style="background-color: #3ECAE3; border-color: #3ECAE3; position: relative; bottom: 10px; width: 95%; margin-left: 10px">
+          Make an appointment
+        </button>
+        </div>
     </div>
   </div>
 </div>
-<div class="container mx-auto w-[95%] w-[95%]">
+<div class="container mx-auto w-[90%] lg:w-[95%] md:w-[95%]" style="margin-left: 20px; margin-right: 20px">
   <nav class="bg-white border-gray-200 py-2.5">
     <div class="flex flex-wrap justify-between items-center w-full">
       <div class="dropdown relative inline-flex">
@@ -243,7 +327,7 @@
         </div>
       </div>
       <a href="#" class="flex items-center">
-        <img src="/img/logo.png" class="mr-3 h-6 sm:h-9" alt="Healt Mates" onclick="onLoginPopup()"/>
+        <img src="/img/avatar.png" class="mr-3 h-[48px] w-[48ox] sm:h-9" alt="Healt Mates" onclick="onLoginPopup()"/>
         <span class="self-center font-semibold whitespace-nowrap text-black"
         style="font-size: 18px; line-height: 24px; font-weight: 400">Healt Mates</span>
       </a>
@@ -282,7 +366,7 @@
           </h1>
         </div>
         <div class="mt-auto">
-          <p class="text-base font-normal leading-none tracking-tight text-600 lg:text-base dark:text-white"
+          <p class="text-base font-normal leading-none tracking-tight text-400 lg:text-base dark:text-white"
           style="line-height: 24px; font-size: 20px">
             Weeks ago
           </p>
@@ -305,7 +389,7 @@
         </div>
         <div class="mt-auto"> <!-- mt-auto для прижатия к низу -->
           <p class="text-sm font-medium leading-none tracking-tight text-400 md:text-2xl lg:text-sm"
-          style="font-size: 14px; font-weight: 400">
+          style="font-size: 14px; font-weight: 400; ">
             Borem ipsum dolor sit amet, consectetur adipiscing elit.
             Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
           </p>
@@ -313,7 +397,7 @@
       </div>
     </div>
     <div class="my-auto p-4 w-full justify-start justify-between flex flex-col"
-         style="background: #F9F9F9; border-radius: 22px; height: 204px; justify-content: space-between">
+         style="background: #F9F9F9; border-radius: 22px; height: 204px; justify-content: space-between; overflow: hidden">
       <h1
         class="mb-6 text-2xl font-medium leading-none tracking-tight text-500 md:text-3xl lg:text-3xl dark:text-white"
       style="font-size: 22px; line-height: 26px"
@@ -322,12 +406,12 @@
       </h1>
       <div class="flex justify-between">
         <div>
-          <img src="/img/make_big.svg" alt="make big"/>
+          <img src="/img/make_big.svg" alt="make big" class="relative -rotate-[23deg] md:rotate-[0deg] lg:rotate-[0deg] top-[15px] md:top-[0px] lg:top-[0px] right-[10px] md:right-[0px] lg:right-[0px]"/>
         </div>
         <div class="flex" style="align-items: end">
-          <button class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[48px] flex text-white h-[48px]"
+          <button class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[40px] lg:w-[48px] md:w-[48px] flex text-white h-[40px] md:h-[48px] lg:h-[48px]"
                   style="background-color: #3ECAE3; border-color: #3ECAE3; cursor: pointer;">
-            <img src="/img/arrow.svg" width="22" height="16" style="max-width: max-content;position: relative; left: -2px" alt="Upload new results">
+            <img src="/img/arrow.svg" width="22" height="16" class="-left-[6px] md:-left-[2px] lg:-left-[6px]" style="max-width: max-content;position: relative;" alt="Upload new results">
             <input
             class="cursor-pointer block py-2 px-4 w-full opacity-0 pin-r pin-t mt-[-10px] ml-[-30px]"
             type="file"
@@ -336,20 +420,20 @@
         </div>
       </div>
     </div>
-    <div class="my-auto p-4 justify-start flex flex-col" style="background: #F9F9F9; border-radius: 22px; height: 204px; justify-content: space-between;">
+    <div class="my-auto p-4 w-full justify-start justify-between flex flex-col" style="background: #F9F9F9; border-radius: 22px; height: 204px; justify-content: space-between; overflow: hidden">
       <h1
-        class="mb-6 text-2xl font-medium leading-none tracking-tight text-500 md:text-3xl lg:text-3xl dark:text-white"
+        class="mb-2 text-2xl font-medium leading-none tracking-tight text-500 md:text-3xl lg:text-3xl dark:text-white"
       style="font-size: 22px; line-height: 26px">
         Generate QR for a new partner
       </h1>
       <div class="flex justify-between">
         <div>
-          <img src="/img/qr.svg" alt="make big" style="max-width: max-content" />
+          <img src="/img/qr.svg" alt="make big" class="relative -rotate-[23deg] md:rotate-[0deg] lg:rotate-[0deg] top-[15px] md:top-[0px] lg:top-[0px] right-[10px] md:right-[0px] lg:right-[0px]"/>
         </div>
         <div class="flex" style="align-items: end">
-          <button class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[48px] text-white h-[48px]"
+          <button class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[40px] lg:w-[48px] md:w-[48px] text-white h-[40px] md:h-[48px] lg:h-[48px]"
                   style="background-color: #3ECAE3; border-color: #3ECAE3; cursor: pointer" onclick="onShowQr(event)">
-            <img src="/img/arrow.svg" width="22" height="16" style="max-width: max-content; position: relative; left: -2px" alt="qr">
+            <img src="/img/arrow.svg" class="-left-[6px] md:-left-[2px] lg:-left-[6px]" width="22" height="16" style="max-width: max-content; position: relative;" alt="qr">
           </button>
         </div>
       </div>
@@ -357,8 +441,16 @@
   </div>
   <div class="my-auto grid grid-cols-1 lg:grid-cols-2 mg-grid-cols-2 justify-end gap-4 pt-[40px]">
     <div class="bg-white rounded-lg">
-      <h2 class="text-xl font-semibold mb-4" style="font-size: 26px; font-weight: 400">Last lab results</h2>
-      <p class="text-sm text-gray-600 mb-4">Here are the results of the last three uploaded tests. Please note that
+      <div class="flex gap-[10px] mb-4">
+        <div style="display: flex; align-items: center">
+          <img src="img/next.svg" alt="prev" style="width: 19px; height: 22px; cursor: pointer">
+        </div>
+        <h2 class="text-xl font-semibold" style="font-size: 26px; font-weight: 400">Last lab results</h2>
+        <div style="display: flex; align-items: center; margin-left: auto">
+          <img src="img/next.svg" alt="prev" style="width: 19px; height: 22px; transform: rotate(180deg); cursor: pointer">
+        </div>
+      </div>
+      <p class="text-sm mb-4" style="font-size: 14px; font-weight: 400">Here are the results of the last three uploaded tests. Please note that
         results can be false-positive or false-negative; only regular testing can provide an accurate picture.</p>
 
       <div class="space-y-4">
@@ -371,7 +463,6 @@
             <p class="text-sm text-gray-500">01:12:2024</p>
           </div>
         </div>
-
         <div class="space-y-4">
           <!-- Основной блок -->
           <div class="p-4 flex flex-col gap-2 items-center" style="background-color: #F9F9F9; border-radius: 22px">
@@ -384,7 +475,7 @@
               <!-- Текстовый контент -->
               <div class="flex-1">
                 <p class="font-medium" style="color: #FF3E06">Be aware!</p>
-                <p class="text-sm text-gray-500">01:12:2024</p>
+                <p class="text-sm" style="color: #888888; font-size: 14px">01:12:2024</p>
               </div>
 
               <!-- Кнопка справа -->
@@ -409,15 +500,15 @@
               class="mt-2 rounded-lg hidden transition-all duration-300 flex gap-4 flex-col w-full"
             >
               <div class="flex gap-2 w-full">
-            <span class="text-sm pl-2 pr-2" style="background-color: #FFE2DA; border-radius: 20px ">
-                POS
-            </span>
+                <span class="text-sm pl-2 pr-2" style="background-color: #FFE2DA; border-radius: 20px; font-size: 12px; font-weight: 400; align-content: center; height: 19px">
+                    POS
+                </span>
                 <p>Syphilis</p>
               </div>
-              <div class="flex gap-2 w-full ">
-            <span class="text-sm pl-2 pr-2 h-[19px] w-[46px]" style="background-color: #DAF6EA; border-radius: 20px">
-                NEG
-            </span>
+              <div class="flex gap-2 w-full">
+                <span class="text-sm pl-2 pr-2 h-[19px] w-[46px]" style="background-color: #DAF6EA; border-radius: 20px; font-weight: 400; align-content: center; height: 19px">
+                    NEG
+                </span>
                 <p>Hepatitis B (HBsAg, anti-HBs, anti-HBc IgM, anti-HBc total, HBeAg, anti-HBe)</p>
               </div>
               <button class="w-full py-2 px-4 transition duration-300"
@@ -439,7 +530,15 @@
     </div>
 
     <div class="bg-white rounded-lg">
-      <h2 class="text-xl font-semibold mb-4" style="font-weight: 400; font-size: 26px">Your partners</h2>
+      <div class="flex gap-[10px] mb-4">
+        <div style="display: flex; align-items: center">
+          <img src="img/next.svg" alt="prev" style="width: 19px; height: 22px; cursor: pointer">
+        </div>
+        <h2 class="text-xl font-semibold" style="font-size: 26px; font-weight: 400">Your partners</h2>
+        <div style="display: flex; align-items: center; margin-left: auto">
+          <img src="img/next.svg" alt="prev" style="width: 19px; height: 22px; transform: rotate(180deg); cursor: pointer">
+        </div>
+      </div>
       <p class="text-sm text-gray-600 mb-4">Remember that a diagnosed condition in a partner is a reason to retake your
         own test, but it does not necessarily mean you are infected.</p>
 
@@ -456,7 +555,7 @@
                   <h3 class="font-medium text-gray-800">Partner #1</h3>
                   <div class="w-2 h-2 bg-green-500 rounded-full"></div> <!-- Индикатор статуса -->
                 </div>
-                <p class="text-sm text-gray-500 mt-1">Last Checkup 22.01.2025</p>
+                <p class="text-sm text-gray-500 mt-1 w-12px h-12px">Last Checkup 22.01.2025</p>
               </div>
             </div>
             <!-- Правая часть: кнопка удаления -->
@@ -467,7 +566,7 @@
                 style="cursor: pointer"
                 onclick="onDeletePopup(event,12)"
               >
-                <p class="text-xs font-semibold text-gray-600">X</p>
+                <p class="text-xs font-semibold text-gray-600 w-[12px] h-[12px]"><img src="img/x.svg" alt="delete"></p>
               </button>
             </div>
           </div>
@@ -508,14 +607,17 @@
             style="cursor: pointer"
             onclick="onDeletePopup(event, 11)"
           >
-            <p class="text-xs font-semibold text-gray-600">X</p>
+            <p class="text-xs font-semibold text-gray-600"><img src="img/x.svg" alt="delete" style="width: 12px; height: 12px"></p>
           </button>
         </div>
       </div>
-      <!-- Add new partner -->
       <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"
               style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer" onclick="onAddPartner(event)">
         Add new partner
+      </button>
+      <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"
+              style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer" onclick="onRequestPartnership(event)">
+        Partnership request for ex
       </button>
     </div>
     <div class="bg-white rounded-lg ">
@@ -534,17 +636,18 @@
             <div class="relative">
               <input type="checkbox" class="w-5 h-5 appearance-none cursor-pointer border border-gray-300 rounded-md mr-2" id="checkbox-in-form" style="border-radius: 20px; border-color:#3ECAE3">
               <!-- SVG галочка -->
-              <svg class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-indigo-500 opacity-0 pointer-events-none" viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
+              <svg class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0 pointer-events-none" viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
               </svg>
             </div>
             Syphilis
           </div>
-          <div class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm" style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3">
+          <div id="checkbox-container2" class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm" style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3">
             <div class="relative">
-              <input type="checkbox" class="w-5 h-5 appearance-none cursor-pointer border border-gray-300 rounded-md mr-2" id="checkbox-in-form" style="border-radius: 20px; border-color:#3ECAE3">
+<!--              border-color:#3ECAE3-->
+              <input type="checkbox" class="w-5 h-5 appearance-none cursor-pointer border border-[#3ECAE3] rounded-md mr-2" id="checkbox-in-form2" style="border-radius: 20px; ">
               <!-- SVG галочка -->
-              <svg class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-indigo-500 opacity-0 pointer-events-none" viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
+              <svg class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0 pointer-events-none" viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
               </svg>
             </div>
@@ -554,7 +657,7 @@
             <div class="relative">
               <input type="checkbox" class="w-5 h-5 appearance-none cursor-pointer border border-gray-300 rounded-md mr-2" id="checkbox-in-form" style="border-radius: 20px; border-color:#3ECAE3">
               <!-- SVG галочка -->
-              <svg class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-indigo-500 opacity-0 pointer-events-none" viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
+              <svg class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0 pointer-events-none" viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
               </svg>
             </div>
@@ -564,7 +667,7 @@
             <div class="relative">
               <input type="checkbox" class="w-5 h-5 appearance-none cursor-pointer border border-gray-300 rounded-md mr-2" id="checkbox-in-form" style="border-radius: 20px; border-color:#3ECAE3">
               <!-- SVG галочка -->
-              <svg class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-indigo-500 opacity-0 pointer-events-none" viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
+              <svg class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0 pointer-events-none" viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
               </svg>
             </div>
@@ -572,9 +675,9 @@
           </div>
           <div class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm" style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3">
             <div class="relative">
-              <input type="checkbox" class="w-5 h-5 appearance-none cursor-pointer border border-gray-300 rounded-md mr-2" id="checkbox-in-form" style="border-radius: 20px; border-color:#3ECAE3">
+              <input type="checkbox" class="w-5 h-5 appearance-none cursor-pointer border border-[#3ECAE3] rounded-md mr-2" id="checkbox-in-form" style="border-radius: 20px; ">
               <!-- SVG галочка -->
-              <svg class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-indigo-500 opacity-0 pointer-events-none" viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
+              <svg class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0 pointer-events-none" viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
               </svg>
             </div>
@@ -592,14 +695,19 @@
 
 <script src="js/app.js"></script>
 <script>
+  function toggleAccordionLab() {
+    const content = document.getElementById('accordionContentLab');
+    const arrow = document.getElementById('arrow');
+    content.classList.toggle('hidden');
+    arrow.classList.toggle('rotate-180');
+  }
   function toggleAccordion() {
     const content = document.getElementById('accordionContent');
     const arrow = document.getElementById('arrow');
     content.classList.toggle('hidden');
     arrow.classList.toggle('rotate-180');
   }
-</script>
-<script>
+
   let modal = document.getElementById('modal_map');
   let btn = document.getElementById('open-btn');
   let button = document.getElementById('ok-btn');
@@ -617,6 +725,21 @@
       modal.style.display = "none";
     }
   }
+
+  const checkbox = document.getElementById('checkbox-in-form2');
+  const container = document.getElementById('checkbox-container2');
+
+  checkbox.addEventListener('change', function () {
+    if (this.checked) {
+      container.classList.add('bg-[#3ECAE3]', 'text-white'); // Добавляем классы при checked
+      checkbox.classList.add('border-white');
+      checkbox.classList.remove('border-[#3ECAE3]');
+    } else {
+      container.classList.remove('bg-[#3ECAE3]', 'text-white');
+      checkbox.classList.add('border-[#3ECAE3]'); // Убираем классы при unchecked
+      checkbox.classList.remove('border-white');
+    }
+  });
 
   const onLoginPopup = () => {
     const modal = document.getElementById('dropdown-with-subheading');
@@ -646,6 +769,15 @@
       modal.style.display = 'none';
     }
   }
+  const onRequestPartnership  = () => {
+    const modal = document.getElementById('partnership_request');
+    if(modal.style.display !== 'flex') {
+      modal.style.display = 'flex';
+    } else {
+      modal.style.display = 'none';
+    }
+  }
+
 
   const onShowQr = () => {
     const modal = document.getElementById('modal_qr');

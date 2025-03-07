@@ -31,6 +31,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 </head>
 <body style="overflow-x: hidden;">
 <div class="fixed hidden inset-0  bg-opacity-50 overflow-y-auto  h-full w-full" id="login"
@@ -294,22 +295,36 @@
         </button>
         <!-- Popover для меню -->
         <div id="menu-popover" class="fixed hidden inset-0 z-50 lg:hidden">
-          <div class="absolute  right-0 w-64 top-[74px]  bg-white shadow-lg">
-            <!-- Кнопка закрытия -->
+          <div class="absolute  right-0 w-64 top-[74px] bg-white shadow-lg" style="border-radius: 16px; right: 16px">
             <button id="close-menu" class="absolute top-4 right-4 p-2">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
             <!-- Содержимое меню -->
-            <div class="p-4">
-              <ul>
-                <li class="mb-4"><a href="#" class="text-gray-700 hover:text-blue-500">Home</a></li>
-                <li class="mb-4"><a href="#" class="text-gray-700 hover:text-blue-500">About</a></li>
-                <li class="mb-4"><a href="#" class="text-gray-700 hover:text-blue-500">Services</a></li>
-                <li class="mb-4"><a href="#" class="text-gray-700 hover:text-blue-500">Contact</a></li>
-              </ul>
+            <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+              <li>
+                <a href="#principles"
+                   class="block py-2 pr-4 pl-3 rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
+                   aria-current="page">Principles</a>
+              </li>
+              <li>
+                <a href="#privacy_and_anonymise"
+                   class="block py-2 pr-4 pl-3 rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white">Privacy and Anonymise</a>
+              </li>
+              <li>
+                <a href="#community"
+                   class="block py-2 pr-4 pl-3 rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white">Community</a>
+              </li>
+            </ul>
+            <div class="px-4 pb-[10px]">
+              <button class="w-full py-2 px-4 transition duration-300 flex flex-row gap-4"
+                      style="border-radius: 42px;  border: 1px solid #3ECAE3;color: #3ECAE3; cursor: pointer">
+                <img src="/img/log_out.svg" alt="log out" style="transform: rotate(180deg)"/>
+                Sign In
+              </button>
             </div>
+
           </div>
         </div>
         <div class="ml-auto hidden lg:flex">
@@ -323,8 +338,8 @@
     </nav>
   </div>
 </div>
-<div style="background-color: #3ECAE3;">
-  <div class="container mx-auto items-center relative" style="height: calc(100vh - 72px)">
+<div style="background-color: #3ECAE3; overflow: hidden">
+  <div class="container mx-auto items-center relative sm:overflow-hidden md:overflow-visible lg:overflow-visible" style="height: calc(100vh - 72px); min-height: 700px">
     <!-- Слайдер на фоне -->
     <div class="absolute inset-0 z-0">
       <div class="swiper mySwiper h-full w-full sm:left-0 lg:left-[20%]">
@@ -351,7 +366,7 @@
     </div>
 
     <!-- Контент поверх слайдера -->
-    <div class="relative z-10 flex items-center justify-center h-full w-[100%] sm:w-[95%] lg:w-[47%]" style="padding-right: 35px">
+    <div class="relative z-10 flex items-center justify-center h-full w-[100%] sm:w-[95%] lg:w-[47%] sm:pr-[0px] md:pr-[35px] ld:pr-[35px]">
       <div class="flex flex-col pl-5 pr-5 lg:h-[fit-content] mb-20px h-[92%]">
         <!-- Текст -->
         <div class="flex-grow lg:flex-grow-0  flex flex-col justify-start">
@@ -367,8 +382,8 @@
         <!-- Блок с кнопками -->
         <div class="grid lg:grid-cols-2 sm:grid-cols-1 gap-4 sm:mt-auto mb-[40px] md:mb-[40px] lg:mb-[40px] lg:mt-[40px] md:mt-[40px]" > <!-- mt-auto для прижатия к низу -->
           <button
-            class="bg-white text-gray-800 py-2 px-4 text-white rounded-full border border-gray-300 hover:bg-gray-50 transition duration-300 sm:w-full lg:w-[312px] h-[47px]"
-            style="background-color: #F16B8F; border-color: #F16B8F">
+            class="bg-white text-gray-800 py-2 px-0  text-white rounded-full border border-gray-300 hover:bg-gray-50 transition duration-300 min-w-[200px] sm:w-full md:w-[200px] lg:w-[312px] h-[47px]"
+            style="background-color: #F16B8F; border-color: #F16B8F; min-width: ">
             Become a Health Mate
           </button>
           <button
@@ -382,20 +397,20 @@
   </div>
 </div>
 <div>
-  <div class="m-auto grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-0" id="principles">
+  <div class="m-auto grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-0 h-[100vh] md:h-[1000px] lg:w-[1000px] sm:w-[99vw] container" id="principles">
     <div class="hidden lg:block" style="position: absolute; transform: rotate(0deg); right: 0;">
       <img src="/img/circle.svg" alt="">
     </div>
     <!-- Блок с картинкой -->
-    <div class="my-auto grid justify-center overflow-hidden; mb-[0px] lg:mb-[80px] mt-[20px] lg:mt-[80px]">
-      <div class="w-[90vw] lg:h-[843px] h-[424px] md:w-[400px] lg:w-[412px] sm:overflow-hidden ld:mr-[100px]"
-           style="background-image: url(/img/phone.png); background-position: top; background-size: cover; background-repeat: no-repeat">
+    <div class="my-auto grid justify-bottom md:justify-center overflow-hidden; mb-[0px] lg:mb-[80px] mt-[20px] lg:mt-[80px] align-center">
+      <div class="w-[90vw] lg:h-[843px] h-[424px] md:h-[60vh] sm:h-[60vh] md:w-[90vw] lg:w-[412px]  sm:overflow-hidden lg:mr-[100px]"
+           style="background-image: url(/img/phone.png); background-position: top; background-size: contain; background-repeat: no-repeat">
       </div>
     </div>
 
     <!-- Блок с текстом и кнопкой -->
     <div class="my-auto grid justify-start order-[-1] md:order-1 lg:order-1 container">
-      <div class="flex flex-col sm:w-[100%] md:w-[50%] pt-[30px] mx-[20px] md:mx-[0]" style="gap: 20px">
+      <div class="flex flex-col sm:w-[100%] md:w-[70%] pt-[30px] mx-[20px] md:mx-[0] md:mb-[20px] " style="gap: 20px">
         <div>
           <img src="/img/upload.svg" alt="1">
         </div>
@@ -409,7 +424,7 @@
           Feel confident about your health and your partners.
         </p>
         <button class="bg-white py-2 px-4 rounded-full border transition duration-300 sm:w-full md:w-full lg:w-[424px] text-white"
-                style="background-color: #3ECAE3; border-color: #3ECAE3; height: 47px">
+                style="background-color: #3ECAE3; border-color: #3ECAE3; height: 47px; min-width: 230px">
           Become a health mates
         </button>
       </div>
@@ -419,11 +434,10 @@
     </div>
   </div>
   <div class="m-auto grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-0 sm:h-[100vh] sm:w-[99vw] container" id="privacy_and_anonymise">
-    <div class="w-[100%] md:w-[50%] lg:w-[50%] h-[681px] md:h-[765px] lg:h-[765px] z-0 " style="background: #F16B8F; position: absolute; left: 0; "></div>
+    <div class="w-[100%] md:w-[50%] lg:w-[50%] h-[692px] md:h-[765px] lg:h-[765px] z-0" style="background: #F16B8F; position: absolute; left: 0; "></div>
     <!-- Первый блок -->
-<!--    background: #F16B8F;-->
-    <div class="mx-[20px] sm:pr-0 grid justify-end md:h-[743px] lg:h-[743px] sm:h-[652px] w-[100vw] lg:w-[100%] md:w-[100%]  container mt-[20px]" style=" overflow: hidden; z-index: 100;">
-      <div class="h-[652px] md:h-[765px] lg:h-[765px]  sm:w-[100%] md:w-[90%] lg:w-[95%] "> <!-- Убрана фиксированная ширина lg:w-[733px] -->
+    <div class="sm:px-[20px] sm:pr-0 grid justify-end md:h-[100%] lg:h-[100%] sm:h-[652px] w-[100vw] lg:w-[100%] md:w-[100%] container" style=" overflow: hidden; z-index: 100;">
+      <div class="h-[652px] md:h-[765px] lg:h-[765px] sm:w-[100%] md:w-[90%] lg:w-[95%]" style="margin-top: 40px">
         <div class="px-4 gap-1 flex flex-col pb-5 sm:mt-[0px] lg:mt-[40px] w-[86%] lg:w-full md:w-full">
           <div>
             <img src="/img/warning.svg" alt="warning" style="height: 40px; width: 40px">
@@ -437,12 +451,15 @@
             Encrypted servers and top-tier security measures
           </p>
         </div>
-        <div class="flex sm:h-full gap-10 sm:mt-[0px] lg:mt-[167px] md:mt-[167px] ">
+<!--        sm:h-full h-[100%] sm:h-[35%]-->
+        <div class="flex h-[35%] md:h-[40%] lg:h-[55%] gap-10 sm:mt-[0px]">
           <div class="hidden lg:block md:block">
             <img src="/img/phone_qr.png" alt="1" width="412" height="543">
           </div>
-          <div class="flex w-full">
-            <div class="h-[30vh] w-full sm:w-[100vw] lg:h-[200px] md:w-[300px] lg:w-[412px] sm:overflow-hidden"
+<!--          justify-content: center;-->
+          <div class="flex justify-center md:w-[50%] w-[100%]" style="align-items: flex-end">
+            <!--sm:w-[100vw]-->
+            <div class="h-[100%] md:h-[55%]  md:h-[43%] lg:h-[55%]  lg:h-[200px]  w-[76%] w-[92%] md:w-[300px] lg:w-[412px] sm:overflow-hidden md:mb-[20px]"
                  style="background-image: url('/img/partner_list.png'); background-size: contain; background-repeat: no-repeat;">
             </div>
           </div>
@@ -451,10 +468,10 @@
     </div>
 
     <!-- Второй блок -->
-    <div class="my-auto mx-[20px] sm:pr-0 grid justify-start md:h-[765px] lg:h-[765px] sm:h-[546px] sm:w-[99vw] md:w-[100%] lg:w-[100%]" style="background: #3ECAE3; z-index: 50">
+    <div class="sm:pr-0 grid justify-start md:h-[765px] lg:h-[765px] sm:h-[546px] sm:w-[80vw] md:w-[100%] lg:w-[100%] container" style="background: #3ECAE3; z-index: 50">
       <div class="w-[100vw] md:w-[50vw] lg:w-[50vw] h-[546px] md:h-[765px] lg:h-[765px] z-0" style="background: #3ECAE3; position: absolute; right: 0; "></div>
-      <div class="sm:ml-0 sm-mt-0 lg:ml-[60px] md:ml-[60px] sm:gap-[5px] lg:gap-[33px] sm:w-[100vw] md:w-[400px]" style="z-index: 100; display: flex; flex-direction: column;"   >
-        <div class="sm:w-full md:w-[400px] lg:w-[400px] h-[373px]" style="line-height: 40px; margin-top: 40px;"> <!-- Убрана фиксированная ширина -->
+      <div class="sm:pl-[20px] sm:pr-[20px] sm:mt-0 lg:ml-[60px] sm:gap-[5px] lg:gap-[33px] sm:w-[80vw] md:w-[400px] sm:h-[100%] gap-[20px] " style="z-index: 100; display: flex; flex-direction: column;"   >
+        <div class="px-[20px] md:px-[0px] w-[100vw] sm:w-full md:w-[35vw] lg:w-[400px] h-[60%] md:h-[373px] lg:h-[373px] sm:pl-[20px]" style="line-height: 40px; margin-top: 40px;"> <!-- Убрана фиксированная ширина -->
           <div>
             <img src="/img/watch.svg" alt="watch">
           </div>
@@ -470,46 +487,45 @@
             </p>
           </div>
         </div>
-        <div>
-          <div class="h-[109px] w-[90vw] md:w-[441px] lg:w-[441px] sm:w-[90%]"
+        <div class="flex h-[40%] md:h-[40%] lg:h-[40%] items-center px-[20px] md:px-[0px]">
+          <div class="h-[109px] w-[90vw] md:w-[79%] lg:w-[441px] sm:w-[90%]"
                style="background-image: url('/img/notification_container.png'); background-position: 70%; background-size: contain; background-repeat: no-repeat;">
           </div>
         </div>
       </div>
     </div>
 
-    <div class="my-auto mx-[20px] flex items-center justify-end h-[546px] md:h-[665px] lg:h-[665px] mt-20px " id="community">
-      <div class="flex flex-col gap-1 w-full  lg:w-[730px]  md:w-[100%]" style="margin-top: 40px;">
+    <div class="px-[20px] flex items-center justify-end h-[546px] md:h-[665px] lg:h-[665px] sm:w-[94%] container mt-20px " id="community">
+      <div class="flex flex-col gap-1 w-full lg:w-[730px] md:w-[100%]" style="margin-top: 40px;">
         <div>
           <img src="/img/users.svg" alt="users">
         </div>
         <div>
           <h2
-            class="mb-6 text-4xl font-medium leading-none tracking-tight text-900 md:text-3xl lg:text-4xl dark:text-white"
+            class="mb-6 text-4xl font-medium leading-none text-900 md:text-3xl lg:text-4xl dark:text-white"
             style="line-height: 40px">
             Join a community of responsible people.
           </h2>
         </div>
-        <div>
-          <p class="mb-4 text-base font-normal leading-none tracking-tight text-600 lg:text-base dark:text-white"
+        <div class="w-[95%] md:w-[95%]">
+          <p class="mb-4 text-base font-normal leading-none text-600 lg:text-base dark:text-white"
              style="line-height: 40px">
             Using Health Mates = caring for your partners and being honest in relationships.
             The more people get tested, the safer the community becomes.
             Shift from fear and stigma to awareness and health-consciousness.
           </p>
         </div>
-        <div class="sm:w-[100vw]">
+        <div class="sm:w-[100%]">
           <button
-            class="w-[100vw] sm:w-[100%] md:w-[30%] bg-white py-2 px-4 rounded-full border transition duration-300 text-white lg:w-[424px]"
-            style="background-color: #3ECAE3; border-color: #3ECAE3; height: 47px">
+            class="w-[100%] lg:w-[50%] md:w-[50%] bg-white text-nowrap py-2 px-4 rounded-full border transition duration-300 text-white "
+            style="background-color: #3ECAE3; border-color: #3ECAE3; height: 47px; min-width: 215px">
             Become a health mate
           </button>
         </div>
       </div>
     </div>
-
-    <div class="my-auto pr-4 flex items-center justify-center pt-5 lg:h-[666px] h-[420px] m-[15px] mt-[15px] mb-[15px] ">
-      <div class="min-w-[380px] w-[300px] lg:w-[584px] sm:w-[80vw] relative h-full sm:h-[300px] lg:h-[696px] ">
+    <div class="pr-4 flex items-center justify-center pt-5 lg:h-[666px] h-[420px] p-[15px] pt-[15px] pb-[15px] ">
+      <div class="min-w-[250px] w-[300px] lg:w-[584px] sm:w-[80vw] relative h-full sm:h-[300px] lg:h-[696px] ">
         <!-- Первый слой -->
         <div class="w-full h-full absolute bg-[#20ACC5] rounded-[22px]"></div>
         <!-- Второй слой -->
@@ -522,7 +538,7 @@
       </div>
     </div>
 
-    <div class="my-auto mx-[20px] container justify-start h-[650px] lg:h-[704px] sm:col-span-2 lg:col-span-2 w-[100vw]"
+    <div class="my-auto px-[20px] container justify-start h-[650px] lg:h-[704px] sm:col-span-2 lg:col-span-2 w-[100vw]"
          style="padding-top: 40px">
       <div class="w-[100vw] h-[650px] md:h-full lg:h-full sm z-0" style="background: #F16B8F; position: absolute; left: 0; right: 0; height: 665px; width: 100vw"></div>
       <div id="map" class="w-[100%] h-[376px]" style="position: absolute;right: 0;left: 0; margin-top: 30px "></div>
@@ -645,7 +661,7 @@
         },
       },
     });
-    slider_wrapper.autoplay.start();
+    // slider_wrapper.autoplay.start();
   });
 </script>
 </html>
