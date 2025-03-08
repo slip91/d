@@ -27,7 +27,6 @@
   <link href="https://cdn.jsdelivr.net/npm/pagedone@1.2.2/src/css/pagedone.css" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/pagedone@1.2.2/src/js/pagedone.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-<!--  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -121,7 +120,6 @@
                         placeholder="Login"
                         required
                       />
-                      <!-- Clear button -->
                       <button
                         type="button"
                         class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 focus:outline-none"
@@ -172,7 +170,6 @@
                             clip-rule="evenodd"
                           />
                         </svg>
-                        <!-- Eye-off icon for invisible (hidden by default) -->
                         <svg
                           id="eye-off-icon"
                           xmlns="http://www.w3.org/2000/svg"
@@ -191,7 +188,6 @@
                         </svg>
                       </button>
                     </div>
-<!--                    <p class="text-red-500 text-xs italic">Please choose a password.</p>-->
                   </div>
                   <div class="mb-6">
                     <div class="relative w-full">
@@ -223,7 +219,6 @@
                             clip-rule="evenodd"
                           />
                         </svg>
-                        <!-- Eye-off icon for invisible (hidden by default) -->
                         <svg
                           id="eye-off-icon2"
                           xmlns="http://www.w3.org/2000/svg"
@@ -242,7 +237,6 @@
                         </svg>
                       </button>
                     </div>
-<!--                    <p class="text-red-500 text-xs italic">Please choose a password.</p>-->
                   </div>
                   <button class="w-full py-2 px-4 rounded-full border transition duration-300 text-white"
                           style="background-color: #3ECAE3; border-color: #3ECAE3">
@@ -407,7 +401,6 @@
            style="background-image: url(/img/phone.png); background-position: top; background-size: contain; background-repeat: no-repeat">
       </div>
     </div>
-
     <!-- Блок с текстом и кнопкой -->
     <div class="my-auto grid justify-start order-[-1] md:order-1 lg:order-1 container">
       <div class="flex flex-col sm:w-[100%] md:w-[70%] pt-[30px] mx-[20px] md:mx-[0] md:mb-[20px] " style="gap: 20px">
@@ -430,7 +423,7 @@
       </div>
     </div>
     <div class="hidden lg:block" style="position: absolute;transform: rotate(180deg); left: 0; padding-bottom: 562px;">
-      <img src="/img/circle.svg" alt="">
+      <img src="/img/circle.svg" alt="circle">
     </div>
   </div>
   <div class="m-auto grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-0 sm:h-[100vh] sm:w-[99vw] container" id="privacy_and_anonymise">
@@ -451,14 +444,11 @@
             Encrypted servers and top-tier security measures
           </p>
         </div>
-<!--        sm:h-full h-[100%] sm:h-[35%]-->
         <div class="flex h-[35%] md:h-[40%] lg:h-[55%] gap-10 sm:mt-[0px]">
           <div class="hidden lg:block md:block">
             <img src="/img/phone_qr.png" alt="1" width="412" height="543">
           </div>
-<!--          justify-content: center;-->
           <div class="flex justify-center md:w-[50%] w-[100%]" style="align-items: flex-end">
-            <!--sm:w-[100vw]-->
             <div class="h-[100%] md:h-[55%]  md:h-[43%] lg:h-[55%]  lg:h-[200px]  w-[76%] w-[92%] w-[60%] md:w-[300px] lg:w-[412px] sm:overflow-hidden md:mb-[20px]"
                  style="background-image: url('/img/partner_list.png'); background-size: contain; background-repeat: no-repeat;">
             </div>
@@ -561,9 +551,6 @@
   </div>
 </div>
 </body>
-<script>
-
-</script>
 <script src="js/app.js"></script>
 <script>
   let modal2 = document.getElementById('login');
@@ -611,8 +598,8 @@
 
   function clearInput() {
     const input = document.querySelector('input[type="text"]');
-    input.value = ''; // Clear the input value
-    input.focus(); // Optionally refocus the input
+    input.value = '';
+    input.focus();
   }
 
   function togglePasswordVisibility() {
@@ -664,7 +651,7 @@
   });
 
   document.addEventListener("DOMContentLoaded", function () {
-    var slider_wrapper = new Swiper(".mySwiper", {
+    const slider_wrapper = new Swiper(".mySwiper", {
       pagination: {
         el: ".swiper-pagination",
         clickable: true,
