@@ -46,7 +46,7 @@ input:checked + #checkmark {
   #mobile_lab_info {
     z-index: 101; /* Выше карты */
     border-radius: 16px 16px 0 0 ;
-    height: 40vh;
+    height: 60vh;
   }
   #modal_map .flex-col {
     flex-direction: column;

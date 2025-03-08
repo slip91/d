@@ -7,8 +7,10 @@ function toggleAccordionLab() {
 
 function closeMobileLabInfo() {
   const mobileLabInfo = document.getElementById('mobile_lab_info');
+  const info_panel = document.getElementById('info_panel');
   if (mobileLabInfo) {
     mobileLabInfo.classList.add('hidden');
+    info_panel.classList.add('hidden');
   }
 }
 
@@ -28,7 +30,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       container.onclick = () => {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            const { latitude, longitude } = position.coords;
+            const {latitude, longitude} = position.coords;
             map.setView([latitude, longitude], 13);
             L.marker([latitude, longitude]).addTo(map);
           },
@@ -42,7 +44,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     },
   });
 
-  new locateButton({ position: 'topright' }).addTo(map);
+  new locateButton({position: 'topright'}).addTo(map);
 
   document.getElementById("close-popup-btn").addEventListener("click", () => {
     document.getElementById("modal_map").classList.add("hidden");
@@ -56,8 +58,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
       address: "Hradešínská 1930/63, 101 Vinohrady",
       status: "Open now",
       schedule: [
-        { day: "Monday", hours: "9 AM - 11 PM" },
-        { day: "Tuesday", hours: "9 AM - 11 PM" },
+        {day: "Monday", hours: "9 AM - 11 PM"},
+        {day: "Tuesday", hours: "9 AM - 11 PM"},
       ],
       tests: ["Syphilis", "HIV"],
     },
@@ -68,8 +70,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
       address: "Another Address, 102 Vinohrady",
       status: "Closed now",
       schedule: [
-        { day: "Monday", hours: "10 AM - 8 PM" },
-        { day: "Tuesday", hours: "10 AM - 8 PM" },
+        {day: "Monday", hours: "10 AM - 8 PM"},
+        {day: "Tuesday", hours: "10 AM - 8 PM"},
       ],
       tests: ["COVID-19", "Flu"],
     },
@@ -78,19 +80,22 @@ document.addEventListener("DOMContentLoaded", (event) => {
   let selectedMarker = null;
 
   labs.forEach((lab) => {
-    const marker = L.marker(lab.coordinates).addTo(map);
+    const customIcon = L.divIcon({
+      className: 'custom-marker',
+      html: `
+      <div class="marker-container">
+        <img src="/img/storePin.svg" alt="Marker" class="marker-icon" />
+        <div class="info-box">
+          <h3 style="font-size: 20px; font-weight: 500; color: black">Laboratory</h3>
+          <p style="font-weight: 400; font-size: 15px; color: #818181 ">Closes 11PM</p>
+        </div>
+      </div>
+    `,
+      iconSize: [170, 69],
+    });
+    const marker = L.marker(lab.coordinates, {icon: customIcon}).addTo(map);
+    selectedMarker = marker;
     marker.on("click", () => {
-      if (selectedMarker) {
-        selectedMarker.setIcon(L.icon({
-          iconUrl: '/img/marker-default.png', // Иконка по умолчанию
-          iconSize: [25, 41],
-        }));
-      }
-      selectedMarker = marker;
-      marker.setIcon(L.icon({
-        iconUrl: '/img/marker-selected.png', // Иконка выбранного маркера
-        iconSize: [25, 41],
-      }));
       updateLabInfo(lab);
     });
   });
@@ -133,12 +138,24 @@ document.addEventListener("DOMContentLoaded", (event) => {
           <div class="flex space-x-2 mt-2">
             ${lab.tests.map((test) => `
                         <div class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm"
-               style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3; color: #3ECAE3">
+               style="    display: flex;
+    gap: 11px;
+    border-radius: 24px;
+    border-color: #3ECAE3;
+    color: #3ECAE3;
+    width: 83px;
+    height: 33px;
+    justify-content: center;">
             Syphilis
           </div>
             `).join("")}
           </div>
         </div>
+        <button
+          class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[200px] lg:w-[95%] text-white w-auto"
+          style="background-color: #3ECAE3; border-color: #3ECAE3; position: absolute; bottom: 10px; width: 95%; margin-left: 10px">
+          Make an appointment
+        </button>
       `;
 
     const mobileLabContent = document.getElementById("mobile_lab_content");

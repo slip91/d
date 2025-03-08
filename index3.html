@@ -58,13 +58,13 @@
             You will no longer receive notifications about changes
             in their status, and they will no longer appear in your list of regular partners.
           </p>
-          <div class="flex flex-col">
+          <div class="flex flex-col gap-[10px]">
             <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300"
                     style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer">
               Remove
             </button>
             <button class="w-full text-white py-2 px-4 transition duration-300" onclick="onDeletePopup(event, 12)"
-                    style="border-radius: 42px; border: 1px #3ECAE3;color: #3ECAE3; cursor: pointer">
+                    style="border-radius: 42px; border: 1px solid #3ECAE3;color: #3ECAE3; cursor: pointer">
               Cancel
             </button>
           </div>
@@ -85,7 +85,8 @@
         <div class="lg:relative absolute right-[30px] lg:sm:right-auto lg:flex md:flex mb-3 justify-end">
           <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #F9F9F9; cursor: pointer"
                   onclick="onAddPartner(event)">
-            <p style="font-size: 10px; color: #4F4F4F; font-weight: 650;">X</p>
+            <p style="font-size: 10px; color: #4F4F4F; font-weight: 650;"><img src="img/x.svg" alt="close"
+                                                                               style="width: 12px; height: 12px; margin: 8px"></p>
           </button>
         </div>
         <div class="flex flex-col gap-[5px]">
@@ -173,7 +174,7 @@
             Accept
           </button>
           <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"
-                  style="background-color: white; border-radius: 42px; color: #3ECAE3; border-color: #3ECAE3 ; cursor: pointer"
+                  style="background-color: white; border-radius: 42px; color: #3ECAE3; border: 1px solid #3ECAE3 ; cursor: pointer"
                   onclick="onRequestPartnership(event)">
             Decline
           </button>
@@ -190,7 +191,7 @@
     <div class="flex mb-3 justify-end">
       <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #F9F9F9; cursor: pointer"
               onclick="onShowQr(event)">
-        <p style="font-size: 10px; color: #4F4F4F; font-weight: 650;">X</p>
+        <p style="font-size: 10px; color: #4F4F4F; font-weight: 650;"><img src="img/x.svg" alt="close" style="height: 12px; width: 12px; margin: 8px"></p>
       </button>
     </div>
     <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto">
@@ -258,11 +259,11 @@
         <div id="card1" class="px-4 rounded-lg h-[90%] md:h-[70%]">
           <!-- Содержимое карточки -->
         </div>
-        <button
-          class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[200px] lg:w-[95%] text-white w-auto"
-          style="background-color: #3ECAE3; border-color: #3ECAE3; position: relative; bottom: 10px; width: 95%; margin-left: 10px">
-          Make an appointment
-        </button>
+<!--        <button-->
+<!--          class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[200px] lg:w-[95%] text-white w-auto"-->
+<!--          style="background-color: #3ECAE3; border-color: #3ECAE3; position: relative; bottom: 10px; width: 95%; margin-left: 10px">-->
+<!--          Make an appointment-->
+<!--        </button>-->
       </div>
     </div>
   </div>
@@ -591,7 +592,7 @@
             onclick="onDeletePopup(event, 11)"
           >
             <p class="text-xs font-semibold text-gray-600"><img src="img/x.svg" alt="delete"
-                                                                style="width: 12px; height: 12px"></p>
+                                                                style="width: 12px; height: 12px; margin: 8px"></p>
           </button>
         </div>
       </div>
@@ -636,7 +637,7 @@
 <!--          </div>-->
           <div id="checkbox-container2"
                class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm"
-               style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3; cursor: pointer"
+               style="display: flex; gap: 5px; margin: 6px; border-radius: 24px; border-color: #3ECAE3; cursor: pointer"
                onclick="toggleCheckbox(this)">
             <div class="relative">
               <!--              border-color:#3ECAE3-->
@@ -655,7 +656,7 @@
             Chlamydia
           </div>
           <div class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm"
-               style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3; cursor: pointer"
+               style="display: flex; gap: 5px; margin: 6px; border-radius: 24px; border-color: #3ECAE3; cursor: pointer"
                onclick="toggleCheckbox(this)">
             <div class="relative">
               <!--              border-color:#3ECAE3-->

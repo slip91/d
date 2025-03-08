@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         </div>
       </div>
     `,
-      iconSize: [170, 69], // Размер иконки (ширина, высота)
+      iconSize: [170, 69],
     });
 
     function updateLabInfo(lab) {
