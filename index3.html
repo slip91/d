@@ -31,11 +31,17 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
         crossorigin=""/>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.83.1/dist/L.Control.Locate.min.js"
+          integrity="sha256-77Du33ZJbZpMVEDbUn+/PZnZsQMDgOYtXSoVln9T37M=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.83.1/dist/L.Control.Locate.min.js"
+          integrity="sha256-77Du33ZJbZpMVEDbUn+/PZnZsQMDgOYtXSoVln9T37M=" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="fixed hidden inset-0 bg-opacity-50 overflow-y-auto w-full" onclick="onDeletePopup(event);event.stopPropagation();" id="modal_delete"
+<div class="fixed hidden inset-0 bg-opacity-50 overflow-y-auto w-full"
+     onclick="onDeletePopup(event);event.stopPropagation();" id="modal_delete"
      style="overflow: hidden; z-index: 100; justify-content: center; align-items: center;  background-color: rgba(0, 0, 0, 0.3)">
-  <div class="relative mx-auto p-4 h-[250px] w-[404px] bg-white shadow-lg sm:rounded-md" onclick="event.stopPropagation();"
+  <div class="relative mx-auto p-4 h-[250px] w-[404px] bg-white shadow-lg sm:rounded-md"
+       onclick="event.stopPropagation();"
        style="transform: translate(-50%, -50%); position: absolute; top: 50%; left: 50%;">
     <!-- Flex-контейнер для содержимого -->
     <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto">
@@ -57,7 +63,7 @@
                     style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer">
               Remove
             </button>
-            <button class="w-full text-white py-2 px-4 transition duration-300"  onclick="onDeletePopup(event, 12)"
+            <button class="w-full text-white py-2 px-4 transition duration-300" onclick="onDeletePopup(event, 12)"
                     style="border-radius: 42px; border: 1px #3ECAE3;color: #3ECAE3; cursor: pointer">
               Cancel
             </button>
@@ -67,15 +73,18 @@
     </div>
   </div>
 </div>
-<div class="fixed hidden inset-0 bg-opacity-50 overflow-y-auto w-full" onclick="onAddPartner(event);event.stopPropagation();" id="modal_partner"
+<div class="fixed hidden inset-0 bg-opacity-50 overflow-y-auto w-full"
+     onclick="onAddPartner(event);event.stopPropagation();" id="modal_partner"
      style="overflow: hidden; z-index: 100; justify-content: center; align-items: center;  background-color: rgba(0, 0, 0, 0.3)">
-  <div class="relative mx-auto p-4 h-[230px] w-[404px] bg-white shadow-lg" style="border-radius: 16px" onclick="event.stopPropagation();">
+  <div class="relative mx-auto p-4 h-[230px] w-[404px] bg-white shadow-lg" style="border-radius: 16px"
+       onclick="event.stopPropagation();">
     <!-- Flex-контейнер для содержимого -->
     <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto">
       <!-- Правая часть (форма) -->
       <div class="w-full h-auto p-4 sm:p-0 overflow-y-auto">
-        <div class="lg:relative absolute right-[30px] lg:sm:right-auto lg:flex md:flex mb-3 justify-end" >
-          <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #F9F9F9; cursor: pointer" onclick="onAddPartner(event)" >
+        <div class="lg:relative absolute right-[30px] lg:sm:right-auto lg:flex md:flex mb-3 justify-end">
+          <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #F9F9F9; cursor: pointer"
+                  onclick="onAddPartner(event)">
             <p style="font-size: 10px; color: #4F4F4F; font-weight: 650;">X</p>
           </button>
         </div>
@@ -87,7 +96,8 @@
           </h2>
           <p class="mb-4 text-base font-normal leading-none tracking-tight text-600 lg:text-base"
              style="font-size: 14px; font-weight: 400">
-            The partner will be added to the shared list, and their status, along with any active conditions (if detected), will become accessible to you.
+            The partner will be added to the shared list, and their status, along with any active conditions (if
+            detected), will become accessible to you.
           </p>
           <div class="relative w-full">
             <input
@@ -133,14 +143,17 @@
     </div>
   </div>
 </div>
-<div class="fixed hidden inset-0 bg-opacity-50 overflow-y-auto w-full" onclick="onRequestPartnership(event);event.stopPropagation();" id="partnership_request"
+<div class="fixed hidden inset-0 bg-opacity-50 overflow-y-auto w-full"
+     onclick="onRequestPartnership(event);event.stopPropagation();" id="partnership_request"
      style="overflow: hidden; z-index: 100; justify-content: center; align-items: center;   background-color: rgba(0, 0, 0, 0.3)">
-  <div class="relative mx-auto p-4 h-[300px] w-[404px] bg-white shadow-lg" style="border-radius: 16px" onclick="event.stopPropagation();">
+  <div class="relative mx-auto p-4 h-[300px] w-[404px] bg-white shadow-lg" style="border-radius: 16px"
+       onclick="event.stopPropagation();">
     <!-- Flex-контейнер для содержимого -->
     <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto">
       <div class="w-full h-auto p-4 sm:p-0 overflow-y-auto">
-        <div class="lg:relative absolute right-[30px] lg:sm:right-auto lg:flex md:flex mb-3 justify-end" >
-          <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #F9F9F9; cursor: pointer" onclick="onRequestPartnership(event)" >
+        <div class="lg:relative absolute right-[30px] lg:sm:right-auto lg:flex md:flex mb-3 justify-end">
+          <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #F9F9F9; cursor: pointer"
+                  onclick="onRequestPartnership(event)">
             <p style="font-size: 10px; color: #4F4F4F; font-weight: 650;">X</p>
           </button>
         </div>
@@ -152,14 +165,16 @@
           </h2>
           <p class="mb-4 text-base font-normal leading-none tracking-tight text-600 lg:text-base"
              style="font-size: 14px; font-weight: 400">
-            The partner will be added to the shared list, and their status, along with any active conditions (if detected), will become accessible to you.
+            The partner will be added to the shared list, and their status, along with any active conditions (if
+            detected), will become accessible to you.
           </p>
           <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"
                   style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer" onclick="onAddPartner(event)">
             Accept
           </button>
           <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"
-                  style="background-color: white; border-radius: 42px; color: #3ECAE3; border-color: #3ECAE3 ; cursor: pointer" onclick="onRequestPartnership(event)">
+                  style="background-color: white; border-radius: 42px; color: #3ECAE3; border-color: #3ECAE3 ; cursor: pointer"
+                  onclick="onRequestPartnership(event)">
             Decline
           </button>
         </div>
@@ -167,12 +182,14 @@
     </div>
   </div>
 </div>
-<div class="fixed hidden inset-0 bg-opacity-50 overflow-y-auto w-full" onclick="onShowQr(event); event.stopPropagation();" id="modal_qr"
+<div class="fixed hidden inset-0 bg-opacity-50 overflow-y-auto w-full"
+     onclick="onShowQr(event); event.stopPropagation();" id="modal_qr"
      style="overflow: hidden; z-index: 100; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.3)">
   <div class="relative mx-auto p-4 h-[475px] w-[404px] bg-white shadow-lg" onclick="event.stopPropagation();"
        style="transform: translate(-50%, -50%); position: absolute; top: 50%; left: 50%; border-radius: 16px">
     <div class="flex mb-3 justify-end">
-      <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #F9F9F9; cursor: pointer" onclick="onShowQr(event)">
+      <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #F9F9F9; cursor: pointer"
+              onclick="onShowQr(event)">
         <p style="font-size: 10px; color: #4F4F4F; font-weight: 650;">X</p>
       </button>
     </div>
@@ -184,30 +201,44 @@
           Check my status
         </h2>
         <div class="w-[372px] h-[372px]">
-          <div class="h-full w-full" style="background-image: url('/img/qr.png'); background-position: 70%; background-size: cover; background-repeat: no-repeat;"></div>
+          <div class="h-full w-full"
+               style="background-image: url('/img/qr.png'); background-position: 70%; background-size: cover; background-repeat: no-repeat;"></div>
         </div>
       </div>
     </div>
   </div>
 </div>
 <div class="fixed hidden inset-0 bg-opacity-50 overflow-y-auto h-full w-full" id="modal_map"
-     style="overflow: hidden; z-index: 100;  background-color: rgba(0, 0, 0, 0.3)">
+     style="overflow: hidden; z-index: 100; background-color: rgba(0, 0, 0, 0.3)">
   <!-- Контейнер модального окна -->
-  <div class="relative mx-auto w-full h-full sm:h-auto lg:h-[692px] w-[692px] bg-white shadow-lg max-w-[1311px] md:w-[90%] my-0 ld:my-4 md:my-4 sm:my-8 rounded-[0px] md:rounded-[16px] lg:rounded-[16px]" onclick="event.stopPropagation();"
-       style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+  <div
+    class="relative mx-auto w-full h-full sm:h-auto lg:h-[692px] w-[692px] bg-white shadow-lg max-w-[1311px] md:w-[90%] my-0 ld:my-4 md:my-4 sm:my-8 rounded-[0px] md:rounded-[16px] lg:rounded-[16px]"
+    onclick="event.stopPropagation();"
+    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
     <!-- Flex-контейнер для содержимого -->
     <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto md:h-[100%] lg:h-[100%]">
+      <!-- Карта -->
       <div
-        class="w-full h-48 h-[60vh] md:h-[692px] lg:h-auto sm:w-2/3  flex justify-center items-center text-black sm:text-white rounded-t-md sm:rounded-l-md sm:rounded-tr-none bg-white sm:bg-[#3ECAE3] rounded-bl-[0px] md:rounded-tl-[16px] md:rounded-bl-[16px] lg:rounded-tl-[16px] lg:rounded-bl-[16px]">
-        <div id="map" class="w-full h-full rounded-tl-[0px] rounded-bl-[0px] md:rounded-tl-[16px] md:rounded-bl-[16px] lg:rounded-tl-[16px] lg:rounded-bl-[16px]"></div>
+        class="w-full h-48 h-[60vh] md:h-[692px] lg:h-auto sm:w-2/3 flex justify-center items-center text-black sm:text-white rounded-t-md sm:rounded-l-md sm:rounded-tr-none bg-white sm:bg-[#3ECAE3] rounded-bl-[0px] md:rounded-tl-[16px] md:rounded-bl-[16px] lg:rounded-tl-[16px] lg:rounded-bl-[16px]">
+        <!-- Кнопка закрытия попапа -->
+        <div id="close-popup-btn"
+             class="absolute top-[66px] left-2 z-[1000] bg-white p-2 rounded-full shadow-lg cursor-pointer"
+             style="width: 44px;height: 44px; padding: 13px;">
+          <img src="/img/arrow_map.svg" alt="prev">
+        </div>
+        <div id="map"
+             class="w-full h-full rounded-tl-[0px] rounded-bl-[0px] md:rounded-tl-[16px] md:rounded-bl-[16px] lg:rounded-tl-[16px] lg:rounded-bl-[16px]"></div>
       </div>
 
       <!-- Правая часть (форма) -->
-      <div class="w-full h-auto p-4 sm:p-0 sm:w-1/3 overflow-y-auto sm: min-h-[400px] rounded-[16px]" style="overflow: scroll">
+      <div id="info_panel" class="w-full h-auto p-4 sm:p-0 sm:w-1/3 overflow-y-auto sm:min-h-[400px] rounded-[16px]" style="overflow: scroll;display: flex;
+    flex-direction: column;
+    justify-content: space-between;">
+        <!-- Карточка с информацией -->
         <!-- Кнопка закрытия -->
-        <div class="lg:relative absolute pt-4 pr-4 right-[30px] lg:sm:right-auto lg:flex md:flex mb-0 justify-end">
+        <div class="hidden  pr-4 pt-2 right-[30px] lg:sm:right-auto lg:flex md:flex mb-0 justify-end">
           <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #E5E5E5; cursor: pointer; overflow: hidden" id="ok-btn">
-            <p style="font-size: 10px; color: #4F4F4F; font-weight: 650;">X</p>
+            <p class="text-xs font-semibold text-gray-600"><img src="img/x.svg" alt="close" style="width: 12px; height: 12px; margin-left: 8px;"></p>
           </button>
         </div>
 
@@ -224,102 +255,42 @@
             of the listed conditions near you.
           </p>
         </div>
-
-        <!-- Карточка с информацией -->
-        <div id="card1" class="p-4 rounded-lg h-[90%] md:h-[70%]" >
-          <div class="flex gap-2">
-            <div style="width: 40px; height: 40px; border-radius: 12px; background-color: #3ECAE3"></div>
-            <div style="display: flex; text-align: center; align-items: center;">
-              <h1 class="font-medium">Lab 3</h1>
-            </div>
-          </div>
-          <div class="flex w-full gap-2" >
-            <div style="display: flex; align-content: center; justify-content: center; align-items: center; gap: 5px
-">
-              <div><img src="/img/clock.svg" style="height: 18px; width: 18px" alt="clock"></div>
-              <p class="font-medium" style="font-size: 14px; color: #08C671; margin-top: 10px; font-weight: 400">Open now</p>
-            </div>
-
-            <!-- Кнопка справа -->
-            <button
-              onclick="toggleAccordionLab()"
-              class="p-2 focus:outline-none"
-              style="cursor: pointer; margin-left: 13%"
-            >
-              <svg
-                id="arrow"
-                class="w-5 h-6 transform transition-transform"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </button>
-          </div>
-          <div
-            id="accordionContentLab"
-            class="mt-2 rounded-lg hidden transition-all duration-300 flex gap-4 flex-col w-full ml-[20px]"
-          >
-            <div class="flex gap-[20px] w-full">
-                <div class="flex">
-                  <p>Monday</p>
-                </div>
-                <div>
-                  <p>9 AM-11 PM</p>
-                </div>
-            </div>
-            <div class="flex gap-[20px] w-full">
-              <div>
-                <p>Monday</p>
-              </div>
-              <div>
-                <p>9 AM-11 PM</p>
-              </div>
-            </div>
-          </div>
-          <div class="flex gap-[10px]">
-            <div class="flex">
-              <img src="/img/pin.svg">
-            </div>
-            <p class="text-sm text-gray-500 mt-2">Adress: Hradešínská 1930/63, 101 Vinohrady</p>
-          </div>
-          <div style="width: 100%;
-    height: 1px;
-    border: 1px;
-    background-color: #8080808C;
-    margin-top: 10px;"></div>
-          <div class="mt-4" style="display: flex; flex-direction: column; gap: 10px;">
-            <p style="font-size: 18px; font-weight: 400">Analysis list</p>
-            <div class="flex space-x-2 mt-2">
-              <span class="text-xs px-2 py-1 rounded-full" style="background-color: #C5EFF7">Syphilis</span>
-              <span class="text-xs px-2 py-1 rounded-full" style="background-color: #C5EFF7">NIV</span>
-            </div>
-          </div>
+        <div id="card1" class="px-4 rounded-lg h-[90%] md:h-[70%]">
+          <!-- Содержимое карточки -->
         </div>
-        <button class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[200px] lg:w-[95%] text-white w-auto"
-                style="background-color: #3ECAE3; border-color: #3ECAE3; position: relative; bottom: 10px; width: 95%; margin-left: 10px">
+        <button
+          class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[200px] lg:w-[95%] text-white w-auto"
+          style="background-color: #3ECAE3; border-color: #3ECAE3; position: relative; bottom: 10px; width: 95%; margin-left: 10px">
           Make an appointment
         </button>
-        </div>
+      </div>
     </div>
+  </div>
+  <!-- Блок для информации о лаборатории на мобильных устройствах -->
+  <div id="mobile_lab_info" class="fixed bottom-0 left-0 w-full bg-white p-4 shadow-lg hidden sm:hidden">
+    <div class="flex" style="justify-content: flex-end">
+      <button onclick="closeMobileLabInfo()" class="text-gray-500">X</button>
+    </div>
+    <div id="mobile_lab_content"></div>
   </div>
 </div>
 <div class="container mx-auto w-[90%] lg:w-[95%] md:w-[95%]">
   <nav class="bg-white border-gray-200 py-2.5">
     <div class="flex flex-wrap justify-between items-center w-full">
       <div class="dropdown relative inline-flex">
-        <div id="dropdown-with-subheading" class="hidden dropdown-menu rounded-xl shadow-lg bg-white absolute top-full w-72 mt-6 divide-y divide-gray-200" aria-labelledby="dropdown-with-subheading">
+        <div id="dropdown-with-subheading"
+             class="hidden dropdown-menu rounded-xl shadow-lg bg-white absolute top-full w-72 mt-6 divide-y divide-gray-200"
+             aria-labelledby="dropdown-with-subheading">
           <div class="px-4 py-3 flex gap-3 flex-col">
             <div class="block mt-1">
-              <h3  style="font-size: 26px; font-weight: 400">Health Mate</h3>
+              <h3 style="font-size: 26px; font-weight: 400">Health Mate</h3>
               <p style="font-weight: 400; font-size: 18px; color: #646464">usermail1234@gmail.com</p>
             </div>
             <div>
               <button class="w-full py-2 px-4 transition duration-300 flex flex-row gap-4"
                       style="border-radius: 42px;  border: 1px solid #3ECAE3;color: #3ECAE3; cursor: pointer">
                 <img src="/img/log_out.svg" alt="log out"/>
-                 Log out
+                Log out
               </button>
             </div>
           </div>
@@ -328,7 +299,7 @@
       <a href="#" class="flex items-center">
         <img src="/img/avatar.png" class="mr-3 h-[48px] w-[48ox] sm:h-9" alt="Health Mates" onclick="onLoginPopup()"/>
         <span class="self-center font-semibold whitespace-nowrap text-black"
-        style="font-size: 18px; line-height: 24px; font-weight: 400">Health Mates</span>
+              style="font-size: 18px; line-height: 24px; font-weight: 400">Health Mates</span>
       </a>
       <div class="ml-auto">
         <button
@@ -357,7 +328,8 @@
   <div class="m-auto grid-cols-2 grid lg:grid-cols-4 gap-4">
     <div class="my-auto pr-4 grid grid-cols-2 justify-end col-span-2" style="background: #F9F9F9; border-radius: 22px">
       <!-- Левая колонка -->
-      <div class="flex flex-col justify-center gap-2" style="padding-left: 20px; padding-top: 13px; padding-bottom: 20px">
+      <div class="flex flex-col justify-center gap-2"
+           style="padding-left: 20px; padding-top: 13px; padding-bottom: 20px">
         <div>
           <h1 class="text-4xl font-medium leading-none tracking-tight text-500 sm:text-4xl md:text-4xl lg:text-6xl"
               style="font-size: 80px; line-height: 84px">
@@ -366,7 +338,7 @@
         </div>
         <div class="mt-auto">
           <p class="text-base font-normal leading-none tracking-tight text-400 lg:text-base"
-          style="line-height: 24px; font-size: 20px">
+             style="line-height: 24px; font-size: 20px">
             Weeks ago
           </p>
         </div>
@@ -381,14 +353,15 @@
             </h1>
           </div>
           <div>
-            <h3 class="text-sm font-medium leading-none tracking-tight text-400 lg:text-sm" style="color: #2BDD49; font-size: 14px; font-weight: 400; line-height: 100%;">
+            <h3 class="text-sm font-medium leading-none tracking-tight text-400 lg:text-sm"
+                style="color: #2BDD49; font-size: 14px; font-weight: 400; line-height: 100%;">
               Status clear
             </h3>
           </div>
         </div>
         <div class="mt-auto"> <!-- mt-auto для прижатия к низу -->
           <p class="text-sm font-medium leading-none tracking-tight text-400 md:text-2xl lg:text-sm"
-          style="font-size: 14px; font-weight: 400; ">
+             style="font-size: 14px; font-weight: 400; ">
             Borem ipsum dolor sit amet, consectetur adipiscing elit.
             Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
           </p>
@@ -399,40 +372,47 @@
          style="background: #F9F9F9; border-radius: 22px; height: 204px; justify-content: space-between; overflow: hidden">
       <h1
         class="mb-6 text-2xl font-medium leading-none tracking-tight text-500 md:text-3xl lg:text-3xl"
-      style="font-size: 22px; line-height: 26px"
+        style="font-size: 22px; line-height: 26px"
       >
         Upload new results
       </h1>
       <div class="flex justify-between">
         <div>
-          <img src="/img/make_big.svg" alt="make big" class="relative -rotate-[23deg] md:rotate-[0deg] lg:rotate-[0deg] top-[15px] md:top-[0px] lg:top-[0px] right-[10px] md:right-[0px] lg:right-[0px]"/>
+          <img src="/img/make_big.svg" alt="make big"
+               class="relative -rotate-[23deg] md:rotate-[0deg] lg:rotate-[0deg] top-[15px] md:top-[0px] lg:top-[0px] right-[10px] md:right-[0px] lg:right-[0px]"/>
         </div>
         <div class="flex" style="align-items: end">
-          <button class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[40px] lg:w-[48px] md:w-[48px] flex text-white h-[40px] md:h-[48px] lg:h-[48px]"
-                  style="background-color: #3ECAE3; border-color: #3ECAE3; cursor: pointer;">
-            <img src="/img/arrow.svg" width="22" height="16" class="-left-[6px] md:-left-[2px] lg:-left-[6px]" style="max-width: max-content;position: relative;" alt="Upload new results">
+          <button
+            class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[40px] lg:w-[48px] md:w-[48px] flex text-white h-[40px] md:h-[48px] lg:h-[48px]"
+            style="background-color: #3ECAE3; border-color: #3ECAE3; cursor: pointer;">
+            <img src="/img/arrow.svg" width="22" height="16" class="-left-[6px] md:-left-[2px] lg:-left-[6px]"
+                 style="max-width: max-content;position: relative;" alt="Upload new results">
             <input
-            class="cursor-pointer block py-2 px-4 w-full opacity-0 pin-r pin-t mt-[-10px] ml-[-30px]"
-            type="file"
+              class="cursor-pointer block py-2 px-4 w-full opacity-0 pin-r pin-t mt-[-10px] ml-[-30px]"
+              type="file"
             >
           </button>
         </div>
       </div>
     </div>
-    <div class="my-auto p-4 w-full justify-start justify-between flex flex-col" style="background: #F9F9F9; border-radius: 22px; height: 204px; justify-content: space-between; overflow: hidden">
+    <div class="my-auto p-4 w-full justify-start justify-between flex flex-col"
+         style="background: #F9F9F9; border-radius: 22px; height: 204px; justify-content: space-between; overflow: hidden">
       <h1
         class="mb-2 text-2xl font-medium leading-none tracking-tight text-500 md:text-3xl lg:text-3xl"
-      style="font-size: 22px; line-height: 26px">
+        style="font-size: 22px; line-height: 26px">
         Generate QR for a new partner
       </h1>
       <div class="flex justify-between">
         <div>
-          <img src="/img/qr.svg" alt="make big" class="relative -rotate-[23deg] md:rotate-[0deg] lg:rotate-[0deg] top-[15px] md:top-[0px] lg:top-[0px] right-[10px] md:right-[0px] lg:right-[0px]"/>
+          <img src="/img/qr.svg" alt="make big"
+               class="relative -rotate-[23deg] md:rotate-[0deg] lg:rotate-[0deg] top-[15px] md:top-[0px] lg:top-[0px] right-[10px] md:right-[0px] lg:right-[0px]"/>
         </div>
         <div class="flex" style="align-items: end">
-          <button class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[40px] lg:w-[48px] md:w-[48px] text-white h-[40px] md:h-[48px] lg:h-[48px]"
-                  style="background-color: #3ECAE3; border-color: #3ECAE3; cursor: pointer" onclick="onShowQr(event)">
-            <img src="/img/arrow.svg" class="-left-[6px] md:-left-[2px] lg:-left-[6px]" width="22" height="16" style="max-width: max-content; position: relative;" alt="qr">
+          <button
+            class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[40px] lg:w-[48px] md:w-[48px] text-white h-[40px] md:h-[48px] lg:h-[48px]"
+            style="background-color: #3ECAE3; border-color: #3ECAE3; cursor: pointer" onclick="onShowQr(event)">
+            <img src="/img/arrow.svg" class="-left-[6px] md:-left-[2px] lg:-left-[6px]" width="22" height="16"
+                 style="max-width: max-content; position: relative;" alt="qr">
           </button>
         </div>
       </div>
@@ -443,10 +423,12 @@
       <div class="flex gap-[10px] mb-2">
         <h2 class="text-xl font-semibold" style="font-size: 26px; font-weight: 400">Last lab results</h2>
         <div style="display: flex; align-items: center; margin-left: auto; padding-right: 10px">
-          <img src="img/next.svg" alt="prev" style="width: 16px; height: 22px; transform: rotate(180deg); cursor: pointer">
+          <img src="img/next.svg" alt="prev"
+               style="width: 16px; height: 22px; transform: rotate(180deg); cursor: pointer">
         </div>
       </div>
-      <p class="text-sm mb-4" style="font-size: 14px; font-weight: 400">Here are the results of the last three uploaded tests. Please note that
+      <p class="text-sm mb-4" style="font-size: 14px; font-weight: 400">Here are the results of the last three uploaded
+        tests. Please note that
         results can be false-positive or false-negative; only regular testing can provide an accurate picture.</p>
 
       <div class="space-y-4">
@@ -495,13 +477,15 @@
               class="mt-2 rounded-lg hidden transition-all duration-300 flex gap-4 flex-col w-full"
             >
               <div class="flex gap-2 w-full">
-                <span class="text-sm pl-2 pr-2" style="background-color: #FFE2DA; border-radius: 20px; font-size: 12px; font-weight: 400; align-content: center; height: 19px">
+                <span class="text-sm pl-2 pr-2"
+                      style="background-color: #FFE2DA; border-radius: 20px; font-size: 12px; font-weight: 400; align-content: center; height: 19px">
                     POS
                 </span>
                 <p>Syphilis</p>
               </div>
               <div class="flex gap-2 w-full">
-                <span class="text-sm pl-2 pr-2 h-[19px] w-[46px]" style="background-color: #DAF6EA; border-radius: 20px; font-weight: 400; align-content: center; height: 19px">
+                <span class="text-sm pl-2 pr-2 h-[19px] w-[46px]"
+                      style="background-color: #DAF6EA; border-radius: 20px; font-weight: 400; align-content: center; height: 19px">
                     NEG
                 </span>
                 <p>Hepatitis B (HBsAg, anti-HBs, anti-HBc IgM, anti-HBc total, HBeAg, anti-HBe)</p>
@@ -517,14 +501,14 @@
                   style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer" onclick="onAddPartner(event)">
             Upload new lab result
           </button>
-<!--          <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"-->
-<!--                  style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer" onclick="onAddPartner(event)">-->
-<!--            Upload new lab result-->
-<!--          </button>-->
-<!--          <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"-->
-<!--                  style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer" onclick="onAddPartner(event)">-->
-<!--            Upload new lab result-->
-<!--          </button>-->
+          <!--          <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"-->
+          <!--                  style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer" onclick="onAddPartner(event)">-->
+          <!--            Upload new lab result-->
+          <!--          </button>-->
+          <!--          <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"-->
+          <!--                  style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer" onclick="onAddPartner(event)">-->
+          <!--            Upload new lab result-->
+          <!--          </button>-->
         </div>
       </div>
     </div>
@@ -533,7 +517,8 @@
       <div class="flex gap-[10px] mb-2">
         <h2 class="text-xl font-semibold" style="font-size: 26px; font-weight: 400">Your partners</h2>
         <div style="display: flex; align-items: center; margin-left: auto; padding-right: 10px">
-          <img src="img/next.svg" alt="prev" style="width: 16px; height: 22px; transform: rotate(180deg); cursor: pointer">
+          <img src="img/next.svg" alt="prev"
+               style="width: 16px; height: 22px; transform: rotate(180deg); cursor: pointer">
         </div>
       </div>
       <p class="text-sm text-gray-600 mb-4">Remember that a diagnosed condition in a partner is a reason to retake your
@@ -541,7 +526,7 @@
 
       <div class="flex flex-col">
         <div class="bg-white rounded-lg mb-2 pb-3 " style="background-color: #F9F9F9; border-radius: 22px">
-          <div class="flex gap-4 items-center justify-between p-4" >
+          <div class="flex gap-4 items-center justify-between p-4">
             <!-- Левая часть: аватар и информация -->
             <div class="flex items-center flex-grow gap-4">
               <div>
@@ -581,7 +566,8 @@
       </div>
 
       <!-- Partner #2 -->
-      <div class="flex gap-4 items-center justify-between p-4 bg-white rounded-lg" style="background-color: #F9F9F9; border-radius: 22px">
+      <div class="flex gap-4 items-center justify-between p-4 bg-white rounded-lg"
+           style="background-color: #F9F9F9; border-radius: 22px">
         <!-- Левая часть: аватар и информация -->
         <div class="flex gap-4 items-center flex-grow">
           <div>
@@ -604,7 +590,8 @@
             style="cursor: pointer"
             onclick="onDeletePopup(event, 11)"
           >
-            <p class="text-xs font-semibold text-gray-600"><img src="img/x.svg" alt="delete" style="width: 12px; height: 12px"></p>
+            <p class="text-xs font-semibold text-gray-600"><img src="img/x.svg" alt="delete"
+                                                                style="width: 12px; height: 12px"></p>
           </button>
         </div>
       </div>
@@ -613,7 +600,8 @@
         Add new partner
       </button>
       <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"
-              style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer" onclick="onRequestPartnership(event)">
+              style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer"
+              onclick="onRequestPartnership(event)">
         Partnership request for ex
       </button>
     </div>
@@ -629,59 +617,95 @@
         <h3 class="font-medium">Select current positions</h3>
         <!-- Conditions -->
         <div class="flex flex-wrap gap-2"> <!-- Добавлен flex-wrap -->
-          <div class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm" style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3">
+          <div class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm"
+               style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3">
             <div class="relative">
-              <input type="checkbox" class="w-5 h-5 appearance-none cursor-pointer border border-gray-300 rounded-md mr-2" id="checkbox-in-form" style="border-radius: 20px; border-color:#3ECAE3">
+              <input type="checkbox"
+                     class="w-5 h-5 appearance-none cursor-pointer border border-gray-300 rounded-md mr-2"
+                     id="checkbox-in-form" style="border-radius: 20px; border-color:#3ECAE3">
               <!-- SVG галочка -->
-              <svg class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0 pointer-events-none" viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              <svg
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0 pointer-events-none"
+                viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
+                <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"/>
               </svg>
             </div>
             Syphilis
           </div>
-          <div id="checkbox-container2" class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm" style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3">
+          <div id="checkbox-container2"
+               class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm"
+               style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3">
             <div class="relative">
-<!--              border-color:#3ECAE3-->
-              <input type="checkbox" class="w-5 h-5 appearance-none cursor-pointer border border-[#3ECAE3] rounded-md mr-2" id="checkbox-in-form2" style="border-radius: 20px; ">
+              <!--              border-color:#3ECAE3-->
+              <input type="checkbox"
+                     class="w-5 h-5 appearance-none cursor-pointer border border-[#3ECAE3] rounded-md mr-2"
+                     id="checkbox-in-form2" style="border-radius: 20px; ">
               <!-- SVG галочка -->
-              <svg class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0 pointer-events-none" viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              <svg
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0 pointer-events-none"
+                viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
+                <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"/>
               </svg>
             </div>
             Chlamydia
           </div>
-          <div class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm" style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3">
+          <div class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm"
+               style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3">
             <div class="relative">
-              <input type="checkbox" class="w-5 h-5 appearance-none cursor-pointer border border-gray-300 rounded-md mr-2" id="checkbox-in-form" style="border-radius: 20px; border-color:#3ECAE3">
+              <input type="checkbox"
+                     class="w-5 h-5 appearance-none cursor-pointer border border-gray-300 rounded-md mr-2"
+                     id="checkbox-in-form" style="border-radius: 20px; border-color:#3ECAE3">
               <!-- SVG галочка -->
-              <svg class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0 pointer-events-none" viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              <svg
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0 pointer-events-none"
+                viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
+                <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"/>
               </svg>
             </div>
             Hepatitis B
           </div>
-          <div class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm" style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3">
+          <div class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm"
+               style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3">
             <div class="relative">
-              <input type="checkbox" class="w-5 h-5 appearance-none cursor-pointer border border-gray-300 rounded-md mr-2" id="checkbox-in-form" style="border-radius: 20px; border-color:#3ECAE3">
+              <input type="checkbox"
+                     class="w-5 h-5 appearance-none cursor-pointer border border-gray-300 rounded-md mr-2"
+                     id="checkbox-in-form" style="border-radius: 20px; border-color:#3ECAE3">
               <!-- SVG галочка -->
-              <svg class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0 pointer-events-none" viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              <svg
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0 pointer-events-none"
+                viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
+                <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"/>
               </svg>
             </div>
             Gonorrhoea
           </div>
-          <div class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm" style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3">
+          <div class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm"
+               style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3">
             <div class="relative">
-              <input type="checkbox" class="w-5 h-5 appearance-none cursor-pointer border border-[#3ECAE3] rounded-md mr-2" id="checkbox-in-form" style="border-radius: 20px; ">
+              <input type="checkbox"
+                     class="w-5 h-5 appearance-none cursor-pointer border border-[#3ECAE3] rounded-md mr-2"
+                     id="checkbox-in-form" style="border-radius: 20px; ">
               <!-- SVG галочка -->
-              <svg class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0 pointer-events-none" viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              <svg
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0 pointer-events-none"
+                viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
+                <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"/>
               </svg>
             </div>
             HIV
           </div>
         </div>
-        <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300" id="open-btn"
+        <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300" id="open-map"
                 style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer">
           Show me labs
         </button>
@@ -690,14 +714,8 @@
   </div>
 </div>
 
-<script src="js/app.js"></script>
+<script src="js/page2.js"></script>
 <script>
-  function toggleAccordionLab() {
-    const content = document.getElementById('accordionContentLab');
-    const arrow = document.getElementById('arrow');
-    content.classList.toggle('hidden');
-    arrow.classList.toggle('rotate-180');
-  }
   function toggleAccordion() {
     const content = document.getElementById('accordionContent');
     const arrow = document.getElementById('arrow');
@@ -706,14 +724,19 @@
   }
 
   let modal = document.getElementById('modal_map');
-  let btn = document.getElementById('open-btn');
-  let button = document.getElementById('ok-btn');
-
+  let btn = document.getElementById('open-map');
+  let button = document.getElementById('close-popup-btn');
+  let button2 = document.getElementById('ok-btn');
+  //
   btn.onclick = function () {
     modal.style.display = 'block';
   };
 
   button.onclick = function () {
+    modal.style.display = 'none';
+  };
+
+  button2.onclick = function () {
     modal.style.display = 'none';
   };
 
@@ -733,14 +756,14 @@
       checkbox.classList.remove('border-[#3ECAE3]');
     } else {
       container.classList.remove('bg-[#3ECAE3]', 'text-white');
-      checkbox.classList.add('border-[#3ECAE3]'); // Убираем классы при unchecked
+      checkbox.classList.add('border-[#3ECAE3]');
       checkbox.classList.remove('border-white');
     }
   });
 
   const onLoginPopup = () => {
     const modal = document.getElementById('dropdown-with-subheading');
-    if(modal.classList.contains('hidden')) {
+    if (modal.classList.contains('hidden')) {
       modal.classList.remove('hidden');
     } else {
       modal.classList.add('hidden');
@@ -751,7 +774,7 @@
   const onDeletePopup = (e, id) => {
     console.log('id', id)
     const modal = document.getElementById('modal_delete');
-    if(modal.style.display !== 'flex') {
+    if (modal.style.display !== 'flex') {
       modal.style.display = 'flex';
     } else {
       modal.style.display = 'none';
@@ -760,25 +783,25 @@
 
   const onAddPartner = () => {
     const modal = document.getElementById('modal_partner');
-    if(modal.style.display !== 'flex') {
-      modal.style.display = 'flex';
-    } else {
-      modal.style.display = 'none';
-    }
-  }
-  const onRequestPartnership  = () => {
-    const modal = document.getElementById('partnership_request');
-    if(modal.style.display !== 'flex') {
+    if (modal.style.display !== 'flex') {
       modal.style.display = 'flex';
     } else {
       modal.style.display = 'none';
     }
   }
 
+  const onRequestPartnership = () => {
+    const modal = document.getElementById('partnership_request');
+    if (modal.style.display !== 'flex') {
+      modal.style.display = 'flex';
+    } else {
+      modal.style.display = 'none';
+    }
+  }
 
   const onShowQr = () => {
     const modal = document.getElementById('modal_qr');
-    if(modal.style.display !== 'flex') {
+    if (modal.style.display !== 'flex') {
       modal.style.display = 'flex';
     } else {
       modal.style.display = 'none';
@@ -790,26 +813,6 @@
     input.select();
     document.execCommand('copy');
   }
-
-
-
-  // let modal = document.getElementById('modal');
-  // let btn = document.getElementById('open-btn');
-  // let button = document.getElementById('ok-btn');
-  //
-  // btn.onclick = function () {
-  //   modal.style.display = 'block';
-  // };
-  //
-  // button.onclick = function () {
-  //   modal.style.display = 'none';
-  // };
-  //
-  // window.onclick = function (event) {
-  //   if (event.target == modal) {
-  //     modal.style.display = "none";
-  //   }
-  // }
 </script>
 </body>
 </html>
