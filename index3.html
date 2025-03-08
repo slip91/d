@@ -196,14 +196,14 @@
   <div class="relative mx-auto w-full h-full sm:h-auto lg:h-[692px] w-[692px] bg-white shadow-lg max-w-[1311px] md:w-[90%] my-0 ld:my-4 md:my-4 sm:my-8 rounded-[0px] md:rounded-[16px] lg:rounded-[16px]" onclick="event.stopPropagation();"
        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
     <!-- Flex-контейнер для содержимого -->
-    <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto md:h-[100%] lg:h-[100%] ">
+    <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto md:h-[100%] lg:h-[100%]">
       <div
-        class="w-full h-48 h-[60vh] md:h-[692px] lg:h-auto sm:w-2/3  flex justify-center items-center text-black sm:text-white rounded-t-md sm:rounded-l-md sm:rounded-tr-none bg-white sm:bg-[#3ECAE3] ">
+        class="w-full h-48 h-[60vh] md:h-[692px] lg:h-auto sm:w-2/3  flex justify-center items-center text-black sm:text-white rounded-t-md sm:rounded-l-md sm:rounded-tr-none bg-white sm:bg-[#3ECAE3] rounded-bl-[0px] md:rounded-tl-[16px] md:rounded-bl-[16px] lg:rounded-tl-[16px] lg:rounded-bl-[16px]">
         <div id="map" class="w-full h-full rounded-tl-[0px] rounded-bl-[0px] md:rounded-tl-[16px] md:rounded-bl-[16px] lg:rounded-tl-[16px] lg:rounded-bl-[16px]"></div>
       </div>
 
       <!-- Правая часть (форма) -->
-      <div class="w-full h-auto p-4 sm:p-0 sm:w-1/3 overflow-y-auto sm: min-h-[400px]" style="overflow: scroll">
+      <div class="w-full h-auto p-4 sm:p-0 sm:w-1/3 overflow-y-auto sm: min-h-[400px] rounded-[16px]" style="overflow: scroll">
         <!-- Кнопка закрытия -->
         <div class="lg:relative absolute pt-4 pr-4 right-[30px] lg:sm:right-auto lg:flex md:flex mb-0 justify-end">
           <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #E5E5E5; cursor: pointer; overflow: hidden" id="ok-btn">
@@ -305,15 +305,15 @@
     </div>
   </div>
 </div>
-<div class="container mx-auto w-[90%] lg:w-[95%] md:w-[95%]" style="margin-left: 20px; margin-right: 20px">
+<div class="container mx-auto w-[90%] lg:w-[95%] md:w-[95%]">
   <nav class="bg-white border-gray-200 py-2.5">
     <div class="flex flex-wrap justify-between items-center w-full">
       <div class="dropdown relative inline-flex">
-        <div id="dropdown-with-subheading" class="hidden dropdown-menu rounded-xl shadow-lg bg-white absolute top-full w-72 mt-2 divide-y divide-gray-200" aria-labelledby="dropdown-with-subheading">
+        <div id="dropdown-with-subheading" class="hidden dropdown-menu rounded-xl shadow-lg bg-white absolute top-full w-72 mt-6 divide-y divide-gray-200" aria-labelledby="dropdown-with-subheading">
           <div class="px-4 py-3 flex gap-3 flex-col">
             <div class="block mt-1">
-              Health Mate
-              <p style="font-weight: 400; font-size: 18px">usermail1234@gmail.com</p>
+              <h3  style="font-size: 26px; font-weight: 400">Health Mate</h3>
+              <p style="font-weight: 400; font-size: 18px; color: #646464">usermail1234@gmail.com</p>
             </div>
             <div>
               <button class="w-full py-2 px-4 transition duration-300 flex flex-row gap-4"
@@ -352,7 +352,7 @@
       </div>
     </div>
   </nav>
-  <h3 class="mb-4 text-base font-normal leading-none tracking-tight text-400 lg:text-base"
+  <h3 class="mb-2 text-base font-normal leading-none tracking-tight text-400 lg:text-base"
       style="font-size: 22px; line-height: 38px">Your condition</h3>
   <div class="m-auto grid-cols-2 grid lg:grid-cols-4 gap-4">
     <div class="my-auto pr-4 grid grid-cols-2 justify-end col-span-2" style="background: #F9F9F9; border-radius: 22px">
@@ -376,12 +376,12 @@
       <div class="flex flex-col justify-center" style="height: 204px; padding-bottom: 20px">
         <div class="flex-grow flex flex-col gap-2 " style="padding-top: 20px; "> <!-- flex-grow для верхней части -->
           <div>
-            <h1 class="text-2xl font-medium leading-none tracking-tight text-400 md:text-2xl lg:text-2xl">
+            <h1 class="text-2xl font-medium leading-none tracking-tight text-500" style="font-size: 22px">
               Last check
             </h1>
           </div>
           <div>
-            <h3 class="text-sm font-medium leading-none tracking-tight text-400 md:text-2xl lg:text-sm" style="color: #2BDD49">
+            <h3 class="text-sm font-medium leading-none tracking-tight text-400 lg:text-sm" style="color: #2BDD49; font-size: 14px; font-weight: 400; line-height: 100%;">
               Status clear
             </h3>
           </div>
@@ -438,15 +438,12 @@
       </div>
     </div>
   </div>
-  <div class="my-auto grid grid-cols-1 lg:grid-cols-2 mg-grid-cols-2 justify-end gap-4 pt-[40px]">
+  <div class="my-auto grid grid-cols-1 lg:grid-cols-2 mg-grid-cols-2 justify-end gap-4 pt-[40px] pb-[40px]">
     <div class="bg-white rounded-lg">
-      <div class="flex gap-[10px] mb-4">
-        <div style="display: flex; align-items: center">
-          <img src="img/next.svg" alt="prev" style="width: 19px; height: 22px; cursor: pointer">
-        </div>
+      <div class="flex gap-[10px] mb-2">
         <h2 class="text-xl font-semibold" style="font-size: 26px; font-weight: 400">Last lab results</h2>
-        <div style="display: flex; align-items: center; margin-left: auto">
-          <img src="img/next.svg" alt="prev" style="width: 19px; height: 22px; transform: rotate(180deg); cursor: pointer">
+        <div style="display: flex; align-items: center; margin-left: auto; padding-right: 10px">
+          <img src="img/next.svg" alt="prev" style="width: 16px; height: 22px; transform: rotate(180deg); cursor: pointer">
         </div>
       </div>
       <p class="text-sm mb-4" style="font-size: 14px; font-weight: 400">Here are the results of the last three uploaded tests. Please note that
@@ -463,9 +460,7 @@
           </div>
         </div>
         <div class="space-y-4">
-          <!-- Основной блок -->
           <div class="p-4 flex flex-col gap-2 items-center" style="background-color: #F9F9F9; border-radius: 22px">
-            <!-- Иконка -->
             <div class="flex w-full gap-2">
               <div>
                 <img src="/img/be_aware.svg" alt="Be Aware Icon">
@@ -494,6 +489,7 @@
                 </svg>
               </button>
             </div>
+
             <div
               id="accordionContent"
               class="mt-2 rounded-lg hidden transition-all duration-300 flex gap-4 flex-col w-full"
@@ -516,18 +512,28 @@
               </button>
             </div>
           </div>
+
+          <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"
+                  style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer" onclick="onAddPartner(event)">
+            Upload new lab result
+          </button>
+<!--          <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"-->
+<!--                  style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer" onclick="onAddPartner(event)">-->
+<!--            Upload new lab result-->
+<!--          </button>-->
+<!--          <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"-->
+<!--                  style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer" onclick="onAddPartner(event)">-->
+<!--            Upload new lab result-->
+<!--          </button>-->
         </div>
       </div>
     </div>
 
     <div class="bg-white rounded-lg">
-      <div class="flex gap-[10px] mb-4">
-        <div style="display: flex; align-items: center">
-          <img src="img/next.svg" alt="prev" style="width: 19px; height: 22px; cursor: pointer">
-        </div>
+      <div class="flex gap-[10px] mb-2">
         <h2 class="text-xl font-semibold" style="font-size: 26px; font-weight: 400">Your partners</h2>
-        <div style="display: flex; align-items: center; margin-left: auto">
-          <img src="img/next.svg" alt="prev" style="width: 19px; height: 22px; transform: rotate(180deg); cursor: pointer">
+        <div style="display: flex; align-items: center; margin-left: auto; padding-right: 10px">
+          <img src="img/next.svg" alt="prev" style="width: 16px; height: 22px; transform: rotate(180deg); cursor: pointer">
         </div>
       </div>
       <p class="text-sm text-gray-600 mb-4">Remember that a diagnosed condition in a partner is a reason to retake your

@@ -27,7 +27,7 @@
   <link href="https://cdn.jsdelivr.net/npm/pagedone@1.2.2/src/css/pagedone.css" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/pagedone@1.2.2/src/js/pagedone.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+<!--  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -268,7 +268,7 @@
       <div class="flex flex-wrap justify-between items-center mx-auto w-full">
         <a href="#" class="flex items-center">
           <img src="/img/logo.png" class="mr-3 h-6 sm:h-9" alt="Health Mates"/>
-          <span class="self-center text-xl font-semibold whitespace-nowrap text-white">Health Mates</span>
+          <span class="self-center text-xl font-semibold whitespace-nowrap text-white" style="font-weight: 400; font-size: 22px; line-height: 38px; letter-spacing: 0 ">Health Mates</span>
         </a>
         <div class="hidden lg:flex flex-grow justify-center" id="navbar-default-example"> <!-- Скрыто на мобильных, видно на lg и выше -->
           <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
@@ -319,7 +319,7 @@
             </ul>
             <div class="px-4 pb-[10px]">
               <button class="w-full py-2 px-4 transition duration-300 flex flex-row gap-4"
-                      style="border-radius: 42px;  border: 1px solid #3ECAE3;color: #3ECAE3; cursor: pointer">
+                      style="border-radius: 42px;  border: 1px solid #3ECAE3;color: #3ECAE3; cursor: pointer" id="open-btn2">
                 <img src="/img/log_out.svg" alt="log out" style="transform: rotate(180deg)"/>
                 Sign In
               </button>
@@ -397,7 +397,7 @@
   </div>
 </div>
 <div>
-  <div class="m-auto grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-0 h-[100vh] md:h-[1000px] lg:w-[1000px] sm:w-[99vw] container" id="principles">
+  <div class="m-auto grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-0 h-[1000px] md:h-[600px] lg:h-[1000px]   lg:w-[1000px] sm:w-[99vw] container" id="principles">
     <div class="hidden lg:block" style="position: absolute; transform: rotate(0deg); right: 0;">
       <img src="/img/circle.svg" alt="">
     </div>
@@ -434,13 +434,13 @@
     </div>
   </div>
   <div class="m-auto grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-0 sm:h-[100vh] sm:w-[99vw] container" id="privacy_and_anonymise">
-    <div class="w-[100%] md:w-[50%] lg:w-[50%] h-[692px] md:h-[765px] lg:h-[765px] z-0" style="background: #F16B8F; position: absolute; left: 0; "></div>
+    <div class="w-[100%] md:w-[50%] lg:w-[50%] h-[697px] md:h-[765px] lg:h-[765px] z-0" style="background: #F16B8F; position: absolute; left: 0;"></div>
     <!-- Первый блок -->
     <div class="sm:px-[20px] sm:pr-0 grid justify-end md:h-[100%] lg:h-[100%] sm:h-[652px] w-[100vw] lg:w-[100%] md:w-[100%] container" style=" overflow: hidden; z-index: 100;">
-      <div class="h-[652px] md:h-[765px] lg:h-[765px] sm:w-[100%] md:w-[90%] lg:w-[95%]" style="margin-top: 40px">
+      <div class="h-[652px] md:h-[765px] lg:h-[765px] sm:w-[100%] md:w-[90%] lg:w-[95%]" style="margin-top: 45px">
         <div class="px-4 gap-1 flex flex-col pb-5 sm:mt-[0px] lg:mt-[40px] w-[86%] lg:w-full md:w-full">
           <div>
-            <img src="/img/warning.svg" alt="warning" style="height: 40px; width: 40px">
+            <img src="/img/warning.svg" alt="warning"  style="height: 40px; width: 40px">
           </div>
           <h2 class="mb-6 text-4xl font-medium leading-none text-white md:text-3xl lg:text-4xl" style="word-break: break-word">
             Your health, your privacy.
@@ -473,7 +473,7 @@
       <div class="sm:pl-[20px] sm:pr-[20px] sm:mt-0 lg:ml-[60px] sm:gap-[5px] lg:gap-[33px] sm:w-[80vw] md:w-[400px] sm:h-[100%] gap-[20px] " style="z-index: 100; display: flex; flex-direction: column;"   >
         <div class="px-[20px] md:px-[0px] w-[100vw] sm:w-full md:w-[35vw] lg:w-[400px] h-[60%] md:h-[373px] lg:h-[373px] sm:pl-[20px]" style="line-height: 40px; margin-top: 40px;"> <!-- Убрана фиксированная ширина -->
           <div>
-            <img src="/img/watch.svg" alt="watch">
+            <img src="/img/watch.svg" alt="watch" style="width: 60px; height: 60px">
           </div>
           <div>
             <h2 class="mb-6 text-4xl font-medium leading-none text-white md:text-3xl lg:text-4xl" style="line-height: 40px">
@@ -494,7 +494,6 @@
         </div>
       </div>
     </div>
-
     <div class="px-[20px] flex items-center justify-end h-[546px] md:h-[665px] lg:h-[665px] sm:w-[94%] container mt-[20px] sm:mb-[40px] md:mb-[0px] lg:mb-[0px]" id="community">
       <div class="flex flex-col gap-1 w-full lg:w-[730px] md:w-[100%]" style="margin-top: 40px;">
         <div>
@@ -584,6 +583,28 @@
   window.onclick = function (event) {
     if (event.target == modal) {
       modal2.style.display = "none";
+      document.body.classList.remove('no-scroll');
+    }
+  }
+
+  //дубль
+  let modal3 = document.getElementById('login');
+  let btn2 = document.getElementById('open-btn2');
+  let button2 = document.getElementById('ok-btn');
+
+  btn2.onclick = function () {
+    modal3.style.display = 'flex';
+    document.body.classList.add('no-scroll')
+  };
+
+  button2.onclick = function () {
+    modal3.style.display = 'none';
+    document.body.classList.remove('no-scroll');
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal3.style.display = "none";
       document.body.classList.remove('no-scroll');
     }
   }
