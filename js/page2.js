@@ -132,7 +132,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
           <p style="font-size: 18px; font-weight: 400">Analysis list</p>
           <div class="flex space-x-2 mt-2">
             ${lab.tests.map((test) => `
-              <span class="text-xs px-2 py-1 rounded-full" style="background-color: #C5EFF7">${test}</span>
+                        <div class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm"
+               style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3; color: #3ECAE3">
+            Syphilis
+          </div>
             `).join("")}
           </div>
         </div>

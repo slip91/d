@@ -617,26 +617,27 @@
         <h3 class="font-medium">Select current positions</h3>
         <!-- Conditions -->
         <div class="flex flex-wrap gap-2"> <!-- Добавлен flex-wrap -->
-          <div class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm"
-               style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3">
-            <div class="relative">
-              <input type="checkbox"
-                     class="w-5 h-5 appearance-none cursor-pointer border border-gray-300 rounded-md mr-2"
-                     id="checkbox-in-form" style="border-radius: 20px; border-color:#3ECAE3">
-              <!-- SVG галочка -->
-              <svg
-                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0 pointer-events-none"
-                viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
-                <path fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"/>
-              </svg>
-            </div>
-            Syphilis
-          </div>
+<!--          <div class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm"-->
+<!--               style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3">-->
+<!--            <div class="relative">-->
+<!--              <input type="checkbox"-->
+<!--                     class="w-5 h-5 appearance-none cursor-pointer border border-gray-300 rounded-md mr-2"-->
+<!--                     id="checkbox-in-form" style="border-radius: 20px; border-color:#3ECAE3">-->
+<!--              &lt;!&ndash; SVG галочка &ndash;&gt;-->
+<!--              <svg-->
+<!--                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0 pointer-events-none"-->
+<!--                viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">-->
+<!--                <path fill-rule="evenodd"-->
+<!--                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"-->
+<!--                      clip-rule="evenodd"/>-->
+<!--              </svg>-->
+<!--            </div>-->
+<!--            Syphilis-->
+<!--          </div>-->
           <div id="checkbox-container2"
                class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm"
-               style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3">
+               style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3; cursor: pointer"
+               onclick="toggleCheckbox(this)">
             <div class="relative">
               <!--              border-color:#3ECAE3-->
               <input type="checkbox"
@@ -654,45 +655,13 @@
             Chlamydia
           </div>
           <div class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm"
-               style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3">
+               style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3; cursor: pointer"
+               onclick="toggleCheckbox(this)">
             <div class="relative">
-              <input type="checkbox"
-                     class="w-5 h-5 appearance-none cursor-pointer border border-gray-300 rounded-md mr-2"
-                     id="checkbox-in-form" style="border-radius: 20px; border-color:#3ECAE3">
-              <!-- SVG галочка -->
-              <svg
-                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0 pointer-events-none"
-                viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
-                <path fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"/>
-              </svg>
-            </div>
-            Hepatitis B
-          </div>
-          <div class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm"
-               style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3">
-            <div class="relative">
-              <input type="checkbox"
-                     class="w-5 h-5 appearance-none cursor-pointer border border-gray-300 rounded-md mr-2"
-                     id="checkbox-in-form" style="border-radius: 20px; border-color:#3ECAE3">
-              <!-- SVG галочка -->
-              <svg
-                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0 pointer-events-none"
-                viewBox="0 0 20 20" fill="currentColor" id="checkmark" style="margin-left: -4px;margin-top: -2px;">
-                <path fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"/>
-              </svg>
-            </div>
-            Gonorrhoea
-          </div>
-          <div class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm"
-               style="display: flex; gap: 10px; margin: 6px; border-radius: 24px; border-color: #3ECAE3">
-            <div class="relative">
+              <!--              border-color:#3ECAE3-->
               <input type="checkbox"
                      class="w-5 h-5 appearance-none cursor-pointer border border-[#3ECAE3] rounded-md mr-2"
-                     id="checkbox-in-form" style="border-radius: 20px; ">
+                     id="checkbox-in-form3" style="border-radius: 20px; ">
               <!-- SVG галочка -->
               <svg
                 class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0 pointer-events-none"
@@ -702,7 +671,7 @@
                       clip-rule="evenodd"/>
               </svg>
             </div>
-            HIV
+            SIP
           </div>
         </div>
         <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300" id="open-map"
@@ -746,11 +715,30 @@
     }
   }
 
-  const checkbox = document.getElementById('checkbox-in-form2');
-  const container = document.getElementById('checkbox-container2');
+  // const checkbox = document.getElementById('checkbox-in-form2');
+  // const container = document.getElementById('checkbox-container2');
+  //
+  // checkbox.addEventListener('change', function () {
+  //   if (this.checked) {
+  //     container.classList.add('bg-[#3ECAE3]', 'text-white'); // Добавляем классы при checked
+  //     checkbox.classList.add('border-white');
+  //     checkbox.classList.remove('border-[#3ECAE3]');
+  //   } else {
+  //     container.classList.remove('bg-[#3ECAE3]', 'text-white');
+  //     checkbox.classList.add('border-[#3ECAE3]');
+  //     checkbox.classList.remove('border-white');
+  //   }
+  // });
 
-  checkbox.addEventListener('change', function () {
-    if (this.checked) {
+  function toggleCheckbox(container) {
+    // Находим чекбокс внутри контейнера
+    const checkbox = container.querySelector('input[type="checkbox"]');
+
+    // Переключаем состояние чекбокса
+    checkbox.checked = !checkbox.checked;
+
+    // Применяем стили в зависимости от состояния чекбокса
+    if (checkbox.checked) {
       container.classList.add('bg-[#3ECAE3]', 'text-white'); // Добавляем классы при checked
       checkbox.classList.add('border-white');
       checkbox.classList.remove('border-[#3ECAE3]');
@@ -759,7 +747,21 @@
       checkbox.classList.add('border-[#3ECAE3]');
       checkbox.classList.remove('border-white');
     }
-  });
+  }
+    // Переключаем состояние чекбокса
+    // if (checkbox) {
+    //   checkbox.checked = !checkbox.checked;
+    //
+    //   // Управляем видимостью галочки
+    //   if (checkbox.checked) {
+    //     checkmark.classList.remove('opacity-0');
+    //     checkmark.classList.add('opacity-100');
+    //   } else {
+    //     checkmark.classList.remove('opacity-100');
+    //     checkmark.classList.add('opacity-0');
+    //   }
+    // }
+  // }
 
   const onLoginPopup = () => {
     const modal = document.getElementById('dropdown-with-subheading');
