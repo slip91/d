@@ -1,6 +1,11 @@
 function toggleAccordionLab() {
+  console.log('toggleAccordionLab()');
+
   const content = document.getElementById('accordionContentLab');
   const arrow = document.getElementById('arrow');
+
+  console.log('content.classList', content.classList);
+
   content.classList.toggle('hidden');
   arrow.classList.toggle('rotate-180');
 }
@@ -107,13 +112,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
         <div class="flex gap-2">
           <div style="width: 40px; height: 40px; border-radius: 12px; background-color: #3ECAE3"></div>
           <div style="display: flex; text-align: center; align-items: center;">
-            <h1 class="font-medium">${lab.name}</h1>
+            <p style="font-size: 22px; font-weight: 500; line-height: 100%">${lab.name}</p>
           </div>
         </div>
         <div class="flex w-full gap-2">
           <div style="display: flex; align-content: center; justify-content: center; align-items: center; gap: 5px">
             <div style="width: 18px"><img src="/img/clock.svg" style="height: 18px; width: 18px" alt="clock"></div>
-            <p class="font-medium" style="font-size: 14px; color: #08C671; margin-top: 0; font-weight: 400">${lab.status}</p>
+            <p class="font-medium" style="font-size: 14px; color: #08C671; margin-top: 0; font-weight: 400; line-height: 100%">${lab.status}</p>
           </div>
           <button onclick="toggleAccordionLab()" class="p-2 focus:outline-none" style="cursor: pointer; margin-left: 13%">
             <svg id="arrow" class="w-5 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -121,16 +126,25 @@ document.addEventListener("DOMContentLoaded", (event) => {
             </svg>
           </button>
         </div>
-        <div id="accordionContentLab" class="mt-2 rounded-lg hidden transition-all duration-300 flex gap-4 flex-col w-full ml-[20px]">
-          ${lab.schedule.map((item) => `
-            <div class="flex gap-[20px] w-full">
-              <div class="flex"><p>${item.day}</p></div>
-              <div><p>${item.hours}</p></div>
+<!--        transition-all duration-300 flex gap-2 flex-col w-full ml-[20px]-->
+        <div id="accordionContentLab" class="mt-2 rounded-lg hidden ">
+            <div class="grid grid-cols-2" style="width: 80%; row-gap: 10px">
+              ${lab.schedule.map((item) => `
+                  <div class="flex" style="width: 50px">
+                    <p style="font-size: 14px; font-weight: 400; line-height: 100%">
+                        ${item.day}
+                    </p>
+                  </div>
+                  <div>
+                    <p style="font-size: 14px; font-weight: 400; line-height: 100%">
+                        ${item.hours}
+                    </p>
+                  </div>
+              `).join("")}
             </div>
-          `).join("")}
         </div>
         <div class="flex gap-[10px]">
-          <div class="flex"><img src="/img/pin.svg"></div>
+          <div class="flex"><img src="/img/pin.svg" alt="pin"></div>
           <p class="text-sm text-gray-500 mt-2">Address: ${lab.address}</p>
         </div>
         <div style="width: 100%; height: 1px; border: 1px; background-color: #8080808C; margin-top: 10px;"></div>
@@ -138,13 +152,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
           <p style="font-size: 18px; font-weight: 400">Analysis list</p>
           <div class="flex space-x-2 mt-2">
             ${lab.tests.map((test) => `
-                        <div class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm"
-               style="    display: flex;
+                        <div class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all"
+               style="
+                display: flex;
     gap: 11px;
     border-radius: 24px;
-    border-color: #3ECAE3;
-    color: #3ECAE3;
-    width: 83px;
+    color: black;
+    background-color: #C5EFF7;
     height: 33px;
     justify-content: center;">
             Syphilis
@@ -153,8 +167,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
           </div>
         </div>
         <button
-          class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[200px] lg:w-[95%] text-white w-auto"
-          style="background-color: #3ECAE3; border-color: #3ECAE3; position: absolute; bottom: 10px; width: 95%; margin-left: 10px">
+          class="bg-white py-2 px-4 rounded-full border transition duration-300 text-white w-[93%] md:w-[30%] lg:w-[30%]"
+          style="background-color: #3ECAE3;position: absolute; bottom: 10px; ">
           Make an appointment
         </button>
       `;
