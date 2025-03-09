@@ -1,5 +1,11 @@
 module.exports = {
-  safelist: [{ pattern: /./ }],
+  content: [
+    './*.{html,js,jsx}'
+  ],
+  safelist: [{
+    pattern: /./,
+    variants: ['md', 'lg', 'xl', 'text'],
+  }],
   theme: {
     screens: {
       // 'sm': '640px',

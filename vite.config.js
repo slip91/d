@@ -7,6 +7,7 @@ export default defineConfig({
   base: '/dist',
   build: {
     rollupOptions: {
+      treeshake: false,
       input: {
         main: './index.html',
         page2: './index3.html',
