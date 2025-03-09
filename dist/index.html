@@ -1,0 +1,708 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+  <title>Health Mates</title>
+  <meta name="description" content="">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <meta property="og:image:alt" content="">
+
+  <link rel="icon" href="/dist/assets/favicon-D9NwNbTK.ico" sizes="any">
+  <link rel="icon" href="/dist/assets/icon-CrLf0eJB.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/dist/assets/icon-ijzhoTP6.png">
+
+  <link rel="manifest" href="/dist/assets/site-BxrbV1h7.webmanifest">
+  <meta name="theme-color" content="#fafafa">
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://cdn.jsdelivr.net/npm/pagedone@1.2.2/src/js/pagedone.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/pagedone@1.2.2/src/css/pagedone.css" rel="stylesheet"/>
+  <script type="module" crossorigin src="/dist/assets/index-qbNLMTVW.js"></script>
+  <link rel="stylesheet" crossorigin href="/dist/assets/index-BckBBm8y.css">
+</head>
+<body style="overflow-x: hidden;">
+<div class="fixed hidden inset-0  bg-opacity-50 overflow-y-auto  h-full w-full" id="login"
+     style="overflow: hidden;z-index: 100; background-color: rgba(0, 0, 0, 0.3)">
+  <div
+    class="relative sm:top-1/3 lg:top-1/3 md:top-1/3 mx-auto w-full max-w-[800px] sm:h-auto md:h-[462px] lg:h-[462px] w-[100vw] sm:top-20 sm:rounded-md bg-white shadow-lg rounded-t-md sm:rounded-l-[22px] sm:rounded-tr-none">
+    <div class="flex flex-col w-full sm:flex-row sm:h-auto md:h-[462px] lg:h-[462px] ">
+      <!-- Левая часть (логотип и название) -->
+        <div
+          class="w-full mt-[20px] md:mt-[0px] lg:mt-[0px] md:gap-5 lg:gap-5 h-auto lg:h-full sm:w-1/2 flex justify-center items-center sm:text-white rounded-t-md sm:rounded-l-[22px] sm:rounded-tr-none lg:bg-[#3ECAE3] md:bg-[#3ECAE3] sm:bg-white"
+          onclick="GoToHomePage()"
+          style="cursor: pointer"
+        >
+          <img src="data:image/png;base64,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" class="hidden lg:block md:block w-[62px] h-[62px] " alt="Health Mates"/>
+          <img src="data:image/svg+xml,%3csvg%20width='47'%20height='48'%20viewBox='0%200%2047%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_158_1639)'%3e%3crect%20y='0.5'%20width='47'%20height='47'%20rx='10.1609'%20fill='%233ECAE3'/%3e%3ccircle%20cx='44.5518'%20cy='48.96'%20r='11.7242'%20fill='white'%20fill-opacity='0.15'/%3e%3ccircle%20cx='4.48227e-05'%20cy='-1.06294'%20r='11.7242'%20fill='white'%20fill-opacity='0.15'/%3e%3cpath%20d='M60.9655%2048.9601C60.9655%2058.0252%2053.6168%2065.3739%2044.5517%2065.3739C35.4866%2065.3739%2020.6496%2059.4001%2020.6496%2050.335C12.9857%2044.6742%2034.0234%2034.3683%2047.6152%2032.3579C56.6803%2032.3579%2060.9655%2039.895%2060.9655%2048.9601Z'%20fill='white'%20fill-opacity='0.15'/%3e%3cpath%20d='M-20.7756%200.702513C-20.7756%20-8.36259%20-13.4269%20-15.7113%20-4.36177%20-15.7113C4.70334%20-15.7113%2019.5404%20-9.73747%2019.5404%20-0.672365C27.2042%204.98839%206.16654%2015.2943%20-7.42528%2017.3047C-16.4904%2017.3047%20-20.7756%209.76762%20-20.7756%200.702513Z'%20fill='white'%20fill-opacity='0.15'/%3e%3cpath%20d='M5.54875%2035.3901L8.90575%2015.1691H10.7521L9.21183%2024.4404H20.6849L22.2252%2015.1691H24.0715L20.7145%2035.3901H18.8682L20.4084%2026.0991H8.93537L7.3951%2035.3901H5.54875Z'%20fill='white'/%3e%3cpath%20d='M22.187%2015.0954H24.3197L28.743%2032.7098H28.9306L39.1695%2015.0954H41.3022L37.9452%2035.3164H36.2075L38.9326%2018.9954H38.7746L29.2268%2035.3164H27.5483L23.4508%2018.9954H23.2928L20.5677%2035.3164H18.83L22.187%2015.0954Z'%20fill='white'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_158_1639'%3e%3crect%20y='0.5'%20width='47'%20height='47'%20rx='10.1609'%20fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e" class="block lg:hidden md:hidden mr-3 sm:h-9 h-[47px] w-[47px]" alt="Health Mates"/>
+          <p class="text-[#3ECAE3] sm:text-white text-[36px] md:text-[36px] lg:text-[36px] leading-[60px]">HealthMates</p>
+        </div>
+      <!-- Правая часть (форма) -->
+      <div class="w-full h-auto p-4 sm:p-0  overflow-y-auto" style="overflow: hidden">
+        <div class="hidden md:flex lg:flex mb-3" style="justify-content: flex-end">
+          <button class=" rounded-full border w-[28px] h-[28px] duration-300" style="background-color: #E5E5E5"
+                  id="ok-btn">
+            <img src="data:image/svg+xml,%3csvg%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M13%2013L1%201M0.999999%2013L13%201'%20stroke='black'%20stroke-width='1.41667'%20stroke-linecap='round'/%3e%3c/svg%3e" class="ml-[6px]" alt="close">
+          </button>
+        </div>
+          <div class="mb-4">
+            <div class="tabs">
+              <!-- Вкладки -->
+              <div class="flex w-full">
+                <ul
+                  class="flex flex-row bg-gray-100 rounded-2xl transition-all duration-300 p-1 overflow-hidden w-full">
+                  <li class="w-1/2">
+                    <a href="javascript:void(0)"
+                       class="w-full inline-block py-3 px-4 text-gray-500 hover:text-gray-800 font-medium tab-active:bg-white tab-active:text-black tab-active:rounded-xl active tablink text-center"
+                       data-tab="tabs-with-rounded-light-1" role="tab">
+                      Log In
+                    </a>
+                  </li>
+                  <li class="w-1/2">
+                    <a href="javascript:void(0)"
+                       class="w-full inline-block py-3 px-4 text-gray-500 hover:text-gray-800 font-medium tab-active:bg-white tab-active:text-black tab-active:rounded-xl tablink text-center"
+                       data-tab="tabs-with-rounded-light-2" role="tab">
+                      Registration
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Контент вкладок -->
+              <div class="mt-3">
+
+                <!-- Вкладка 1: Log In -->
+                <div id="tabs-with-rounded-light-1" role="tabpanel" aria-labelledby="tabs-with-rounded-light-item-1"
+                     class="tabcontent">
+                  <form id="login_form" class="bg-white h-full w-full">
+                    <div class="mb-4">
+                      <div class="mb-6">
+                        <input
+                          class="w-full border-[#E9EAEC] focus:border-transparent focus:ring-1 border rounded-lg p-2  focus:!border-[#3ECAE3] outline-none"
+                          placeholder="Login"
+                        >
+                      </div>
+                    </div>
+                    <div class="mb-6">
+                      <div class="mb-6">
+                        <input
+                          class="w-full border-[#E9EAEC] focus:border-transparent focus:ring-1 border rounded-lg p-2  focus:!border-[#3ECAE3] outline-none"
+                          placeholder="Enter Password"
+                          type="password"
+                        >
+                        <p class="pt-2 text-xs italic" style="color: #FF3E06">Please choose a password.</p>
+                      </div>
+                    </div>
+                    <button onclick="document.getElementById('login_form').submit();" class="w-full py-2 px-4 rounded-full border transition duration-300 text-white"
+                            style="background-color: #3ECAE3; border-color: #3ECAE3">
+                      Login In
+                    </button>
+                  </form>
+                </div>
+
+                <!-- Вкладка 2: Registration -->
+                <div id="tabs-with-rounded-light-2" class="hidden tabcontent" role="tabpanel"
+                     aria-labelledby="tabs-with-rounded-light-item-2">
+                  <div class="mb-4">
+                    <div class="relative w-full">
+                      <input
+                        type="text"
+                        class="w-full border-[#E9EAEC] focus:border-transparent focus:ring-1 border rounded-lg p-2 focus:!border-[#3ECAE3] outline-none"
+                        placeholder="Login"
+                        required
+                      />
+                      <button
+                        type="button"
+                        class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 focus:outline-none"
+                        onclick="clearInput()"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-5 w-5"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="mb-6">
+                    <div class="relative w-full">
+                      <input
+                        type="password"
+                        class="w-full border-[#E9EAEC] focus:border-transparent focus:ring-1 border rounded-lg p-2 focus:!border-[#3ECAE3] outline-none"
+                        placeholder="Enter Password"
+                        required
+                        id="password"
+                      />
+                      <!-- Toggle button -->
+                      <button
+                        type="button"
+                        class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 focus:outline-none"
+                        onclick="togglePasswordVisibility()"
+                      >
+                        <!-- Eye icon for visible -->
+                        <svg
+                          id="eye-icon"
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-5 w-5"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                          <path
+                            fill-rule="evenodd"
+                            d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                        <svg
+                          id="eye-off-icon"
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-5 w-5 hidden"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z"
+                            clip-rule="evenodd"
+                          />
+                          <path
+                            d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.064 7 9.542 7 .847 0 1.669-.105 2.454-.303z"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="mb-6">
+                    <div class="relative w-full">
+                      <input
+                        type="password"
+                        class="w-full border-[#E9EAEC] focus:border-transparent focus:ring-1 border rounded-lg p-2 focus:!border-[#3ECAE3] outline-none"
+                        placeholder="Enter Password"
+                        required
+                        id="password2"
+                      />
+                      <!-- Toggle button -->
+                      <button
+                        type="button"
+                        class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 focus:outline-none"
+                        onclick="togglePasswordVisibility2()"
+                      >
+                        <!-- Eye icon for visible -->
+                        <svg
+                          id="eye-icon2"
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-5 w-5"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                          <path
+                            fill-rule="evenodd"
+                            d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                        <svg
+                          id="eye-off-icon2"
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-5 w-5 hidden"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z"
+                            clip-rule="evenodd"
+                          />
+                          <path
+                            d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.064 7 9.542 7 .847 0 1.669-.105 2.454-.303z"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <button class="w-full py-2 px-4 rounded-full border transition duration-300 text-white"
+                          style="background-color: #3ECAE3; border-color: #3ECAE3">
+                    Registration
+                  </button>
+                </div>
+                <div>
+                  <p class="mb-4 pt-4 font-normal leading-none tracking-tight text-600 md:text-sm"
+                     style="color: #646464">By continuing, you agree to *appname* Terms of Use and Acceptable Use
+                    Policy, and acknowledge their Privacy Policy</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="background-color: #3ECAE3">
+  <div  class="container mx-auto">
+    <div id="back_profile"
+         onclick="window.location.href='#principles'"
+         class="absolute z-[1000] bg-[#65D5E9] bottom-[20px] p-2 rounded-full cursor-pointer my-auto mx-auto container"
+         style="width: 44px; height: 44px; padding: 13px; border: 1px solid #3ECAE3; transform: rotate(90deg); cursor: pointer">
+      <img src="data:image/svg+xml,%3csvg%20width='22'%20height='16'%20viewBox='0%200%2022%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M1.66634%208L20.333%208M20.333%208L13.333%2015M20.333%208L13.333%201'%20stroke='white'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e" style="color: white; fill: white; margin-left: 1px; height: 16px; width: 16px" alt="prev">
+    </div>
+  </div>
+
+  <div class="container mx-auto">
+    <nav class="bg-white px-4 pt-5 lg:px-6 py-2.5 dark:bg-gray-800" style="background-color: #3ECAE3">
+      <div class="flex flex-wrap justify-between items-center mx-auto w-full">
+        <a href="#" class="flex items-center  ">
+          <img src="data:image/png;base64,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" class="mr-3 w-[30px] md:w-[40px] lg:w-[40px] h-[30px] md:h-[40px] lg:h-[40px]" alt="Health Mates"/>
+          <span class="self-center whitespace-nowrap text-white font-normal text-[18px] md:text-[20px] sm:text-[22px] leading-[24px] md:leading-[30px] lg:leading-[38px] tracking-normal">
+            Health Mates
+          </span>
+        </a>
+        <div class="hidden lg:flex flex-grow justify-center" id="navbar-default-example"> <!-- Скрыто на мобильных, видно на lg и выше -->
+          <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+            <li>
+              <a href="#principles"
+                 class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0"
+                 style="font-size: 16px; line-height: 100%; letter-spacing: 0"
+                 aria-current="page"
+              >
+                Principles
+              </a>
+            </li>
+            <li>
+              <a href="#privacy_and_anonymise"
+                 class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0"
+                 style="font-size: 16px; line-height: 100%; letter-spacing: 0"
+              >
+                Privacy and Anonymise
+              </a>
+            </li>
+            <li>
+              <a href="#community"
+                 class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0"
+                 style="font-size: 16px; line-height: 100%; letter-spacing: 0"
+              >
+                Community
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- Кнопка бургер-меню -->
+        <button id="burger-button" class="lg:hidden">
+          <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20class='h-6%20w-6'%20fill='none'%20viewBox='0%200%2024%2024'%20stroke='currentColor'%3e%3cpath%20stroke-linecap='round'%20color='white'%20stroke-linejoin='round'%20stroke-width='2'%20d='M4%206h16M4%2012h16M4%2018h16'%20/%3e%3c/svg%3e" class="w-[30px] md:w-[40px] lg:w-[40px] h-[30px] md:h-[40px] lg:h-[40px]" alt="menu">
+        </button>
+        <!-- Popover для меню -->
+        <div id="menu-popover" class="fixed hidden inset-0 z-50 lg:hidden">
+          <div class="absolute  right-0 w-64 top-[74px] bg-white shadow-lg" style="border-radius: 16px; right: 16px">
+            <button id="close-menu" class="absolute top-4 right-4 p-2">
+              <img src="data:image/svg+xml,%3csvg%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M13%2013L1%201M0.999999%2013L13%201'%20stroke='black'%20stroke-width='1.41667'%20stroke-linecap='round'/%3e%3c/svg%3e" alt="close">
+            </button>
+            <!-- Содержимое меню -->
+            <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+              <li>
+                <a href="#principles"
+                   onclick="closeBurger()"
+                   class="block py-2 pr-4 pl-3 rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0"
+                   aria-current="page">Principles</a>
+              </li>
+              <li>
+                <a href="#privacy_and_anonymise"
+                   onclick="closeBurger()"
+                   class="block py-2 pr-4 pl-3 rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0">Privacy and Anonymise</a>
+              </li>
+              <li>
+                <a href="#community"
+                   onclick="closeBurger()"
+                   class="block py-2 pr-4 pl-3 rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0">Community</a>
+              </li>
+            </ul>
+            <div class="px-4 pb-[10px]">
+              <button class="w-full py-2 px-4 transition duration-300 flex flex-row gap-4"
+                      style="border-radius: 42px;  border: 1px solid #3ECAE3;color: #3ECAE3; cursor: pointer" id="open-btn2">
+                <img src="data:image/svg+xml,%3csvg%20width='22'%20height='22'%20viewBox='0%200%2022%2022'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M8.66699%2010.9999H20.3337M20.3337%2010.9999L16.8337%207.49988M20.3337%2010.9999L16.8337%2014.4999'%20stroke='%233ECAE3'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M1.66699%2010.9998C1.66699%208.52448%202.65032%206.15051%204.40066%204.40017C6.151%202.64983%208.52497%201.6665%2011.0003%201.6665M11.0003%2020.3332C9.60107%2020.334%208.21959%2020.0198%206.95832%2019.4139C5.69705%2018.808%204.58837%2017.926%203.71449%2016.8332'%20stroke='%233ECAE3'%20stroke-width='1.5'%20stroke-linecap='round'/%3e%3c/svg%3e" alt="log out" style="transform: rotate(180deg)"/>
+                Sign In
+              </button>
+            </div>
+
+          </div>
+        </div>
+        <div class="ml-auto hidden lg:flex">
+          <button
+            onclick="closeBurger()"
+            class="bg-white py-2 px-4 rounded-full border hover:bg-gray-50 transition duration-300 lg:w-[200px] sm:w-[116px]"
+            style="color: #3ECAE3" id="open-btn">
+            Sign In
+          </button>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+<div style="background-color: #3ECAE3; overflow: hidden">
+  <div class="container mx-auto items-center relative sm:overflow-hidden md:overflow-visible lg:overflow-visible" style="height: calc(100vh - 72px); min-height: 700px">
+    <!-- Слайдер на фоне -->
+    <div class="absolute inset-0 z-0">
+      <div class="swiper mySwiper h-full w-full sm:left-0 lg:left-[20%]">
+        <div class="swiper-wrapper flex container" >
+          <div class="swiper-slide">
+            <div class="h-full w-full"
+                 style="background-image: url('/dist/assets/slider1-Dk9kTVeN.png'); background-position: 40%; background-size: cover; background-repeat: no-repeat;background-clip: border-box;"></div>
+          </div>
+          <div class="swiper-slide flex">
+            <div class="h-full w-full"
+                 style="background-image: url('/dist/assets/slider2-6IbRqwBh.png'); background-position: 40%; background-size: cover; background-repeat: no-repeat;background-clip: border-box;"></div>
+          </div>
+          <div class="swiper-slide flex">
+            <div class="h-full w-full"
+                 style="background-image: url('/dist/assets/slider3-B8PdVeVu.png'); background-position: 40%; background-size: cover; background-repeat: no-repeat;background-clip: border-box;"></div>
+          </div>
+          <div class="swiper-slide flex">
+            <div class="h-full w-full"
+               style="background-image: url('/dist/assets/slider4-Ci-rjEyw.png'); background-position: 40%; background-size: cover; background-repeat: no-repeat;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- Контент поверх слайдера -->
+    <div class="relative z-10 flex items-center justify-center h-full w-[100%] sm:w-[95%] lg:w-[47%] sm:pr-[0px] md:pr-[35px] ld:pr-[35px]">
+      <div class="flex flex-col pl-5 pr-5 lg:h-[fit-content] mb-20px h-[92%]">
+        <!-- Текст -->
+        <div class="flex-grow lg:flex-grow-0  flex flex-col justify-start">
+          <p class="mb-6 text-white text-[44px] lg:text-[60px] md:text-[80px] md:leading-[96px] lg:leading-[96px] tracking-normal" style="font-weight: 600">
+            We believe in three simple words: Test, Share, Love
+          </p>
+          <p class="mb-4 text-white font-normal leading-none tracking-tight sm:text-[18px] md:text-[24px] lg:text-[24px]">
+            Test yourself often - Share before sex - Make love safe
+          </p>
+        </div>
+
+        <!-- Блок с кнопками -->
+        <div class="grid lg:grid-cols-2 sm:grid-cols-1 gap-4 sm:mt-auto mb-[40px] md:mb-[40px] lg:mb-[40px] lg:mt-[40px] md:mt-[40px]" > <!-- mt-auto для прижатия к низу -->
+          <button
+            class="bg-white text-gray-800 py-2 px-0  text-white rounded-full border border-gray-300 hover:bg-gray-50 transition duration-300 min-w-[200px] sm:w-full md:w-[200px] lg:w-[312px] h-[47px]"
+            style="background-color: #F16B8F; border-color: #F16B8F; font-size: 16px; font-weight: 400">
+            Become a Health Mate
+          </button>
+          <button
+            class="bg-white py-2 px-4 rounded-full border transition duration-300 h-[47px] sm:w-full lg:w-[200px] text-white"
+            style="background-color: #65d5e9; border-color: #FFFFFF33; height: 47px; font-size: 16px; font-weight: 400">
+            How it works
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <div class="m-auto grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-0 h-[1000px] md:h-[700px] lg:h-[1000px] lg:w-[1000px] sm:w-[99vw] container" id="principles">
+    <div class="hidden lg:block" style="position: absolute; transform: rotate(0deg); right: 0;">
+      <img src="data:image/svg+xml,%3csvg%20width='394'%20height='490'%20viewBox='0%200%20394%20490'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_321_7003)'%3e%3ccircle%20cx='434.5'%20cy='35.5'%20r='428.5'%20fill='%233ECAE3'%20fill-opacity='0.2'/%3e%3ccircle%20cx='434.5'%20cy='35.5'%20r='292.5'%20fill='%233ECAE3'%20fill-opacity='0.2'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_321_7003'%3e%3crect%20width='394'%20height='490'%20fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e" alt="">
+    </div>
+    <!-- Блок с картинкой -->
+    <div class="my-auto grid justify-bottom md:justify-center overflow-hidden; mb-[0px] lg:mb-[80px] mt-[20px] lg:mt-[80px] min-h-[450px]" style="align-items: center">
+      <div class="w-[90vw] lg:h-[843px] h-[424px] md:h-[60vh] sm:h-[60vh] md:w-[90vw] lg:w-[412px]  sm:overflow-hidden lg:mr-[100px]"
+           style="background-image: url(/dist/assets/phone-C-TuZ8lD.png); background-position: top; background-size: contain; background-repeat: no-repeat">
+      </div>
+    </div>
+    <!-- Блок с текстом и кнопкой -->
+    <div class="my-auto grid justify-start order-[-1] md:order-1 lg:order-1 container">
+      <div class="flex flex-col sm:w-[100%] md:w-[70%] pt-[30px] mx-[20px] md:mx-[0] md:mb-[20px] " style="gap: 20px">
+        <div  class="w-[40px] md:w-[60px] lg:w-[60px]">
+          <img src="data:image/svg+xml,%3csvg%20width='56'%20height='48'%20viewBox='0%200%2056%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M28%2035.0097H14.6425C8.2125%2034.9997%203%2029.9822%203%2023.7922C3%2017.6022%208.2125%2012.5872%2014.6425%2012.5872C15.625%208.18221%2019.1275%204.58721%2023.83%203.15471C28.53%201.72471%2033.72%202.67221%2037.44%205.65471C41.16%208.62971%2042.845%2013.1722%2041.865%2017.5772H44.34C47.79%2017.5772%2050.765%2019.6047%2052.16%2022.5422M45.5%2044.9997V29.9997M45.5%2029.9997L53%2037.4997M45.5%2029.9997L38%2037.4997'%20stroke='%233ECAE3'%20stroke-width='5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e" alt="upload">
+        </div>
+        <h3
+          class="mb-4 text-3xl text-gray-900 text-[24px] md:text-[36px] sm:text-[24px] font-normal leading-[40px] md:leading-[60px] lg:leading-[60px] tracking-normal"
+        >
+          Your digital STI health record – save results, share before sex, and notify partners.
+        </h3>
+        <p
+          class="mb-4 font-normal tracking-tight text-gray-600 text-[14px] md:text-[16px] lg:text-[18px] leading-[40px] md:leading-[60px] lg:leading-[60px]"
+          style="font-size: 18px; line-height: 40px"
+        >
+          Keep track of your STI test results in one place.
+          Receive reminders for regular check-ups.
+          Feel confident about your health and your partners.
+        </p>
+        <button class="bg-white py-2 px-4 rounded-full border transition duration-300 sm:w-full md:w-full lg:w-[424px] text-white"
+                style="background-color: #3ECAE3; border-color: #3ECAE3; height: 47px; min-width: 230px; font-size: 16px; font-weight: 400">
+          Become a health mates
+        </button>
+      </div>
+    </div>
+    <div class="hidden lg:block" style="position: absolute;transform: rotate(180deg); left: 0; padding-bottom: 562px;">
+      <img src="data:image/svg+xml,%3csvg%20width='394'%20height='490'%20viewBox='0%200%20394%20490'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_321_7003)'%3e%3ccircle%20cx='434.5'%20cy='35.5'%20r='428.5'%20fill='%233ECAE3'%20fill-opacity='0.2'/%3e%3ccircle%20cx='434.5'%20cy='35.5'%20r='292.5'%20fill='%233ECAE3'%20fill-opacity='0.2'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_321_7003'%3e%3crect%20width='394'%20height='490'%20fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e" alt="circle">
+    </div>
+  </div>
+  <div class="m-auto grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-0 sm:h-[100vh] sm:w-[99vw] container" id="privacy_and_anonymise">
+    <div class="w-[100%] md:w-[50%] lg:w-[50%] h-[697px] md:h-[765px] lg:h-[765px] z-0" style="background: #F16B8F; position: absolute; left: 0;"></div>
+    <!-- Первый блок -->
+    <div class="sm:px-[20px] sm:pr-0 grid justify-end md:h-[100%] lg:h-[100%] sm:h-[652px] w-[100vw] lg:w-[100%] md:w-[100%] container" style=" overflow: hidden; z-index: 100;">
+      <div class="h-[652px] md:h-[765px] lg:h-[765px] sm:w-[100%] md:w-[90%] lg:w-[95%]" style="margin-top: 40px">
+        <div class="px-4 gap-1 flex flex-col pb-5 sm:mt-[0px] lg:mt-[0px] w-[86%] lg:w-full md:w-full">
+          <div  class="w-[40px] md:w-[60px] lg:w-[60px] mb-[10px]">
+            <img src="data:image/svg+xml,%3csvg%20width='60'%20height='60'%20viewBox='0%200%2060%2060'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M32.5%2038.75C32.5%2039.413%2032.2366%2040.0489%2031.7678%2040.5178C31.2989%2040.9866%2030.663%2041.25%2030%2041.25C29.337%2041.25%2028.7011%2040.9866%2028.2322%2040.5178C27.7634%2040.0489%2027.5%2039.413%2027.5%2038.75C27.5%2038.087%2027.7634%2037.4511%2028.2322%2036.9822C28.7011%2036.5134%2029.337%2036.25%2030%2036.25C30.663%2036.25%2031.2989%2036.5134%2031.7678%2036.9822C32.2366%2037.4511%2032.5%2038.087%2032.5%2038.75ZM31.875%2018.125C31.875%2017.6277%2031.6775%2017.1508%2031.3258%2016.7992C30.9742%2016.4475%2030.4973%2016.25%2030%2016.25C29.5027%2016.25%2029.0258%2016.4475%2028.6742%2016.7992C28.3225%2017.1508%2028.125%2017.6277%2028.125%2018.125V29.375C28.125%2029.8723%2028.3225%2030.3492%2028.6742%2030.7008C29.0258%2031.0525%2029.5027%2031.25%2030%2031.25C30.4973%2031.25%2030.9742%2031.0525%2031.3258%2030.7008C31.6775%2030.3492%2031.875%2029.8723%2031.875%2029.375V18.125Z'%20fill='white'/%3e%3cpath%20d='M28.65%201.5924C29.5275%201.30774%2030.4725%201.30774%2031.35%201.5924L51.975%208.2799C52.8539%208.56502%2053.62%209.12109%2054.1634%209.86841C54.7068%2010.6157%2054.9997%2011.5159%2055%2012.4399V24.9999C55%2040.4749%2045.575%2051.7624%2031.4975%2057.0749C30.5322%2057.4383%2029.4678%2057.4383%2028.5025%2057.0749C14.4275%2051.7599%205%2040.4749%205%2024.9999V12.4399C5%2010.5399%206.225%208.8649%208.025%208.2799L28.65%201.5924ZM30.1925%205.1574C30.0674%205.11689%2029.9326%205.11689%2029.8075%205.1574L9.1825%2011.8499C9.05716%2011.8905%208.94785%2011.9696%208.87018%2012.076C8.79251%2012.1824%208.75045%2012.3107%208.75%2012.4424V24.9999C8.75%2038.6524%2016.95%2048.7074%2029.825%2053.5649C29.9379%2053.6071%2030.0621%2053.6071%2030.175%2053.5649C43.05%2048.7074%2051.25%2038.6499%2051.25%2024.9999V12.4399C51.2496%2012.3082%2051.2075%2012.1799%2051.1298%2012.0735C51.0521%2011.9671%2050.9428%2011.888%2050.8175%2011.8474L30.1925%205.1574Z'%20fill='white'/%3e%3c/svg%3e" alt="warning">
+          </div>
+          <p class="mb-6 text-white text-[42px] md:text-[42px] lg:text-[56px] leading-[100%]" style="word-break: break-word; font-weight: 600;">
+            Your health, your privacy.
+          </p>
+          <p class="mb-4 leading-[100%] text-white text-[14px] md:text-[16px] lg:text-[18px]" style="line-height: 40px; font-weight: 400">
+            No names, no personal details – you decide who sees your status.
+            Secure access via QR code or private link
+            Encrypted servers and top-tier security measures
+          </p>
+        </div>
+        <div class="flex h-[35%] md:h-[40%] lg:h-[55%] md:gap-5 lg:gap-10 sm:mt-[0px]">
+          <div class="block sm:hidden">
+            <img src="/dist/assets/phone_qr-Cnc2JGUf.png" alt="1" width="412" height="543">
+          </div>
+          <div class="flex justify-center md:w-[50%] w-[100%] sm:w-[100%] items-start lg:items-center">
+            <div class="h-[100%] md:h-[55%] lg:h-[200px] w-[90%] md:w-[300px] lg:w-[412px] sm:overflow-hidden md:mb-[20px]"
+                 style="background-image: url('/dist/assets/partner_list-6Ea0Z0G_.png'); background-size: contain; background-repeat: no-repeat;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Второй блок -->
+    <div class="sm:pr-0 grid justify-start md:h-[765px] lg:h-[765px] sm:h-[546px] sm:w-[80vw] md:w-[100%] lg:w-[100%] container" style="background: #3ECAE3; z-index: 50">
+      <div class="w-[100vw] md:w-[50vw] lg:w-[50vw] h-[546px] md:h-[765px] lg:h-[765px] z-0" style="background: #3ECAE3; position: absolute; right: 0; "></div>
+      <div class="sm:pl-[20px] sm:pr-[20px] sm:mt-0 md:ml-[20px] lg:ml-[30px] sm:gap-[5px] lg:gap-[33px] w-[80vw] md:w-[90%] lg:w-[90%] sm:h-[100%] gap-[20px] " style="z-index: 100; display: flex; flex-direction: column;"   >
+        <div class="px-[20px] md:px-[0px] w-[100vw] sm:w-full md:w-[35vw] lg:w-[400px] h-[70%] md:h-[373px] lg:h-[373px] sm:pl-[20px] sm:mb-0 md:mb-[20px] lg:mb-[20px]" style="line-height: 40px; margin-top: 40px;"> <!-- Убрана фиксированная ширина -->
+          <div  class="w-[40px] md:w-[60px] lg:w-[60px] mb-[10px]">
+            <img src="data:image/svg+xml,%3csvg%20width='60'%20height='60'%20viewBox='0%200%2060%2060'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M34.2223%2040.5557H25.7778M51.1112%2032.1112C45.9242%2029.5208%2038.3875%2027.8889%2030%2027.8889C21.6125%2027.8889%2014.0758%2029.5208%208.88879%2032.1112M19.4444%2036.3334C17.7647%2036.3334%2016.1538%2037.0007%2014.966%2038.1884C13.7783%2039.3761%2013.111%2040.9871%2013.111%2042.6668C13.111%2044.3465%2013.7783%2045.9574%2014.966%2047.1451C16.1538%2048.3329%2017.7647%2049.0001%2019.4444%2049.0001C21.1241%2049.0001%2022.735%2048.3329%2023.9228%2047.1451C25.1105%2045.9574%2025.7778%2044.3465%2025.7778%2042.6668C25.7778%2040.9871%2025.1105%2039.3761%2023.9228%2038.1884C22.735%2037.0007%2021.1241%2036.3334%2019.4444%2036.3334ZM40.5556%2036.3334C38.8759%2036.3334%2037.265%2037.0007%2036.0773%2038.1884C34.8895%2039.3761%2034.2223%2040.9871%2034.2223%2042.6668C34.2223%2044.3465%2034.8895%2045.9574%2036.0773%2047.1451C37.265%2048.3329%2038.8759%2049.0001%2040.5556%2049.0001C42.2353%2049.0001%2043.8463%2048.3329%2045.034%2047.1451C46.2217%2045.9574%2046.889%2044.3465%2046.889%2042.6668C46.889%2040.9871%2046.2217%2039.3761%2045.034%2038.1884C43.8463%2037.0007%2042.2353%2036.3334%2040.5556%2036.3334Z'%20stroke='white'%20stroke-width='4'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M44.7779%2028.9444L42.5443%2014.6141C42.0904%2011.6923%2038.9153%2010.109%2036.3524%2011.5255L35.0541%2012.2433C33.5074%2013.1002%2031.7682%2013.5498%2030%2013.5498C28.2318%2013.5498%2026.4927%2013.1002%2024.946%2012.2433L23.6477%2011.5255C21.0848%2010.1111%2017.9096%2011.6944%2017.4557%2014.6141L15.2222%2028.9444'%20stroke='white'%20stroke-width='4'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e" alt="watch">
+          </div>
+          <div>
+            <p class="mb-6 leading-[100%] text-white text-[30px] md:text-[42px] lg:text-[46px]" style="font-weight: 600; line-height: 100%">
+              In case of positive results
+              we notify your partners anonymously.
+            </p>
+            <p class="mb-4 leading-[100%] tracking-tight text-white text-[14px] md:text-[16px] lg:text-[18px]" style="line-height: 40px; word-break: break-word;">
+              If your test is positive, we send an anonymous notification to anyone your add to your list of partners.
+              They’ll receive a message without revealing your identity.
+              You stay in control – no unnecessary personal details shared.
+            </p>
+          </div>
+        </div>
+        <div class="flex h-[40%] md:h-[40%] lg:h-[40%] items-end px-[20px] md:px-[0px] w-[100vw] md:w-[90%] lg:mb-[20px]">
+          <div class="h-[109px] w-[90vw] md:w-[79%] lg:w-[441px] sm:w-[90%]"
+               style="background-image: url('/dist/assets/notification_container-BE-52deW.png'); background-position: 70%; background-size: contain; background-repeat: no-repeat;">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="px-[20px] flex items-center justify-end h-[546px] md:h-[665px] lg:h-[665px] sm:w-[94%] container mt-[20px] sm:mb-[40px] md:mb-[0px] lg:mb-[0px]" id="community">
+      <div class="flex flex-col gap-1 w-full lg:w-[730px] md:w-[100%] mt-[0px] md:mt-[40px] lg:mt-[40px]" >
+        <div class="w-[40px] md:w-[60px] lg:w-[60px]">
+          <img src="data:image/svg+xml,%3csvg%20width='60'%20height='34'%20viewBox='0%200%2060%2034'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M17.5%2032V29.5C17.5%2026.1848%2018.817%2023.0054%2021.1612%2020.6612C23.5054%2018.317%2026.6848%2017%2030%2017M30%2017C33.3152%2017%2036.4946%2018.317%2038.8388%2020.6612C41.183%2023.0054%2042.5%2026.1848%2042.5%2029.5V32M30%2017C31.9891%2017%2033.8968%2016.2098%2035.3033%2014.8033C36.7098%2013.3968%2037.5%2011.4891%2037.5%209.5C37.5%207.51088%2036.7098%205.60322%2035.3033%204.1967C33.8968%202.79018%2031.9891%202%2030%202C28.0109%202%2026.1032%202.79018%2024.6967%204.1967C23.2902%205.60322%2022.5%207.51088%2022.5%209.5C22.5%2011.4891%2023.2902%2013.3968%2024.6967%2014.8033C26.1032%2016.2098%2028.0109%2017%2030%2017ZM2.5%2032V29.5C2.5%2027.5109%203.29018%2025.6032%204.6967%2024.1967C6.10322%2022.7902%208.01088%2022%2010%2022M10%2022C11.3261%2022%2012.5979%2021.4732%2013.5355%2020.5355C14.4732%2019.5979%2015%2018.3261%2015%2017C15%2015.6739%2014.4732%2014.4021%2013.5355%2013.4645C12.5979%2012.5268%2011.3261%2012%2010%2012C8.67392%2012%207.40215%2012.5268%206.46447%2013.4645C5.52678%2014.4021%205%2015.6739%205%2017C5%2018.3261%205.52678%2019.5979%206.46447%2020.5355C7.40215%2021.4732%208.67392%2022%2010%2022ZM57.5%2032V29.5C57.5%2027.5109%2056.7098%2025.6032%2055.3033%2024.1967C53.8968%2022.7902%2051.9891%2022%2050%2022M50%2022C51.3261%2022%2052.5979%2021.4732%2053.5355%2020.5355C54.4732%2019.5979%2055%2018.3261%2055%2017C55%2015.6739%2054.4732%2014.4021%2053.5355%2013.4645C52.5979%2012.5268%2051.3261%2012%2050%2012C48.6739%2012%2047.4021%2012.5268%2046.4645%2013.4645C45.5268%2014.4021%2045%2015.6739%2045%2017C45%2018.3261%2045.5268%2019.5979%2046.4645%2020.5355C47.4021%2021.4732%2048.6739%2022%2050%2022Z'%20stroke='%233ECAE3'%20stroke-width='4'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e" alt="users">
+        </div>
+        <div>
+          <p
+            class="mb-6 font-medium text-[26px] md:text-[30px] lg:text-[36px] leading-[100%] md:leading-[60px] lg:leading-[60px]">
+            Join a community of responsible people.
+          </p>
+        </div>
+        <div class="w-[95%] md:w-[95%]">
+          <p class="mb-4 text-[14px] md:text-[16px] lg:text-[18px] leading-[24px] md:leading-[32px] lg:leading-[32px]"
+             style="line-height: 40px;">
+            Using Health Mates = caring for your partners and being honest in relationships.
+            The more people get tested, the safer the community becomes.
+            Shift from fear and stigma to awareness and health-consciousness.
+          </p>
+        </div>
+        <div class="sm:w-[100%]">
+          <button
+            class="w-[100%] lg:w-[50%] md:w-[50%] bg-white text-nowrap py-2 px-4 rounded-full border transition duration-300 text-white "
+            style="background-color: #3ECAE3; border-color: #3ECAE3; height: 47px; min-width: 215px; font-size: 16px; font-weight: 400; line-height: 100%">
+            Become a health mate
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="pr-4 flex items-center justify-center pt-5 lg:h-[666px] h-[420px] p-[15px] pt-[15px] pb-[15px] ">
+      <div class="min-w-[250px] w-[300px] lg:w-[584px] sm:w-[80vw] relative h-full sm:h-[300px] lg:h-[696px] ">
+        <!-- Первый слой -->
+        <div class="w-full h-full absolute bg-[#20ACC5] rounded-[22px]"></div>
+        <!-- Второй слой -->
+        <div class="w-full h-full absolute bg-[#34C0D9] rounded-[22px] transform -rotate-[4.83deg]"></div>
+        <!-- Третий слой -->
+        <div class="w-full h-full absolute bg-[#20ACC5] rounded-[22px] transform rotate-[3.15deg]"></div>
+        <!-- Основной слой с изображением -->
+        <div
+        class="w-full h-full absolute bg-[#20ACC5] rounded-[22px] bg-center bg-no-repeat bg-contain z-10" style="background-image: url('/dist/assets/partner-BGPincAU.png')"></div>
+      </div>
+    </div>
+
+    <div class="my-auto px-[20px] container justify-start h-[650px] lg:h-[704px] sm:col-span-2 lg:col-span-2 w-[100vw]"
+         style="padding-top: 40px">
+      <div class="w-[100vw] h-[650px] md:h-full lg:h-full sm z-0" style="background: #F16B8F; position: absolute; left: 0; right: 0; height: 745px; width: 100vw"></div>
+      <div id="map" class="w-[100%] h-[376px]" style="position: absolute;right: 0;left: 0; margin-top: 50px "></div>
+      <div class="flex w-[90vw] md:w-full lg:w-full" style="justify-content: center; margin-top: 454px">
+        <div class="flex flex-wrap flex-col items-center" style="z-index: 100">
+          <p class="mb-6 leading-[100%] text-600 text-[27px] md:text-[36px] lg:text-[56px] tracking-tight text-600 text-white w-[70vw] md:w-full lg:w-full" style="font-weight: 600">
+            Take control of your sexual health today!
+          </p>
+          <p class="mb-4 leading-[100%] tracking-tight text-400 text-white text-[14px] md:text-[16px] lg:text-[16px]">
+            Sign up for free & get tested now
+          </p>
+          <button
+            class="bg-white border-white py-2 px-4 h-[47px] rounded-full border transition duration-300 w-[80vw] md:w-[424px] lg:w-[424px]"
+            style="color: #F16B8F; font-size: 16px">
+            Become a Health mate
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script>
+
+  let modal2 = document.getElementById('login');
+  let btn = document.getElementById('open-btn');
+  let button = document.getElementById('ok-btn');
+
+  btn.onclick = function () {
+    modal2.style.display = 'flex';
+    document.body.classList.add('no-scroll')
+  };
+
+  button.onclick = function () {
+    modal2.style.display = 'none';
+    document.body.classList.remove('no-scroll');
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal2.style.display = "none";
+      document.body.classList.remove('no-scroll');
+    }
+  }
+
+  //дубль
+  let modal3 = document.getElementById('login');
+  let btn2 = document.getElementById('open-btn2');
+  let button2 = document.getElementById('ok-btn');
+
+  btn2.onclick = function () {
+    modal3.style.display = 'flex';
+    document.body.classList.add('no-scroll')
+  };
+
+  button2.onclick = function () {
+    modal3.style.display = 'none';
+    document.body.classList.remove('no-scroll');
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal3.style.display = "none";
+      document.body.classList.remove('no-scroll');
+    }
+  }
+
+  function clearInput() {
+    const input = document.querySelector('input[type="text"]');
+    input.value = '';
+    input.focus();
+  }
+
+  function togglePasswordVisibility() {
+    const passwordInput = document.getElementById('password');
+    const eyeIcon = document.getElementById('eye-icon');
+    const eyeOffIcon = document.getElementById('eye-off-icon');
+
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text'; // Show password
+      eyeIcon.classList.add('hidden'); // Hide eye icon
+      eyeOffIcon.classList.remove('hidden'); // Show eye-off icon
+    } else {
+      passwordInput.type = 'password'; // Hide password
+      eyeIcon.classList.remove('hidden'); // Show eye icon
+      eyeOffIcon.classList.add('hidden'); // Hide eye-off icon
+    }
+  }
+  function togglePasswordVisibility2() {
+    const passwordInput = document.getElementById('password2');
+    const eyeIcon = document.getElementById('eye-icon2');
+    const eyeOffIcon = document.getElementById('eye-off-icon2');
+
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text'; // Show password
+      eyeIcon.classList.add('hidden'); // Hide eye icon
+      eyeOffIcon.classList.remove('hidden'); // Show eye-off icon
+    } else {
+      passwordInput.type = 'password'; // Hide password
+      eyeIcon.classList.remove('hidden'); // Show eye icon
+      eyeOffIcon.classList.add('hidden'); // Hide eye-off icon
+    }
+  }
+  function GoToHomePage() {
+    window.location = '/';
+  }
+
+  // Открытие popover
+  document.getElementById('burger-button').addEventListener('click', function() {
+    document.getElementById('menu-popover').classList.remove('hidden');
+  });
+
+  // Закрытие popover
+  document.getElementById('close-menu').addEventListener('click', function() {
+    document.getElementById('menu-popover').classList.add('hidden');
+  });
+
+  // Закрытие popover при клике вне его области
+  document.getElementById('menu-popover').addEventListener('click', function(event) {
+    if (event.target === this) {
+      this.classList.add('hidden');
+    }
+  });
+
+  function closeBurger()  {
+    document.getElementById('menu-popover').classList.add('hidden');
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const slider_wrapper = new Swiper(".mySwiper", {
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        autoHeight: true,
+        centeredSlidesBounds: true,
+        loop: true,
+        slidesPerView: 'auto',
+        speed: 1500,
+        autoplay: {
+          delay: 1500,
+          disableOnInteraction: false,
+        },
+        renderBullet: function (index, className) {
+          return '<span class="' + className + '" style="background-color: white">' + "</span>";
+        },
+      },
+    });
+    slider_wrapper.autoplay.start();
+  });
+</script>
+</html>
