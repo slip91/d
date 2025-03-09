@@ -24,7 +24,6 @@
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-  <link href="https://cdn.jsdelivr.net/npm/pagedone@1.2.2/src/css/pagedone.css" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/pagedone@1.2.2/src/js/pagedone.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,21 +35,23 @@
 <div class="fixed hidden inset-0  bg-opacity-50 overflow-y-auto  h-full w-full" id="login"
      style="overflow: hidden;z-index: 100; background-color: rgba(0, 0, 0, 0.3)">
   <div
-    class="relative sm:top-1/3 lg:top-1/3 md:top-1/3 mx-auto w-full max-w-[800px] sm:h-auto md:h-[462px] lg:h-[462px] w-[100vw] sm:top-20 sm:rounded-md bg-white shadow-lg">
-    <div class="flex flex-col w-full sm:flex-row sm:h-auto md:h-[462px] lg:h-[462px]">
+    class="relative sm:top-1/3 lg:top-1/3 md:top-1/3 mx-auto w-full max-w-[800px] sm:h-auto md:h-[462px] lg:h-[462px] w-[100vw] sm:top-20 sm:rounded-md bg-white shadow-lg rounded-t-md sm:rounded-l-[22px] sm:rounded-tr-none">
+    <div class="flex flex-col w-full sm:flex-row sm:h-auto md:h-[462px] lg:h-[462px] ">
       <!-- Левая часть (логотип и название) -->
-      <div
-        class="w-full gap-5 h-48 h-auto lg:h-full sm:w-1/2 flex justify-center items-center sm:text-white rounded-t-md sm:rounded-l-md sm:rounded-tr-none lg:bg-[#3ECAE3] md:bg-[#3ECAE3] sm:bg-white">
-        <img src="/img/logo.png" class=" hidden sm:block w-[62px] h-[62px] " alt="Health Mates"/>
-        <img src="/img/logo_mobile.svg" class="hidden mr-3 h-6 sm:h-9 w-1 h-[47px] w-[47px]" alt="Health Mates"/>
-        <h1 class="text-[#3ECAE3] sm:text-white" style="font-size: 36px; font-weight: 400; line-height: 60px">HealthMates</h1>
-      </div>
+        <div
+          class="w-full mt-[20px] md:mt-[0px] lg:mt-[0px] md:gap-5 lg:gap-5 h-auto lg:h-full sm:w-1/2 flex justify-center items-center sm:text-white rounded-t-md sm:rounded-l-[22px] sm:rounded-tr-none lg:bg-[#3ECAE3] md:bg-[#3ECAE3] sm:bg-white"
+          onclick="GoToHomePage()"
+        >
+          <img src="/img/logo.png" class="hidden lg:block md:block w-[62px] h-[62px] " alt="Health Mates"/>
+          <img src="/img/logo_mobile.svg" class="block lg:hidden md:hidden mr-3 sm:h-9 h-[47px] w-[47px]" alt="Health Mates"/>
+          <p class="text-[#3ECAE3] sm:text-white text-[36px] md:text-[36px] lg:text-[36px] leading-[60px]">HealthMates</p>
+        </div>
       <!-- Правая часть (форма) -->
       <div class="w-full h-auto p-4 sm:p-0  overflow-y-auto" style="overflow: hidden">
-        <div class="flex mb-3 " style="justify-content: flex-end">
+        <div class="hidden md:flex lg:flex mb-3" style="justify-content: flex-end">
           <button class=" rounded-full border w-[28px] h-[28px] duration-300" style="background-color: #E5E5E5"
                   id="ok-btn">
-            <p style="font-size: 10px; color: #4F4F4F; font-weight: 650;">✖</p>
+            <img src="/img/x.svg" class="ml-[6px]" alt="close">
           </button>
         </div>
           <div class="mb-4">
@@ -244,7 +245,7 @@
                   </button>
                 </div>
                 <div>
-                  <p class="mb-4 pt-4 text-base font-normal leading-none tracking-tight text-600 md:text-sm lg:text-base"
+                  <p class="mb-4 pt-4 font-normal leading-none tracking-tight text-600 md:text-sm"
                      style="color: #646464">By continuing, you agree to *appname* Terms of Use and Acceptable Use
                     Policy, and acknowledge their Privacy Policy</p>
                 </div>
@@ -260,54 +261,67 @@
   <div class="container mx-auto">
     <nav class="bg-white px-4 pt-5 lg:px-6 py-2.5 dark:bg-gray-800" style="background-color: #3ECAE3">
       <div class="flex flex-wrap justify-between items-center mx-auto w-full">
-        <a href="#" class="flex items-center">
-          <img src="/img/logo.png" class="mr-3 h-6 sm:h-9" alt="Health Mates"/>
-          <span class="self-center text-xl font-semibold whitespace-nowrap text-white" style="font-weight: 400; font-size: 22px; line-height: 38px; letter-spacing: 0 ">Health Mates</span>
+        <a href="#" class="flex items-center  ">
+          <img src="/img/logo.png" class="mr-3 w-[30px] md:w-[40px] lg:w-[40px] h-[30px] md:h-[40px] lg:h-[40px]" alt="Health Mates"/>
+          <span class="self-center whitespace-nowrap text-white font-normal text-[18px] md:text-[20px] sm:text-[22px] leading-[24px] md:leading-[30px] lg:leading-[38px] tracking-normal">
+            Health Mates
+          </span>
         </a>
         <div class="hidden lg:flex flex-grow justify-center" id="navbar-default-example"> <!-- Скрыто на мобильных, видно на lg и выше -->
           <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
             <li>
               <a href="#principles"
                  class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0"
-                 aria-current="page">Principles</a>
+                 style="font-size: 16px; line-height: 100%; letter-spacing: 0"
+                 aria-current="page"
+              >
+                Principles
+              </a>
             </li>
             <li>
               <a href="#privacy_and_anonymise"
-                 class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0">Privacy and Anonymise</a>
+                 class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0"
+                 style="font-size: 16px; line-height: 100%; letter-spacing: 0"
+              >
+                Privacy and Anonymise
+              </a>
             </li>
             <li>
               <a href="#community"
-                 class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0">Community</a>
+                 class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0"
+                 style="font-size: 16px; line-height: 100%; letter-spacing: 0"
+              >
+                Community
+              </a>
             </li>
           </ul>
         </div>
         <!-- Кнопка бургер-меню -->
-        <button id="burger-button" class="lg:hidden p-2">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" color="white" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
+        <button id="burger-button" class="lg:hidden">
+          <img src="/img/burger.svg" class="w-[30px] md:w-[40px] lg:w-[40px] h-[30px] md:h-[40px] lg:h-[40px]" alt="menu">
         </button>
         <!-- Popover для меню -->
         <div id="menu-popover" class="fixed hidden inset-0 z-50 lg:hidden">
           <div class="absolute  right-0 w-64 top-[74px] bg-white shadow-lg" style="border-radius: 16px; right: 16px">
             <button id="close-menu" class="absolute top-4 right-4 p-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              <img src="img/x.svg" alt="close">
             </button>
             <!-- Содержимое меню -->
             <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
               <li>
                 <a href="#principles"
+                   onclick="closeBurger()"
                    class="block py-2 pr-4 pl-3 rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0"
                    aria-current="page">Principles</a>
               </li>
               <li>
                 <a href="#privacy_and_anonymise"
+                   onclick="closeBurger()"
                    class="block py-2 pr-4 pl-3 rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0">Privacy and Anonymise</a>
               </li>
               <li>
                 <a href="#community"
+                   onclick="closeBurger()"
                    class="block py-2 pr-4 pl-3 rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0">Community</a>
               </li>
             </ul>
@@ -323,6 +337,7 @@
         </div>
         <div class="ml-auto hidden lg:flex">
           <button
+            onclick="closeBurger()"
             class="bg-white py-2 px-4 rounded-full border hover:bg-gray-50 transition duration-300 lg:w-[200px] sm:w-[116px]"
             style="color: #3ECAE3" id="open-btn">
             Sign In
@@ -364,11 +379,10 @@
       <div class="flex flex-col pl-5 pr-5 lg:h-[fit-content] mb-20px h-[92%]">
         <!-- Текст -->
         <div class="flex-grow lg:flex-grow-0  flex flex-col justify-start">
-          <h2 class="mb-6 text-4xl font-medium leading-none tracking-tight text-white md:text-6xl lg:text-7xl"
-              style="line-height: 72px">
+          <p class="mb-6 text-white text-[44px] lg:text-[60px] md:text-[80px] md:leading-[96px] lg:leading-[96px] tracking-normal" style="font-weight: 600">
             We believe in three simple words: Test, Share, Love
-          </h2>
-          <p class="mb-4 text-base text-white font-normal leading-none tracking-tight md:text-sm lg:text-base">
+          </p>
+          <p class="mb-4 text-white font-normal leading-none tracking-tight sm:text-[18px] md:text-[24px] lg:text-[24px]">
             Test yourself often - Share before sex - Make love safe
           </p>
         </div>
@@ -377,12 +391,12 @@
         <div class="grid lg:grid-cols-2 sm:grid-cols-1 gap-4 sm:mt-auto mb-[40px] md:mb-[40px] lg:mb-[40px] lg:mt-[40px] md:mt-[40px]" > <!-- mt-auto для прижатия к низу -->
           <button
             class="bg-white text-gray-800 py-2 px-0  text-white rounded-full border border-gray-300 hover:bg-gray-50 transition duration-300 min-w-[200px] sm:w-full md:w-[200px] lg:w-[312px] h-[47px]"
-            style="background-color: #F16B8F; border-color: #F16B8F; min-width: ">
+            style="background-color: #F16B8F; border-color: #F16B8F; font-size: 16px; font-weight: 400">
             Become a Health Mate
           </button>
           <button
             class="bg-white py-2 px-4 rounded-full border transition duration-300 h-[47px] sm:w-full lg:w-[200px] text-white"
-            style="background-color: #65d5e9; border-color: #FFFFFF33; height: 47px">
+            style="background-color: #65d5e9; border-color: #FFFFFF33; height: 47px; font-size: 16px; font-weight: 400">
             How it works
           </button>
         </div>
@@ -391,7 +405,7 @@
   </div>
 </div>
 <div>
-  <div class="m-auto grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-0 h-[1000px] md:h-[600px] lg:h-[1000px]   lg:w-[1000px] sm:w-[99vw] container" id="principles">
+  <div class="m-auto grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-0 h-[1000px] md:h-[700px] lg:h-[1000px] lg:w-[1000px] sm:w-[99vw] container" id="principles">
     <div class="hidden lg:block" style="position: absolute; transform: rotate(0deg); right: 0;">
       <img src="/img/circle.svg" alt="">
     </div>
@@ -404,20 +418,24 @@
     <!-- Блок с текстом и кнопкой -->
     <div class="my-auto grid justify-start order-[-1] md:order-1 lg:order-1 container">
       <div class="flex flex-col sm:w-[100%] md:w-[70%] pt-[30px] mx-[20px] md:mx-[0] md:mb-[20px] " style="gap: 20px">
-        <div>
+        <div  class="w-[40px] md:w-[60px] lg:w-[60px]">
           <img src="/img/upload.svg" alt="upload">
         </div>
         <h3
-          class="mb-4 text-3xl font-medium leading-none tracking-tight text-gray-900 md:text-3xl lg:text-3xl">
+          class="mb-4 text-3xl text-gray-900 text-[24px] md:text-[36px] sm:text-[24px] font-normal leading-[40px] md:leading-[60px] lg:leading-[60px] tracking-normal"
+        >
           Your digital STI health record – save results, share before sex, and notify partners.
         </h3>
-        <p class="mb-4 text-base font-normal leading-none tracking-tight text-gray-600 lg:text-base">
+        <p
+          class="mb-4 font-normal tracking-tight text-gray-600 text-[14px] md:text-[16px] lg:text-[18px] leading-[40px] md:leading-[60px] lg:leading-[60px]"
+          style="font-size: 18px; line-height: 40px"
+        >
           Keep track of your STI test results in one place.
           Receive reminders for regular check-ups.
           Feel confident about your health and your partners.
         </p>
         <button class="bg-white py-2 px-4 rounded-full border transition duration-300 sm:w-full md:w-full lg:w-[424px] text-white"
-                style="background-color: #3ECAE3; border-color: #3ECAE3; height: 47px; min-width: 230px">
+                style="background-color: #3ECAE3; border-color: #3ECAE3; height: 47px; min-width: 230px; font-size: 16px; font-weight: 400">
           Become a health mates
         </button>
       </div>
@@ -431,25 +449,25 @@
     <!-- Первый блок -->
     <div class="sm:px-[20px] sm:pr-0 grid justify-end md:h-[100%] lg:h-[100%] sm:h-[652px] w-[100vw] lg:w-[100%] md:w-[100%] container" style=" overflow: hidden; z-index: 100;">
       <div class="h-[652px] md:h-[765px] lg:h-[765px] sm:w-[100%] md:w-[90%] lg:w-[95%]" style="margin-top: 45px">
-        <div class="px-4 gap-1 flex flex-col pb-5 sm:mt-[0px] lg:mt-[40px] w-[86%] lg:w-full md:w-full">
-          <div>
-            <img src="/img/warning.svg" alt="warning"  style="height: 40px; width: 40px">
+        <div class="px-4 gap-1 flex flex-col pb-5 sm:mt-[0px] lg:mt-[0px] w-[86%] lg:w-full md:w-full">
+          <div  class="w-[40px] md:w-[60px] lg:w-[60px]">
+            <img src="/img/warning.svg" alt="warning">
           </div>
-          <h2 class="mb-6 text-4xl font-medium leading-none text-white md:text-3xl lg:text-4xl" style="word-break: break-word">
+          <p class="mb-6 text-white text-[42px] md:text-[42px] lg:text-[56px] leading-[100%]" style="word-break: break-word; font-weight: 600;">
             Your health, your privacy.
-          </h2>
-          <p class="mb-4 text-base font-normal leading-none text-white lg:text-base" style="line-height: 40px">
+          </p>
+          <p class="mb-4 leading-[100%] text-white text-[14px] md:text-[16px] lg:text-[18px]" style="line-height: 40px; font-weight: 400">
             No names, no personal details – you decide who sees your status.
             Secure access via QR code or private link
             Encrypted servers and top-tier security measures
           </p>
         </div>
-        <div class="flex h-[35%] md:h-[40%] lg:h-[55%] gap-10 sm:mt-[0px]">
-          <div class="hidden lg:block md:block">
+        <div class="flex h-[35%] md:h-[40%] lg:h-[55%] gap-10 md:gap-5 sm:mt-[0px]">
+          <div class="block sm:hidden">
             <img src="/img/phone_qr.png" alt="1" width="412" height="543">
           </div>
-          <div class="flex justify-center md:w-[50%] w-[100%]" style="align-items: flex-end">
-            <div class="h-[100%] md:h-[55%]  md:h-[43%] lg:h-[55%]  lg:h-[200px]  w-[76%] w-[92%] w-[60%] md:w-[300px] lg:w-[412px] sm:overflow-hidden md:mb-[20px]"
+          <div class="flex justify-center md:w-[50%] w-[100%] sm:w-[100%]" style="align-items: flex-start">
+            <div class="h-[100%] md:h-[55%] lg:h-[200px] w-[90%] md:w-[300px] lg:w-[412px] sm:overflow-hidden md:mb-[20px]"
                  style="background-image: url('/img/partner_list.png'); background-size: contain; background-repeat: no-repeat;">
             </div>
           </div>
@@ -460,17 +478,17 @@
     <!-- Второй блок -->
     <div class="sm:pr-0 grid justify-start md:h-[765px] lg:h-[765px] sm:h-[546px] sm:w-[80vw] md:w-[100%] lg:w-[100%] container" style="background: #3ECAE3; z-index: 50">
       <div class="w-[100vw] md:w-[50vw] lg:w-[50vw] h-[546px] md:h-[765px] lg:h-[765px] z-0" style="background: #3ECAE3; position: absolute; right: 0; "></div>
-      <div class="sm:pl-[20px] sm:pr-[20px] sm:mt-0 lg:ml-[60px] sm:gap-[5px] lg:gap-[33px] sm:w-[80vw] md:w-[400px] sm:h-[100%] gap-[20px] " style="z-index: 100; display: flex; flex-direction: column;"   >
+      <div class="sm:pl-[20px] sm:pr-[20px] sm:mt-0 lg:ml-[60px] sm:gap-[5px] lg:gap-[33px] w-[80vw] md:w-[400px] lg:w-[100%] sm:h-[100%] gap-[20px] " style="z-index: 100; display: flex; flex-direction: column;"   >
         <div class="px-[20px] md:px-[0px] w-[100vw] sm:w-full md:w-[35vw] lg:w-[400px] h-[60%] md:h-[373px] lg:h-[373px] sm:pl-[20px]" style="line-height: 40px; margin-top: 40px;"> <!-- Убрана фиксированная ширина -->
-          <div>
-            <img src="/img/watch.svg" alt="watch" style="width: 60px; height: 60px">
+          <div  class="w-[40px] md:w-[60px] lg:w-[60px]">
+            <img src="/img/watch.svg" alt="watch">
           </div>
           <div>
-            <h2 class="mb-6 text-4xl font-medium leading-none text-white md:text-3xl lg:text-4xl" style="line-height: 40px">
+            <p class="mb-6 leading-[100%] text-white text-[30px] md:text-[42px] lg:text-[46px]" style="font-weight: 600; line-height: 100%">
               In case of positive results
               we notify your partners anonymously.
-            </h2>
-            <p class="mb-4 text-base font-normal leading-none tracking-tight text-white lg:text-base" style="line-height: 40px; word-break: break-word;">
+            </p>
+            <p class="mb-4 leading-[100%] tracking-tight text-white text-[14px] md:text-[16px] lg:text-[18px]" style="line-height: 40px; word-break: break-word;">
               If your test is positive, we send an anonymous notification to anyone your add to your list of partners.
               They’ll receive a message without revealing your identity.
               You stay in control – no unnecessary personal details shared.
@@ -485,20 +503,19 @@
       </div>
     </div>
     <div class="px-[20px] flex items-center justify-end h-[546px] md:h-[665px] lg:h-[665px] sm:w-[94%] container mt-[20px] sm:mb-[40px] md:mb-[0px] lg:mb-[0px]" id="community">
-      <div class="flex flex-col gap-1 w-full lg:w-[730px] md:w-[100%]" style="margin-top: 40px;">
-        <div>
+      <div class="flex flex-col gap-1 w-full lg:w-[730px] md:w-[100%] mt-[0px] md:mt-[40px] lg:mt-[40px]" >
+        <div class="w-[40px] md:w-[60px] lg:w-[60px]">
           <img src="/img/users.svg" alt="users">
         </div>
         <div>
-          <h2
-            class="mb-6 text-4xl font-medium leading-none text-900 md:text-3xl lg:text-4xl"
-            style="line-height: 40px">
+          <p
+            class="mb-6 font-medium text-[26px] md:text-[30px] lg:text-[36px] leading-[100%] md:leading-[60px] lg:leading-[60px]">
             Join a community of responsible people.
-          </h2>
+          </p>
         </div>
         <div class="w-[95%] md:w-[95%]">
-          <p class="mb-4 text-base font-normal leading-none text-600 lg:text-base"
-             style="line-height: 40px">
+          <p class="mb-4 text-[14px] md:text-[16px] lg:text-[18px] leading-[24px] md:leading-[32px] lg:leading-[32px]"
+             style="line-height: 40px;">
             Using Health Mates = caring for your partners and being honest in relationships.
             The more people get tested, the safer the community becomes.
             Shift from fear and stigma to awareness and health-consciousness.
@@ -507,7 +524,7 @@
         <div class="sm:w-[100%]">
           <button
             class="w-[100%] lg:w-[50%] md:w-[50%] bg-white text-nowrap py-2 px-4 rounded-full border transition duration-300 text-white "
-            style="background-color: #3ECAE3; border-color: #3ECAE3; height: 47px; min-width: 215px">
+            style="background-color: #3ECAE3; border-color: #3ECAE3; height: 47px; min-width: 215px; font-size: 16px; font-weight: 400; line-height: 100%">
             Become a health mate
           </button>
         </div>
@@ -533,16 +550,15 @@
       <div id="map" class="w-[100%] h-[376px]" style="position: absolute;right: 0;left: 0; margin-top: 30px "></div>
       <div class="flex w-[90vw] md:w-full lg:w-full" style="justify-content: center; margin-top: 434px">
         <div class="flex flex-wrap flex-col items-center" style="z-index: 100">
-          <h2 class="mb-6 text-4xl font-medium leading-none tracking-tight text-600 text-lg md:text-3xl lg:text-4xl text-white w-[70vw] md:w-full lg:w-full"
-              style="line-height: 36px; font-size: 30px">
+          <p class="mb-6 leading-[100%] text-600 text-[27px] md:text-[38px] lg:text-[56px] tracking-tight text-600  text-white w-[70vw] md:w-full lg:w-full" style="font-weight: 600">
             Take control of your sexual health today!
-          </h2>
-          <p class="mb-4 text-base font-normal leading-none tracking-tight text-600 lg:text-base text-white">
+          </p>
+          <p class="mb-4 leading-[100%] tracking-tight text-400 text-white text-[14px] md:text-[16px] lg:text-[16px]">
             Sign up for free & get tested now
           </p>
           <button
-            class="bg-white border-white py-2 px-4 rounded-full border transition duration-300 w-[80vw] md:w-[424px] lg:w-[424px]"
-            style="color: #F16B8F">
+            class="bg-white border-white py-2 px-4 h-[47px] rounded-full border transition duration-300 w-[80vw] md:w-[424px] lg:w-[424px]"
+            style="color: #F16B8F; font-size: 16px">
             Become a Health mate
           </button>
         </div>
@@ -552,7 +568,9 @@
 </div>
 </body>
 <script src="js/app.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/pagedone@1.2.2/src/css/pagedone.css" rel="stylesheet"/>
 <script>
+
   let modal2 = document.getElementById('login');
   let btn = document.getElementById('open-btn');
   let button = document.getElementById('ok-btn');
@@ -632,6 +650,9 @@
       eyeOffIcon.classList.add('hidden'); // Hide eye-off icon
     }
   }
+  function GoToHomePage() {
+    window.location = '/';
+  }
 
   // Открытие popover
   document.getElementById('burger-button').addEventListener('click', function() {
@@ -649,6 +670,10 @@
       this.classList.add('hidden');
     }
   });
+
+  function closeBurger()  {
+    document.getElementById('menu-popover').classList.add('hidden');
+  }
 
   document.addEventListener("DOMContentLoaded", function () {
     const slider_wrapper = new Swiper(".mySwiper", {
