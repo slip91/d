@@ -111,7 +111,6 @@
                   </form>
                 </div>
 
-
                 <!-- Вкладка 2: Registration -->
                 <div id="tabs-with-rounded-light-2" class="hidden tabcontent" role="tabpanel"
                      aria-labelledby="tabs-with-rounded-light-item-2">
@@ -260,6 +259,15 @@
   </div>
 </div>
 <div style="background-color: #3ECAE3">
+  <div  class="container mx-auto">
+    <div id="back_profile"
+         onclick="window.location.href='#principles'"
+         class="absolute z-[1000] bg-[#65D5E9] bottom-[20px] p-2 rounded-full cursor-pointer my-auto mx-auto container"
+         style="width: 44px; height: 44px; padding: 13px; border: 1px solid #3ECAE3; transform: rotate(90deg); cursor: pointer">
+      <img src="/img/arrow.svg" style="color: white; fill: white; margin-left: 1px; height: 16px; width: 16px" alt="prev">
+    </div>
+  </div>
+
   <div class="container mx-auto">
     <nav class="bg-white px-4 pt-5 lg:px-6 py-2.5 dark:bg-gray-800" style="background-color: #3ECAE3">
       <div class="flex flex-wrap justify-between items-center mx-auto w-full">
@@ -480,8 +488,8 @@
     <!-- Второй блок -->
     <div class="sm:pr-0 grid justify-start md:h-[765px] lg:h-[765px] sm:h-[546px] sm:w-[80vw] md:w-[100%] lg:w-[100%] container" style="background: #3ECAE3; z-index: 50">
       <div class="w-[100vw] md:w-[50vw] lg:w-[50vw] h-[546px] md:h-[765px] lg:h-[765px] z-0" style="background: #3ECAE3; position: absolute; right: 0; "></div>
-      <div class="sm:pl-[20px] sm:pr-[20px] sm:mt-0 md:ml-[20px] lg:ml-[30px] sm:gap-[5px] lg:gap-[33px] w-[80vw] md:w-[400px] lg:w-[90%] sm:h-[100%] gap-[20px] " style="z-index: 100; display: flex; flex-direction: column;"   >
-        <div class="px-[20px] md:px-[0px] w-[100vw] sm:w-full md:w-[35vw] lg:w-[400px] h-[60%] md:h-[373px] lg:h-[373px] sm:pl-[20px] sm:mb-0 md:mb-[20px] lg:mb-[20px]" style="line-height: 40px; margin-top: 40px;"> <!-- Убрана фиксированная ширина -->
+      <div class="sm:pl-[20px] sm:pr-[20px] sm:mt-0 md:ml-[20px] lg:ml-[30px] sm:gap-[5px] lg:gap-[33px] w-[80vw] md:w-[90%] lg:w-[90%] sm:h-[100%] gap-[20px] " style="z-index: 100; display: flex; flex-direction: column;"   >
+        <div class="px-[20px] md:px-[0px] w-[100vw] sm:w-full md:w-[35vw] lg:w-[400px] h-[70%] md:h-[373px] lg:h-[373px] sm:pl-[20px] sm:mb-0 md:mb-[20px] lg:mb-[20px]" style="line-height: 40px; margin-top: 40px;"> <!-- Убрана фиксированная ширина -->
           <div  class="w-[40px] md:w-[60px] lg:w-[60px] mb-[10px]">
             <img src="/img/watch.svg" alt="watch">
           </div>
@@ -497,7 +505,7 @@
             </p>
           </div>
         </div>
-        <div class="flex h-[40%] md:h-[40%] lg:h-[40%] items-center px-[20px] md:px-[0px] w-[100vw] md:w-[90%]">
+        <div class="flex h-[40%] md:h-[40%] lg:h-[40%] items-end px-[20px] md:px-[0px] w-[100vw] md:w-[90%] lg:mb-[20px]">
           <div class="h-[109px] w-[90vw] md:w-[79%] lg:w-[441px] sm:w-[90%]"
                style="background-image: url('/img/notification_container.png'); background-position: 70%; background-size: contain; background-repeat: no-repeat;">
           </div>
@@ -542,17 +550,17 @@
         <div class="w-full h-full absolute bg-[#20ACC5] rounded-[22px] transform rotate-[3.15deg]"></div>
         <!-- Основной слой с изображением -->
         <div
-          class="w-full h-full absolute bg-[#20ACC5] rounded-[22px] bg-[url('/img/partner.png')] bg-center bg-no-repeat bg-contain z-10"></div>
+        class="w-full h-full absolute bg-[#20ACC5] rounded-[22px] bg-center bg-no-repeat bg-contain z-10" style="background-image: url('/img/partner.png')"></div>
       </div>
     </div>
 
     <div class="my-auto px-[20px] container justify-start h-[650px] lg:h-[704px] sm:col-span-2 lg:col-span-2 w-[100vw]"
          style="padding-top: 40px">
-      <div class="w-[100vw] h-[650px] md:h-full lg:h-full sm z-0" style="background: #F16B8F; position: absolute; left: 0; right: 0; height: 665px; width: 100vw"></div>
-      <div id="map" class="w-[100%] h-[376px]" style="position: absolute;right: 0;left: 0; margin-top: 30px "></div>
-      <div class="flex w-[90vw] md:w-full lg:w-full" style="justify-content: center; margin-top: 434px">
+      <div class="w-[100vw] h-[650px] md:h-full lg:h-full sm z-0" style="background: #F16B8F; position: absolute; left: 0; right: 0; height: 745px; width: 100vw"></div>
+      <div id="map" class="w-[100%] h-[376px]" style="position: absolute;right: 0;left: 0; margin-top: 50px "></div>
+      <div class="flex w-[90vw] md:w-full lg:w-full" style="justify-content: center; margin-top: 454px">
         <div class="flex flex-wrap flex-col items-center" style="z-index: 100">
-          <p class="mb-6 leading-[100%] text-600 text-[27px] md:text-[36px] lg:text-[56px] tracking-tight text-600  text-white w-[70vw] md:w-full lg:w-full" style="font-weight: 600">
+          <p class="mb-6 leading-[100%] text-600 text-[27px] md:text-[36px] lg:text-[56px] tracking-tight text-600 text-white w-[70vw] md:w-full lg:w-full" style="font-weight: 600">
             Take control of your sexual health today!
           </p>
           <p class="mb-4 leading-[100%] tracking-tight text-400 text-white text-[14px] md:text-[16px] lg:text-[16px]">
@@ -569,7 +577,7 @@
   </div>
 </div>
 </body>
-<script src="js/app.js"></script>
+<script src="js/app.js" type="module"></script>
 <script>
 
   let modal2 = document.getElementById('login');
