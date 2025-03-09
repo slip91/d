@@ -34,11 +34,11 @@
 <div class="fixed hidden inset-0  bg-opacity-50 overflow-y-auto  h-full w-full" id="login"
      style="overflow: hidden;z-index: 100; background-color: rgba(0, 0, 0, 0.3)">
   <div
-    class="relative sm:top-1/3 lg:top-1/3 md:top-1/3 mx-auto w-full max-w-[800px] sm:h-auto md:h-[462px] lg:h-[462px] w-[100vw] sm:top-20 sm:rounded-md bg-white shadow-lg rounded-t-md sm:rounded-l-[22px] sm:rounded-tr-none">
+    class="relative sm:top-1/3 lg:top-1/3 md:top-1/3 mx-auto w-full max-w-[800px] sm:h-auto md:h-[462px] lg:h-[462px] w-[100vw] sm:top-20 sm:rounded-md bg-white shadow-lg sm:rounded-l-[22px] sm:rounded-r-none md:rounded-r-[22px] ">
     <div class="flex flex-col w-full sm:flex-row sm:h-auto md:h-[462px] lg:h-[462px] ">
       <!-- Левая часть (логотип и название) -->
         <div
-          class="w-full mt-[20px] md:mt-[0px] lg:mt-[0px] md:gap-5 lg:gap-5 h-auto lg:h-full sm:w-1/2 flex justify-center items-center sm:text-white rounded-t-md sm:rounded-l-[22px] sm:rounded-tr-none lg:bg-[#3ECAE3] md:bg-[#3ECAE3] sm:bg-white"
+          class="w-full mt-[20px] md:mt-[0px] lg:mt-[0px] md:gap-5 lg:gap-5 h-auto lg:h-full sm:w-1/2 flex justify-center items-center sm:text-white  sm:rounded-l-[22px] sm:rounded-tr-none lg:bg-[#3ECAE3] md:bg-[#3ECAE3] sm:bg-white"
           onclick="GoToHomePage()"
           style="cursor: pointer"
         >
@@ -47,7 +47,7 @@
           <p class="text-[#3ECAE3] sm:text-white text-[36px] md:text-[36px] lg:text-[36px] leading-[60px]">HealthMates</p>
         </div>
       <!-- Правая часть (форма) -->
-      <div class="w-full h-auto p-4 sm:p-0  overflow-y-auto" style="overflow: hidden">
+      <div class="w-full h-auto p-4 sm:p-0 overflow-y-auto" style="overflow: hidden">
         <div class="hidden md:flex lg:flex mb-3" style="justify-content: flex-end">
           <button class=" rounded-full border w-[28px] h-[28px] duration-300" style="background-color: #E5E5E5"
                   id="ok-btn">
@@ -387,7 +387,7 @@
       <div class="flex flex-col pl-5 pr-5 lg:h-[fit-content] mb-20px h-[92%]">
         <!-- Текст -->
         <div class="flex-grow lg:flex-grow-0  flex flex-col justify-start">
-          <p class="mb-6 text-white text-[56px] sm:text-[56px] lg:text-[60px] md:text-[80px] md:leading-[96px] lg:leading-[96px] tracking-normal" style="font-weight: 600">
+          <p class="mb-6 text-white text-[60px] sm:text-[56px] lg:text-[60px] md:text-[80px] md:leading-[96px] lg:leading-[96px] tracking-normal" style="font-weight: 600">
             We believe in three simple words: Test, Share, Love
           </p>
           <p class="mb-4 text-white font-normal leading-none tracking-tight sm:text-[18px] md:text-[24px] lg:text-[24px]">
@@ -448,7 +448,7 @@
         </button>
       </div>
     </div>
-    <div class="hidden lg:block" style="position: absolute;transform: rotate(180deg); left: 0; padding-bottom: 562px;">
+    <div class="hidden lg:block" style="position: absolute;transform: rotate(180deg); left: 0; padding-bottom: 211px;">
       <img src="/img/circle.svg" alt="circle">
     </div>
   </div>
