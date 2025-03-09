@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   const locateButton = L.Control.extend({
     onAdd: function (map) {
-      const container = L.DomUtil.create('div', 'leaflet-control-custom hidden sm:block');
+      const container = L.DomUtil.create('div', 'leaflet-control-custom block md:hidden lg:hidden');
       container.innerHTML = `<img src="/img/location.svg" alt="location">`;
       container.onclick = () => {
         navigator.geolocation.getCurrentPosition(
