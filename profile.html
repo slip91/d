@@ -1,0 +1,85 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+  <title>Health Mates</title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <meta property="og:image:alt" content="">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.png">
+
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#fafafa">
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://cdn.jsdelivr.net/npm/pagedone@1.2.2/src/js/pagedone.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/pagedone@1.2.2/src/css/pagedone.css" rel="stylesheet"/>
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body style="overflow-x: hidden;">
+<div class="flex flex-col items-center justify-start p-4 bg-gray-100 min-h-screen bg-white">
+  <div class="w-[100%] flex" style="justify-content: flex-end">
+    <div id="back_profile"
+         class="absolute top-[10px] left-2 z-[1000] bg-white p-2 rounded-full  cursor-pointer"
+         style="width: 44px;height: 44px; padding: 13px; border: 1px solid #3ECAE3;">
+      <img src="/img/arrow_map.svg" alt="prev">
+    </div>
+    <div class="ml-auto">
+      <button
+        class="hidden lg:flex bg-white py-2 px-4 rounded-full border hover:bg-gray-50 transition duration-300 lg:w-[313px] sm:w-[116px] text-white flex justify-center gap-2"
+        style="background-color: #3ECAE3; cursor: pointer">
+        <img src="/img/make.svg" alt="make an appointment"/>
+        <p>Make an appointment</p>
+      </button>
+      <div class="flex gap-2 flex-row f lg:hidden md:hidden">
+        <button
+          class=" bg-white py-2 px-2 rounded-full border hover:bg-gray-50 transition duration-300 w-[44px] h-[44px] text-white flex justify-center gap-10"
+          style="background-color: #3ECAE3">
+          <img src="/img/map.svg" style="height: 22px; width: 22px; margin-top: 1px" alt="upload results"/>
+        </button>
+        <button
+          class=" bg-white py-2 px-2 rounded-full border hover:bg-gray-50 transition duration-300 w-[44px] h-[44px] text-white flex justify-center gap-10"
+          style="background-color: #3ECAE3; cursor: pointer">
+          <img src="/img/profile_qr-code.svg" style="height: 22px; width: 22px; margin-top: 1px" alt="qr" onclick="onShowQr(event)"/>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col justify-center items-center w-full mt-[20px]">
+    <div class="w-1/2 flex flex-col gap-[10px]">
+      <div class="flex justify-center w-full">
+        <img src="/img/profile_image.svg" style="height: 108px; width: 108px;" alt="user_img" />
+      </div>
+      <div class="flex justify-center"
+      style="font-size: 20px; line-height: 100%"
+      >HealthMate</div>
+      <div class="text-gray-600 mb-4"
+        style="color: #646464; font-size: 14px; line-height: 100%"
+      >usermail1234@gmail.com</div>
+    </div>
+    <button class="w-full h-[56px] py-2 px-4 transition duration-300 flex flex-row gap-4 items-center"
+            style="border-radius: 42px;  border: 1px solid #3ECAE3;color: #3ECAE3; cursor: pointer" id="open-btn2">
+      <img src="/img/log_out.svg" alt="log out"/>
+      Log out
+    </button>
+  </div>
+</div>
+</body>
+<script src="js/app.js"></script>
+</html>
