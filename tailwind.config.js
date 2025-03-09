@@ -1,4 +1,5 @@
 module.exports = {
+  safelist: [{ pattern: /./ }],
   theme: {
     screens: {
       // 'sm': '640px',

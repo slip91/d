@@ -14,7 +14,12 @@ export default defineConfig({
         profile: './profile.html',
         youPartners: './your_partners.html',
         qeResult: './qr_request.html',
-      }
+      },
+      output: {
+        entryFileNames: `assets/[name].js`,
+        chunkFileNames: `assets/[name].js`,
+        assetFileNames: `assets/[name].[ext]`,
+      },
     }
   }
 });
