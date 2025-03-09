@@ -1,0 +1,804 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+  <title>Health Mates</title>
+  <meta name="description" content="">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <meta property="og:image:alt" content="">
+
+  <link rel="icon" href="/dist/assets/favicon-D9NwNbTK.ico" sizes="any">
+  <link rel="icon" href="/dist/assets/icon-CrLf0eJB.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/dist/assets/icon-ijzhoTP6.png">
+
+  <link rel="manifest" href="/dist/assets/site-BxrbV1h7.webmanifest">
+  <meta name="theme-color" content="#fafafa">
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.83.1/dist/L.Control.Locate.min.js"
+          integrity="sha256-77Du33ZJbZpMVEDbUn+/PZnZsQMDgOYtXSoVln9T37M=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.83.1/dist/L.Control.Locate.min.js"
+          integrity="sha256-77Du33ZJbZpMVEDbUn+/PZnZsQMDgOYtXSoVln9T37M=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" crossorigin href="/dist/assets/style-DoFwMrgV.css">
+</head>
+<body>
+<div class="fixed hidden inset-0 bg-opacity-50 overflow-y-auto w-full"
+     onclick="onDeletePopup(event);event.stopPropagation();" id="modal_delete"
+     style="overflow: hidden; z-index: 100; justify-content: center; align-items: center;  background-color: rgba(0, 0, 0, 0.3)">
+  <div class="relative mx-auto p-4 h-[250px] w-[404px] bg-white shadow-lg sm:rounded-md"
+       onclick="event.stopPropagation();"
+       style="transform: translate(-50%, -50%); position: absolute; top: 50%; left: 50%;">
+    <!-- Flex-контейнер для содержимого -->
+    <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto">
+      <!-- Правая часть (форма) -->
+      <div class="w-full h-auto p-4 sm:p-0 overflow-y-auto">
+        <div>
+          <h2
+            class="mb-6 text-4xl font-medium leading-none tracking-tight text-900 md:text-3xl lg:text-4xl"
+            style="font-size: 26px; font-weight: 400">
+            Are you sure you want to remove this partner?
+          </h2>
+          <p class="mb-4 text-base font-normal leading-none tracking-tight text-600 lg:text-base"
+             style="font-size: 14px; font-weight: 400">
+            You will no longer receive notifications about changes
+            in their status, and they will no longer appear in your list of regular partners.
+          </p>
+          <div class="flex flex-col gap-[10px]">
+            <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300"
+                    style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer">
+              Remove
+            </button>
+            <button class="w-full text-white py-2 px-4 transition duration-300" onclick="onDeletePopup(event, 12)"
+                    style="border-radius: 42px; border: 1px solid #3ECAE3;color: #3ECAE3; cursor: pointer">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="fixed hidden inset-0 bg-opacity-50 overflow-y-auto w-full"
+     onclick="onAddPartner(event);event.stopPropagation();" id="modal_partner"
+     style="overflow: hidden; z-index: 100; justify-content: center; align-items: center;  background-color: rgba(0, 0, 0, 0.3)">
+  <div class="relative mx-auto p-4 h-[230px] w-[404px] bg-white shadow-lg" style="border-radius: 16px"
+       onclick="event.stopPropagation();">
+    <!-- Flex-контейнер для содержимого -->
+    <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto">
+      <!-- Правая часть (форма) -->
+      <div class="w-full h-auto p-4 sm:p-0 overflow-y-auto">
+        <div class="lg:relative absolute right-[20px] lg:sm:right-auto lg:flex md:flex mb-3 justify-end">
+          <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #F9F9F9; cursor: pointer"
+                  onclick="onAddPartner(event)">
+            <p style="font-size: 10px; color: #4F4F4F; font-weight: 650;"><img src="data:image/svg+xml,%3csvg%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M13%2013L1%201M0.999999%2013L13%201'%20stroke='black'%20stroke-width='1.41667'%20stroke-linecap='round'/%3e%3c/svg%3e" alt="close"
+                                                                               style="width: 12px; height: 12px; margin: 8px"></p>
+          </button>
+        </div>
+        <div class="flex flex-col gap-[5px]">
+          <h2
+            class="mb-2 text-4xl font-medium leading-none tracking-tight text-900 md:text-3xl lg:text-4xl"
+            style="font-size: 26px; font-weight: 400">
+            Add new partner
+          </h2>
+          <p class="mb-4 text-base font-normal leading-none tracking-tight text-600 lg:text-base"
+             style="font-size: 14px; font-weight: 400">
+            The partner will be added to the shared list, and their status, along with any active conditions (if
+            detected), will become accessible to you.
+          </p>
+          <div class="relative w-full">
+            <input
+              type="text"
+              style="height: 48px"
+              id="copy-input"
+              class="w-full border-[#E9EAEC] focus:border-transparent focus:ring-1 border rounded-lg p-2 focus:!border-[#3ECAE3] outline-none"
+              placeholder="Enter text to copy"
+              value="Example text"
+              disabled
+            />
+            <!-- Copy button -->
+            <button
+              type="button"
+              class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-[#3ECAE3] focus:outline-none"
+              onclick="copyToClipboard()"
+            >
+              <!-- Your SVG icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="21"
+                viewBox="0 0 20 21"
+                fill="none"
+              >
+                <path
+                  d="M17.4983 8.83341C17.4883 7.02091 17.4083 6.03925 16.7675 5.39925C16.0358 4.66675 14.8567 4.66675 12.5 4.66675H10C7.64333 4.66675 6.46417 4.66675 5.7325 5.39925C5 6.13091 5 7.31008 5 9.66675V13.8334C5 16.1901 5 17.3692 5.7325 18.1009C6.46417 18.8334 7.64333 18.8334 10 18.8334H12.5C14.8567 18.8334 16.0358 18.8334 16.7675 18.1009C17.5 17.3692 17.5 16.1901 17.5 13.8334V13.0001"
+                  stroke="#3ECAE3"
+                  stroke-width="1.25"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M2.5 8.83341V13.8334C2.5 14.4965 2.76339 15.1323 3.23223 15.6012C3.70107 16.07 4.33696 16.3334 5 16.3334M15 4.66675C15 4.00371 14.7366 3.36782 14.2678 2.89898C13.7989 2.43014 13.163 2.16675 12.5 2.16675H9.16667C6.02417 2.16675 4.4525 2.16675 3.47667 3.14341C2.93167 3.68758 2.69083 4.41675 2.585 5.50008"
+                  stroke="#3ECAE3"
+                  stroke-width="1.25"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="fixed hidden inset-0 bg-opacity-50 overflow-y-auto w-full"
+     onclick="onRequestPartnership(event);event.stopPropagation();" id="partnership_request"
+     style="overflow: hidden; z-index: 100; justify-content: center; align-items: center;   background-color: rgba(0, 0, 0, 0.3)">
+  <div class="relative mx-auto p-4 h-[300px] w-[404px] bg-white shadow-lg" style="border-radius: 16px"
+       onclick="event.stopPropagation();">
+    <!-- Flex-контейнер для содержимого -->
+    <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto">
+      <div class="w-full h-auto p-4 sm:p-0 overflow-y-auto">
+        <div class="lg:relative absolute right-[20px] lg:sm:right-auto lg:flex md:flex mb-3 justify-end">
+          <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #F9F9F9; cursor: pointer"
+                  onclick="onRequestPartnership(event)">
+            <p style="font-size: 10px; color: #4F4F4F; font-weight: 650;">
+              <img src="data:image/svg+xml,%3csvg%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M13%2013L1%201M0.999999%2013L13%201'%20stroke='black'%20stroke-width='1.41667'%20stroke-linecap='round'/%3e%3c/svg%3e" alt="close" style="height: 12px; width: 12px; margin: 8px">
+            </p>
+          </button>
+        </div>
+        <div class="flex flex-col gap-[5px]">
+          <h2
+            class="mb-2 text-4xl font-medium leading-none tracking-tight text-900 md:text-3xl lg:text-4xl"
+            style="font-size: 26px; font-weight: 400">
+            You’ve got new partnership request, accept it?
+          </h2>
+          <p class="mb-4 text-base font-normal leading-none tracking-tight text-600 lg:text-base"
+             style="font-size: 14px; font-weight: 400">
+            The partner will be added to the shared list, and their status, along with any active conditions (if
+            detected), will become accessible to you.
+          </p>
+          <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"
+                  style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer" onclick="onAddPartner(event)">
+            Accept
+          </button>
+          <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"
+                  style="background-color: white; border-radius: 42px; color: #3ECAE3; border: 1px solid #3ECAE3 ; cursor: pointer"
+                  onclick="onRequestPartnership(event)">
+            Decline
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="fixed hidden inset-0 bg-opacity-50 overflow-y-auto w-full"
+     onclick="onShowQr(event); event.stopPropagation();" id="modal_qr"
+     style="overflow: hidden; z-index: 100; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.3)">
+  <div class="relative mx-auto p-4 h-[475px] w-[404px] bg-white shadow-lg" onclick="event.stopPropagation();"
+       style="transform: translate(-50%, -50%); position: absolute; top: 50%; left: 50%; border-radius: 16px">
+    <div class="flex mb-3 justify-end">
+      <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #F9F9F9; cursor: pointer"
+              onclick="onShowQr(event)">
+        <p style="font-size: 10px; color: #4F4F4F; font-weight: 650;"><img src="data:image/svg+xml,%3csvg%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M13%2013L1%201M0.999999%2013L13%201'%20stroke='black'%20stroke-width='1.41667'%20stroke-linecap='round'/%3e%3c/svg%3e" alt="close" style="height: 12px; width: 12px; margin: 8px"></p>
+      </button>
+    </div>
+    <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto">
+      <div class="w-full h-auto sm:p-0 overflow-y-auto">
+        <h2
+          class="mb-2 text-4xl font-medium leading-none tracking-tight text-900 md:text-3xl lg:text-4xl"
+          style="font-size: 26px; font-weight: 400">
+          Check my status
+        </h2>
+        <div class="w-[372px] h-[372px]">
+          <div class="h-full w-full"
+               style="background-image: url('/dist/assets/qr-C84B4h04.png'); background-position: 70%; background-size: cover; background-repeat: no-repeat;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="fixed hidden inset-0 bg-opacity-50 overflow-y-auto h-full w-full" id="modal_map"
+     style="overflow: hidden; z-index: 100; background-color: rgba(0, 0, 0, 0.3)">
+  <!-- Контейнер модального окна -->
+  <div
+    class="relative mx-auto w-full h-full sm:h-auto lg:h-[692px] w-[692px] bg-white shadow-lg max-w-[1311px] md:w-[90%] my-0 ld:my-4 md:my-4 sm:my-8 rounded-[0px] md:rounded-[16px] lg:rounded-[16px]"
+    onclick="event.stopPropagation();"
+    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+    <!-- Flex-контейнер для содержимого -->
+    <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto md:h-[100%] lg:h-[100%]">
+      <!-- Карта -->
+      <div
+        class="w-full h-48 h-[60vh] md:h-[692px] lg:h-auto sm:w-2/3 flex justify-center items-center text-black sm:text-white rounded-t-md sm:rounded-l-md sm:rounded-tr-none bg-white sm:bg-[#3ECAE3] rounded-bl-[0px] md:rounded-tl-[16px] md:rounded-bl-[16px] lg:rounded-tl-[16px] lg:rounded-bl-[16px]">
+        <!-- Кнопка закрытия попапа -->
+        <div id="close-popup-btn"
+             class="absolute top-[66px] left-2 z-[1000] bg-white p-2 rounded-full shadow-lg cursor-pointer"
+             style="width: 44px;height: 44px; padding: 13px;">
+          <img src="data:image/svg+xml,%3csvg%20width='18'%20height='16'%20viewBox='0%200%2018%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M8.38462%2015L1%208L8.38462%201M2.02564%208H17'%20stroke='%233ECAE3'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e" alt="prev">
+        </div>
+        <div id="map"
+             class="w-full h-full rounded-tl-[0px] rounded-bl-[0px] md:rounded-tl-[16px] md:rounded-bl-[16px] lg:rounded-tl-[16px] lg:rounded-bl-[16px]"></div>
+      </div>
+
+      <!-- Правая часть (форма) -->
+      <div id="info_panel" class="w-full h-auto p-4 sm:p-0 sm:w-1/3 overflow-y-auto sm:min-h-[400px] rounded-[16px] overflow-scroll flex flex-col justify-between">
+        <!-- Карточка с информацией -->
+        <!-- Кнопка закрытия -->
+        <div class="hidden  pr-4 pt-2 right-[30px] lg:sm:right-auto lg:flex md:flex mb-0 justify-end">
+          <button class="rounded-full w-[28px] h-[28px] duration-300" style="background-color: #E5E5E5; cursor: pointer; overflow: hidden" id="ok-btn">
+            <p class="text-xs font-semibold text-gray-600"><img src="data:image/svg+xml,%3csvg%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M13%2013L1%201M0.999999%2013L13%201'%20stroke='black'%20stroke-width='1.41667'%20stroke-linecap='round'/%3e%3c/svg%3e" alt="close" style="width: 12px; height: 12px; margin-left: 8px;"></p>
+          </button>
+        </div>
+
+        <!-- Заголовок и описание (скрыто на мобильных) -->
+        <div class="px-4 hidden lg:block md:block mt-[10px]">
+          <h2
+            class="mb-4 text-4xl font-medium leading-none tracking-tight text-900 md:text-3xl lg:text-4xl"
+            style="font-size: 26px; font-weight: 400">
+            Choose a lab
+          </h2>
+          <p class="mb-4 text-base font-normal leading-none tracking-tight text-600 lg:text-base"
+             style="font-size: 14px; font-weight: 400">
+            Find out where you can get tested for one or more
+            of the listed conditions near you.
+          </p>
+        </div>
+        <div id="card1" class="px-4 rounded-lg h-[90%] md:h-[70%]">
+          <!-- Содержимое карточки -->
+        </div>
+<!--        <button-->
+<!--          class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[200px] lg:w-[95%] text-white w-auto"-->
+<!--          style="background-color: #3ECAE3; border-color: #3ECAE3; position: relative; bottom: 10px; width: 95%; margin-left: 10px">-->
+<!--          Make an appointment-->
+<!--        </button>-->
+      </div>
+    </div>
+  </div>
+  <!-- Блок для информации о лаборатории на мобильных устройствах -->
+  <div id="mobile_lab_info" class="fixed bottom-0 left-0 w-full bg-white p-4 shadow-lg hidden sm:hidden">
+    <div class="flex" style="justify-content: flex-end">
+      <button onclick="closeMobileLabInfo()" class="text-gray-500">X</button>
+    </div>
+    <div id="mobile_lab_content"></div>
+  </div>
+</div>
+<div class="container mx-auto w-[90%] lg:w-[95%] md:w-[95%]">
+  <nav class="bg-white border-gray-200 py-2.5">
+    <div class="flex flex-wrap justify-between items-center w-full">
+      <div class="dropdown relative inline-flex">
+        <div id="dropdown-with-subheading"
+             class="hidden dropdown-menu rounded-xl shadow-lg bg-white absolute top-full w-72 mt-6 divide-y divide-gray-200"
+             aria-labelledby="dropdown-with-subheading">
+          <div class="px-4 py-3 flex gap-3 flex-col">
+            <div class="block mt-1">
+              <h3 style="font-size: 26px; font-weight: 400">Health Mate</h3>
+              <p style="font-weight: 400; font-size: 18px; color: #646464">usermail1234@gmail.com</p>
+            </div>
+            <div>
+              <button class="w-full py-2 px-4 transition duration-300 flex flex-row gap-4"
+                      style="border-radius: 42px;  border: 1px solid #3ECAE3;color: #3ECAE3; cursor: pointer">
+                <img src="data:image/svg+xml,%3csvg%20width='22'%20height='22'%20viewBox='0%200%2022%2022'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M8.66699%2010.9999H20.3337M20.3337%2010.9999L16.8337%207.49988M20.3337%2010.9999L16.8337%2014.4999'%20stroke='%233ECAE3'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M1.66699%2010.9998C1.66699%208.52448%202.65032%206.15051%204.40066%204.40017C6.151%202.64983%208.52497%201.6665%2011.0003%201.6665M11.0003%2020.3332C9.60107%2020.334%208.21959%2020.0198%206.95832%2019.4139C5.69705%2018.808%204.58837%2017.926%203.71449%2016.8332'%20stroke='%233ECAE3'%20stroke-width='1.5'%20stroke-linecap='round'/%3e%3c/svg%3e" alt="log out"/>
+                Log out
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#" class="flex items-center">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAWSSURBVHgBzVk7TxxXFD53Zlh2wSGzeSgCpQC6OIVxXCHyYOWUkYKltJFoUsM/8PIPcJ0ijtJGwpEobYGT2K4ImyIuYYsIlFj2rDH7ZmZ8vjt71/ueJ5hPWoaZvXf2PL7zuPcKSgD7lmu+ovKKQcY1l5xZIrFA5Jp8NTuGFV3+aCQKQtcKZNsPF7OZIsWEoIiA0BWqrfMLvmLBlikSREHTtc04yoRWQAnOFl7rsXBc3NWINsIqEkqBR1Y1fw6Cd8EhZ+OL7GQ+6PhACjyxqrMuiS2X3AW6ALBQRf7kgnhD8xvAVl91yN2/KOEBjqlZ/ObvVnnFb+xIBTzK0E/nSZnhEKZO2tYfVjk/ctSwL1rC36ZLgFFxMVCBx1Z9hfP5Fl0iaLq+ujiV+rn3eZ8CCFjwLyptao5Lf1pVOqg26bh+Ju+nxw2aGdfp5vsTlDV0iga3xEXwem9gG33DiHaiCm81bfrx35dknTmU1gRlx3TK8PWIFYEyUOq7j96h+cwYhYcwHc6E/M/1rqedN3F43yn859kM3XxvQirRfnepRvefl+UP/vDxu9IrEZFfymY21E37Fzzq0CFFxPazMgtZpa+ZJhB+EOABKAkPQIlocEsNyszlsqKEu3YadWJmnKendUmZYcIDEBwfKILYiAZhpqi2pu6kArA+X1YpIkAfUGc65R+gn0ym5BVxER3u+o7lyjiVCjiRu8luZHTNf4wWuQHuwBsvtH5RrFEMgDoIWFDDD2pMXEVUC6959Inf58xnUpJKf72qDx2jvofCMbKQBKu/DBppSdHnmw8npRe2/z+lvZNa3/fgPDIQMCrQw2CMat8aggQvA6NmhDfIjmn0/cwU/XJ0Qr/+dyrzPjKOotZhizpIszemxikJcGVeEI+t6o6bkBcAq+lwwaowVbq9AGXQSkSrwsPg3hNcfVG8ZilhIM+rVDnDfE8nkn36UIQC8fnz1uCW4qUC8ijzD1fhp+WGtDr4vWRmBo5FcO+deFkKXrnKRW1+Ig6lhBnZAweVJt1/UWkHJwCaQAkE9NXJ8TbfX3D6hIKHA+oExiIr3ZhKUxSwAhUrbPuMIH3AwgMQ8jO2+qdXxqUCeL73ss6thd03D0J6awKNvdbg/slTCmPxHmSxsLESOohBA6RJFCN0lBBmEJA6j2peEGd00VawF6Dg9rNT6aElM8315AqFQJFfKQphZjxg6/sJD8CiWBfgA8sPs6yqH6jMqB1B2hEFb6uS/wSdAN6j64Rwo4SPAlWdj0N0qdhn1c7ss7+DTkAvA8wlWow8YM0MHNftwHN47V7QbH3yXtAJsD4AtycN0BIIs05gsj3UsDRjdu4GmXDcUVnPAybTMuhKjfu3Qo53KKQpBWm7QSbBA+jjz6ktkIYBTYMpITbxVypQo9QdlGW/KXi5ORZ1X8cfikYq1kYB9MFVKgAaaaRv0iVB1d8Dd3OtDa52NAbxAlyMOMD2SdKA1dXOhl/L3eCDEPV/F5mfWPXbvJGaHzZRrapUvzOdMmQBQk1Q7pe7cXp/nGBO1XbbwqqdDHwOKg0qtTIcVnbDmsEWBm9sKTyyavuj1shqwaJ6mCQAZeHdAAueIgs/1/mgT4EdXuSnAm7uqkWLZ1FH3nuWdvoyCYRU2y6m9JjGzzSaSRuBqjqnzVKTN3dzPZu7A/MhTmVIHmxcHti2c+vLD/qL7kDV2U18Yqjl6fIgP0h4YGRF8gvqC0JX0PbCt6TioE0nceHnZOC8Tsb6Yrb/VKYTgXoCL7Bx8JH87sVgiEKD3Fu5AMesoZqa86YUrM4LrM1RlOlF6K6s5Q2cJaxSQlCCNyh9Rx1cBEXkthKK6La9rOvGWtTNYa4Uu2jlowiukEhfrJQxdOMalHG9WJmltqDSwiygW+DWvYiVVJPSv0UVuhOvASkupzI4dND7AAAAAElFTkSuQmCC" class="mr-3 h-[48px] w-[48ox] sm:h-9" alt="Health Mates" onclick="onLoginPopup()"/>
+        <span class="self-center font-semibold whitespace-nowrap text-black"
+              style="font-size: 18px; line-height: 24px; font-weight: 400">Health Mates</span>
+      </a>
+      <div class="ml-auto">
+        <button
+          class="hidden lg:flex bg-white py-2 px-4 rounded-full border hover:bg-gray-50 transition duration-300 lg:w-[313px] sm:w-[116px] text-white flex justify-center gap-2"
+          style="background-color: #3ECAE3; cursor: pointer">
+          <img src="data:image/svg+xml,%3csvg%20width='25'%20height='24'%20viewBox='0%200%2025%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M8.00489%2016.1501V14.9059H10.0787C10.0241%2015.1133%209.98124%2015.3169%209.95024%2015.5168C9.92007%2015.7159%209.90171%2015.9274%209.89519%2016.1514L8.00489%2016.1501ZM7.84217%2022.3962C6.3699%2022.3962%205.11542%2021.8815%204.07871%2020.8521C3.04201%2019.8227%202.52365%2018.5664%202.52365%2017.0833V5.79066C1.96085%205.79066%201.48287%205.5949%201.08972%205.20338C0.696574%204.81103%200.5%204.32869%200.5%203.75634V2.05796C0.5%201.48561%200.696574%200.999534%201.08972%200.59972C1.48287%200.199907%201.96085%200%202.52365%200H13.135C13.6978%200%2014.1799%200.199907%2014.5812%200.59972C14.9816%200.998704%2015.1819%201.48478%2015.1819%202.05796V3.75634C15.1819%204.32869%2014.9816%204.81103%2014.5812%205.20338C14.1799%205.5949%2013.6978%205.79066%2013.135%205.79066V10.4404C12.9433%2010.5756%2012.7651%2010.7191%2012.6003%2010.8709C12.4356%2011.0227%2012.279%2011.1877%2012.1305%2011.3661H8.00612V10.1218H11.9115V5.79066H3.74715V17.0846C3.74715%2018.2326%204.14682%2019.1977%204.94617%2019.9799C5.74551%2020.7621%206.71085%2021.1528%207.84217%2021.152C8.37561%2021.152%208.87276%2021.057%209.33361%2020.867C9.79364%2020.6771%2010.2047%2020.4158%2010.5669%2020.0832C10.6517%2020.2905%2010.7451%2020.4809%2010.8471%2020.6543C10.949%2020.8276%2011.0644%2021.0031%2011.1933%2021.1806C10.7365%2021.5605%2010.2259%2021.8578%209.6615%2022.0727C9.09706%2022.2884%208.49062%2022.3962%207.84217%2022.3962ZM2.52365%204.54643H13.135C13.3552%204.54643%2013.5473%204.47053%2013.7113%204.31873C13.876%204.16693%2013.9584%203.97947%2013.9584%203.75634V2.05796C13.9584%201.834%2013.876%201.64239%2013.7113%201.48313C13.5465%201.32386%2013.3544%201.24423%2013.135%201.24423H2.52365C2.30343%201.24423%202.11542%201.32386%201.95962%201.48313C1.80383%201.64239%201.72512%201.834%201.72349%202.05796V3.75634C1.72349%203.9803%201.80179%204.16776%201.9584%204.31873C2.11582%204.47053%202.30424%204.54643%202.52365%204.54643ZM17.4172%2020.2909C18.3683%2020.2909%2019.1786%2019.9504%2019.8483%2019.2694C20.5171%2018.5884%2020.8515%2017.7643%2020.8515%2016.7971C20.8515%2015.83%2020.5171%2015.0063%2019.8483%2014.3261C19.1786%2013.6443%2018.3683%2013.3033%2017.4172%2013.3033C16.467%2013.3033%2015.657%2013.6443%2014.9874%2014.3261C14.3177%2015.0063%2013.9829%2015.83%2013.9829%2016.7971C13.9829%2017.7643%2014.3173%2018.5884%2014.9861%2019.2694C15.655%2019.9504%2016.4653%2020.2905%2017.4172%2020.2897M23.657%2024L20.2594%2020.5448C19.8426%2020.8666%2019.3931%2021.1121%2018.9111%2021.2814C18.4299%2021.4506%2017.9319%2021.5352%2017.4172%2021.5352C16.1236%2021.5352%2015.0237%2021.0744%2014.1175%2020.1528C13.2113%2019.2313%2012.7586%2018.1127%2012.7594%2016.7971C12.7602%2015.4816%2013.2129%2014.363%2014.1175%2013.4414C15.022%2012.5199%2016.1219%2012.0595%2017.4172%2012.0603C18.7125%2012.0612%2019.8124%2012.5215%2020.717%2013.4414C21.6215%2014.3613%2022.0742%2015.4799%2022.075%2016.7971C22.075%2017.3197%2021.9923%2017.8261%2021.8267%2018.3163C21.6603%2018.8057%2021.4188%2019.2628%2021.1024%2019.6875L24.5%2023.1427L23.657%2024Z'%20fill='white'/%3e%3c/svg%3e" alt="make an appointment"/>
+          <p>Make an appointment</p>
+        </button>
+        <div class="flex gap-2 flex-row f lg:hidden md:hidden">
+          <button
+            class=" bg-white py-2 px-2 rounded-full border hover:bg-gray-50 transition duration-300 w-[44px] h-[44px] text-white flex justify-center gap-10"
+            style="background-color: #3ECAE3">
+            <img src="data:image/svg+xml,%3csvg%20width='25'%20height='24'%20viewBox='0%200%2025%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M8.00489%2016.1501V14.9059H10.0787C10.0241%2015.1133%209.98124%2015.3169%209.95024%2015.5168C9.92007%2015.7159%209.90171%2015.9274%209.89519%2016.1514L8.00489%2016.1501ZM7.84217%2022.3962C6.3699%2022.3962%205.11542%2021.8815%204.07871%2020.8521C3.04201%2019.8227%202.52365%2018.5664%202.52365%2017.0833V5.79066C1.96085%205.79066%201.48287%205.5949%201.08972%205.20338C0.696574%204.81103%200.5%204.32869%200.5%203.75634V2.05796C0.5%201.48561%200.696574%200.999534%201.08972%200.59972C1.48287%200.199907%201.96085%200%202.52365%200H13.135C13.6978%200%2014.1799%200.199907%2014.5812%200.59972C14.9816%200.998704%2015.1819%201.48478%2015.1819%202.05796V3.75634C15.1819%204.32869%2014.9816%204.81103%2014.5812%205.20338C14.1799%205.5949%2013.6978%205.79066%2013.135%205.79066V10.4404C12.9433%2010.5756%2012.7651%2010.7191%2012.6003%2010.8709C12.4356%2011.0227%2012.279%2011.1877%2012.1305%2011.3661H8.00612V10.1218H11.9115V5.79066H3.74715V17.0846C3.74715%2018.2326%204.14682%2019.1977%204.94617%2019.9799C5.74551%2020.7621%206.71085%2021.1528%207.84217%2021.152C8.37561%2021.152%208.87276%2021.057%209.33361%2020.867C9.79364%2020.6771%2010.2047%2020.4158%2010.5669%2020.0832C10.6517%2020.2905%2010.7451%2020.4809%2010.8471%2020.6543C10.949%2020.8276%2011.0644%2021.0031%2011.1933%2021.1806C10.7365%2021.5605%2010.2259%2021.8578%209.6615%2022.0727C9.09706%2022.2884%208.49062%2022.3962%207.84217%2022.3962ZM2.52365%204.54643H13.135C13.3552%204.54643%2013.5473%204.47053%2013.7113%204.31873C13.876%204.16693%2013.9584%203.97947%2013.9584%203.75634V2.05796C13.9584%201.834%2013.876%201.64239%2013.7113%201.48313C13.5465%201.32386%2013.3544%201.24423%2013.135%201.24423H2.52365C2.30343%201.24423%202.11542%201.32386%201.95962%201.48313C1.80383%201.64239%201.72512%201.834%201.72349%202.05796V3.75634C1.72349%203.9803%201.80179%204.16776%201.9584%204.31873C2.11582%204.47053%202.30424%204.54643%202.52365%204.54643ZM17.4172%2020.2909C18.3683%2020.2909%2019.1786%2019.9504%2019.8483%2019.2694C20.5171%2018.5884%2020.8515%2017.7643%2020.8515%2016.7971C20.8515%2015.83%2020.5171%2015.0063%2019.8483%2014.3261C19.1786%2013.6443%2018.3683%2013.3033%2017.4172%2013.3033C16.467%2013.3033%2015.657%2013.6443%2014.9874%2014.3261C14.3177%2015.0063%2013.9829%2015.83%2013.9829%2016.7971C13.9829%2017.7643%2014.3173%2018.5884%2014.9861%2019.2694C15.655%2019.9504%2016.4653%2020.2905%2017.4172%2020.2897M23.657%2024L20.2594%2020.5448C19.8426%2020.8666%2019.3931%2021.1121%2018.9111%2021.2814C18.4299%2021.4506%2017.9319%2021.5352%2017.4172%2021.5352C16.1236%2021.5352%2015.0237%2021.0744%2014.1175%2020.1528C13.2113%2019.2313%2012.7586%2018.1127%2012.7594%2016.7971C12.7602%2015.4816%2013.2129%2014.363%2014.1175%2013.4414C15.022%2012.5199%2016.1219%2012.0595%2017.4172%2012.0603C18.7125%2012.0612%2019.8124%2012.5215%2020.717%2013.4414C21.6215%2014.3613%2022.0742%2015.4799%2022.075%2016.7971C22.075%2017.3197%2021.9923%2017.8261%2021.8267%2018.3163C21.6603%2018.8057%2021.4188%2019.2628%2021.1024%2019.6875L24.5%2023.1427L23.657%2024Z'%20fill='white'/%3e%3c/svg%3e" style="height: 22px; width: 22px; margin-left: 3px" alt="upload results"/>
+          </button>
+          <button
+            class=" bg-white py-2 px-2 rounded-full border hover:bg-gray-50 transition duration-300 w-[44px] h-[44px] text-white flex justify-center gap-10"
+            style="background-color: #3ECAE3">
+            <img src="data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M23%208.33373V4.66627C23%203.69392%2022.6137%202.76138%2021.9262%202.07383C21.2386%201.38627%2020.3061%201%2019.3337%201L15.6663%201M15.6663%2023H19.3337C20.3061%2023%2021.2386%2022.6137%2021.9262%2021.9262C22.6137%2021.2386%2023%2020.3061%2023%2019.3337V15.6663M1%2015.6663L1%2019.3337C1%2020.3061%201.38627%2021.2386%202.07383%2021.9262C2.76138%2022.6137%203.69392%2023%204.66627%2023H8.33373M8.33373%201L4.66627%201C3.69392%201%202.76138%201.38627%202.07383%202.07383C1.38627%202.76138%201%203.69392%201%204.66627L1%208.33373M20.0979%2015.6511H17.4298C16.958%2015.6511%2016.5056%2015.8385%2016.172%2016.172C15.8385%2016.5056%2015.6511%2016.958%2015.6511%2017.4298V20.0979M20.0979%2020.0979V20.1068M12.0936%207.64681V10.3149C12.0936%2010.7866%2011.9062%2011.2391%2011.5726%2011.5726C11.2391%2011.9062%2010.7866%2012.0936%2010.3149%2012.0936H7.64681M4.08936%2012.0936H4.09826M12.0936%204.08936H12.1025M12.0936%2015.6511V15.66M15.6511%2012.0936H16.5404M20.0979%2012.0936V12.1025M12.0936%2020.0979V19.2085M4.97872%204.08936H7.64681C8.13799%204.08936%208.53617%204.48754%208.53617%204.97872V7.64681C8.53617%208.13799%208.13799%208.53617%207.64681%208.53617H4.97872C4.48754%208.53617%204.08936%208.13799%204.08936%207.64681V4.97872C4.08936%204.48754%204.48754%204.08936%204.97872%204.08936ZM16.5404%204.08936H19.2085C19.6997%204.08936%2020.0979%204.48754%2020.0979%204.97872V7.64681C20.0979%208.13799%2019.6997%208.53617%2019.2085%208.53617H16.5404C16.0492%208.53617%2015.6511%208.13799%2015.6511%207.64681V4.97872C15.6511%204.48754%2016.0492%204.08936%2016.5404%204.08936ZM4.97872%2015.6511H7.64681C8.13799%2015.6511%208.53617%2016.0492%208.53617%2016.5404V19.2085C8.53617%2019.6997%208.13799%2020.0979%207.64681%2020.0979H4.97872C4.48754%2020.0979%204.08936%2019.6997%204.08936%2019.2085V16.5404C4.08936%2016.0492%204.48754%2015.6511%204.97872%2015.6511Z'%20stroke='white'%20stroke-width='1.14445'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e" style="height: 22px; width: 22px;" alt="qr" onclick="onShowQr(event)"/>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <h3 class="mb-2 text-base font-normal leading-none tracking-tight text-400 lg:text-base"
+      style="font-size: 22px; line-height: 38px">Your condition</h3>
+  <div class="m-auto grid-cols-2 grid lg:grid-cols-4 gap-4">
+    <div class="my-auto pr-4 grid grid-cols-2 justify-end col-span-2" style="background: #F9F9F9; border-radius: 22px">
+      <!-- Левая колонка -->
+      <div class="flex flex-col justify-center gap-2"
+           style="padding-left: 20px; padding-top: 13px; padding-bottom: 20px">
+        <div>
+          <h1 class="text-4xl font-medium leading-none tracking-tight text-500 sm:text-4xl md:text-4xl lg:text-6xl"
+              style="font-size: 80px; line-height: 84px">
+            02
+          </h1>
+        </div>
+        <div class="mt-auto">
+          <p class="text-base font-normal leading-none tracking-tight text-400 lg:text-base"
+             style="line-height: 24px; font-size: 20px">
+            Weeks ago
+          </p>
+        </div>
+      </div>
+
+      <!-- Правая колонка -->
+      <div class="flex flex-col justify-center" style="height: 204px; padding-bottom: 20px">
+        <div class="flex-grow flex flex-col gap-2 " style="padding-top: 20px; "> <!-- flex-grow для верхней части -->
+          <div>
+            <h1 class="text-2xl font-medium leading-none tracking-tight text-500" style="font-size: 22px">
+              Last check
+            </h1>
+          </div>
+          <div>
+            <h3 class="text-sm font-medium leading-none tracking-tight text-400 lg:text-sm"
+                style="color: #2BDD49; font-size: 14px; font-weight: 400; line-height: 100%;">
+              Status clear
+            </h3>
+          </div>
+        </div>
+        <div class="mt-auto"> <!-- mt-auto для прижатия к низу -->
+          <p class="text-sm font-medium leading-none tracking-tight text-400 md:text-2xl lg:text-sm"
+             style="font-size: 14px; font-weight: 400; ">
+            Borem ipsum dolor sit amet, consectetur adipiscing elit.
+            Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="my-auto p-4 w-full justify-start justify-between flex flex-col"
+         style="background: #F9F9F9; border-radius: 22px; height: 204px; justify-content: space-between; overflow: hidden">
+      <h1
+        class="mb-6 text-2xl font-medium leading-none tracking-tight text-500 md:text-3xl lg:text-3xl"
+        style="font-size: 22px; line-height: 26px"
+      >
+        Upload new results
+      </h1>
+      <div class="flex justify-between">
+        <div>
+          <img src="data:image/svg+xml,%3csvg%20width='75'%20height='79'%20viewBox='0%200%2075%2079'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M26.4781%2056.9678V52.5789H33.7948C33.602%2053.3104%2033.4509%2054.0287%2033.3415%2054.7338C33.2351%2055.4361%2033.1703%2056.1822%2033.1473%2056.9722L26.4781%2056.9678ZM25.904%2079C20.7097%2079%2016.2837%2077.1845%2012.6261%2073.5534C8.96849%2069.9223%207.13968%2065.491%207.13968%2060.2594V20.4259C5.15404%2020.4259%203.46768%2019.7354%202.08061%2018.3543C0.693537%2016.9704%200%2015.2689%200%2013.2501V7.25922C0%205.24033%200.693537%203.52574%202.08061%202.11545C3.46768%200.705149%205.15404%200%207.13968%200H44.5777C46.5633%200%2048.2641%200.705149%2049.6799%202.11545C51.0929%203.52282%2051.7994%205.23741%2051.7994%207.25922V13.2501C51.7994%2015.2689%2051.0929%2016.9704%2049.6799%2018.3543C48.2641%2019.7354%2046.5633%2020.4259%2044.5777%2020.4259V36.8272C43.9014%2037.3041%2043.2726%2037.8103%2042.6913%2038.3457C42.11%2038.8812%2041.5575%2039.4634%2041.0338%2040.0925H26.4824V35.7036H40.2611V20.4259H11.4563V60.2638C11.4563%2064.3133%2012.8664%2067.7176%2015.6866%2070.4768C18.5068%2073.2359%2021.9126%2074.614%2025.904%2074.6111C27.7861%2074.6111%2029.54%2074.2761%2031.166%2073.6061C32.789%2072.936%2034.2394%2072.0144%2035.5171%2070.8411C35.8164%2071.5725%2036.1459%2072.244%2036.5056%2072.8556C36.8653%2073.4671%2037.2725%2074.0859%2037.7272%2074.7121C36.1157%2076.0521%2034.3142%2077.1011%2032.3228%2077.8589C30.3314%2078.6196%2028.1918%2079%2025.904%2079ZM7.13968%2016.037H44.5777C45.3547%2016.037%2046.0324%2015.7693%2046.6108%2015.2338C47.1921%2014.6984%2047.4828%2014.0371%2047.4828%2013.2501V7.25922C47.4828%206.46922%2047.1921%205.79333%2046.6108%205.23156C46.0295%204.66978%2045.3518%204.38889%2044.5777%204.38889H7.13968C6.36269%204.38889%205.69937%204.66978%205.14972%205.23156C4.60007%205.79333%204.32237%206.46922%204.31662%207.25922V13.2501C4.31662%2014.0401%204.59288%2014.7013%205.14541%2015.2338C5.70081%2015.7693%206.36557%2016.037%207.13968%2016.037Z'%20fill='%23C5EFF7'/%3e%3cpath%20d='M72.7949%2052.5244H59.5645V39.2967C59.5645%2038.712%2059.3322%2038.1513%2058.9186%2037.7378C58.5051%2037.3244%2057.9442%2037.0921%2057.3594%2037.0921C56.7746%2037.0921%2056.2137%2037.3244%2055.8002%2037.7378C55.3867%2038.1513%2055.1544%2038.712%2055.1544%2039.2967V52.5244H41.9239C41.3391%2052.5244%2040.7782%2052.7567%2040.3647%2053.1701C39.9512%2053.5836%2039.7189%2054.1443%2039.7189%2054.729C39.7189%2055.3137%2039.9512%2055.8745%2040.3647%2056.2879C40.7782%2056.7014%2041.3391%2056.9337%2041.9239%2056.9337H55.1544V70.1614C55.1544%2070.7461%2055.3867%2071.3068%2055.8002%2071.7203C56.2137%2072.1337%2056.7746%2072.366%2057.3594%2072.366C57.9442%2072.366%2058.5051%2072.1337%2058.9186%2071.7203C59.3322%2071.3068%2059.5645%2070.7461%2059.5645%2070.1614V56.9337H72.7949C73.3798%2056.9337%2073.9406%2056.7014%2074.3541%2056.2879C74.7677%2055.8745%2075%2055.3137%2075%2054.729C75%2054.1443%2074.7677%2053.5836%2074.3541%2053.1701C73.9406%2052.7567%2073.3798%2052.5244%2072.7949%2052.5244Z'%20fill='%23C5EFF7'/%3e%3c/svg%3e" alt="make big"
+               class="relative -rotate-[23deg] md:rotate-[0deg] lg:rotate-[0deg] top-[15px] md:top-[0px] lg:top-[0px] right-[10px] md:right-[0px] lg:right-[0px]"/>
+        </div>
+        <div class="flex" style="align-items: end">
+          <button
+            class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[40px] lg:w-[48px] md:w-[48px] flex text-white h-[40px] md:h-[48px] lg:h-[48px]"
+            style="background-color: #3ECAE3; border-color: #3ECAE3; cursor: pointer;">
+            <img src="data:image/svg+xml,%3csvg%20width='22'%20height='16'%20viewBox='0%200%2022%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M1.66634%208L20.333%208M20.333%208L13.333%2015M20.333%208L13.333%201'%20stroke='white'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e" width="22" height="16" class="-left-[6px] md:-left-[2px] lg:-left-[6px]"
+                 style="max-width: max-content;position: relative;" alt="Upload new results">
+            <input
+              class="cursor-pointer block py-2 px-4 w-full opacity-0 pin-r pin-t mt-[-10px] ml-[-30px]"
+              type="file"
+            >
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="my-auto p-4 w-full justify-start justify-between flex flex-col"
+         style="background: #F9F9F9; border-radius: 22px; height: 204px; justify-content: space-between; overflow: hidden">
+      <h1
+        class="mb-2 text-2xl font-medium leading-none tracking-tight text-500 md:text-3xl lg:text-3xl"
+        style="font-size: 22px; line-height: 26px">
+        Generate QR for a new partner
+      </h1>
+      <div class="flex justify-between">
+        <div>
+          <img src="data:image/svg+xml,%3csvg%20width='84'%20height='84'%20viewBox='0%200%2084%2084'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M81%2029.0014V15.9986C81%2012.5512%2079.6305%209.24491%2077.1928%206.8072C74.7551%204.36949%2071.4488%203%2068.0014%203H54.9986M54.9986%2081H68.0014C71.4488%2081%2074.7551%2079.6305%2077.1928%2077.1928C79.6305%2074.7551%2081%2071.4488%2081%2068.0014V54.9986M3%2054.9986V68.0014C3%2071.4488%204.36949%2074.7551%206.8072%2077.1928C9.24491%2079.6305%2012.5512%2081%2015.9986%2081H29.0014M29.0014%203H15.9986C12.5512%203%209.24491%204.36949%206.8072%206.8072C4.36949%209.24491%203%2012.5512%203%2015.9986V29.0014M70.7106%2054.9447H61.2511C59.5785%2054.9447%2057.9745%2055.6091%2056.7918%2056.7918C55.6091%2057.9745%2054.9447%2059.5785%2054.9447%2061.2511V70.7106M70.7106%2070.7106V70.7422M42.3319%2026.566V36.0255C42.3319%2037.6981%2041.6675%2039.3021%2040.4848%2040.4848C39.3021%2041.6675%2037.6981%2042.3319%2036.0255%2042.3319H26.566M13.9532%2042.3319H13.9847M42.3319%2013.9532H42.3635M42.3319%2054.9447V54.9762M54.9447%2042.3319H58.0979M70.7106%2042.3319V42.3634M42.3319%2070.7106V67.5574M17.1064%2013.9532H26.566C28.3074%2013.9532%2029.7191%2015.3649%2029.7191%2017.1064V26.566C29.7191%2028.3074%2028.3074%2029.7191%2026.566%2029.7191H17.1064C15.3649%2029.7191%2013.9532%2028.3074%2013.9532%2026.566V17.1064C13.9532%2015.3649%2015.3649%2013.9532%2017.1064%2013.9532ZM58.0979%2013.9532H67.5575C69.2989%2013.9532%2070.7106%2015.3649%2070.7106%2017.1064V26.566C70.7106%2028.3074%2069.2989%2029.7191%2067.5575%2029.7191H58.0979C56.3564%2029.7191%2054.9447%2028.3074%2054.9447%2026.566V17.1064C54.9447%2015.3649%2056.3564%2013.9532%2058.0979%2013.9532ZM17.1064%2054.9447H26.566C28.3074%2054.9447%2029.7191%2056.3564%2029.7191%2058.0979V67.5575C29.7191%2069.2989%2028.3074%2070.7106%2026.566%2070.7106H17.1064C15.3649%2070.7106%2013.9532%2069.2989%2013.9532%2067.5575V58.0979C13.9532%2056.3564%2015.3649%2054.9447%2017.1064%2054.9447Z'%20stroke='%23C5EFF7'%20stroke-width='4.8'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e" alt="make big"
+               class="relative -rotate-[23deg] md:rotate-[0deg] lg:rotate-[0deg] top-[15px] md:top-[0px] lg:top-[0px] right-[10px] md:right-[0px] lg:right-[0px]"/>
+        </div>
+        <div class="flex" style="align-items: end">
+          <button
+            class="bg-white py-2 px-4 rounded-full border transition duration-300 w-[40px] lg:w-[48px] md:w-[48px] text-white h-[40px] md:h-[48px] lg:h-[48px]"
+            style="background-color: #3ECAE3; border-color: #3ECAE3; cursor: pointer" onclick="onShowQr(event)">
+            <img src="data:image/svg+xml,%3csvg%20width='22'%20height='16'%20viewBox='0%200%2022%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M1.66634%208L20.333%208M20.333%208L13.333%2015M20.333%208L13.333%201'%20stroke='white'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e" class="-left-[6px] md:-left-[2px] lg:-left-[6px]" width="22" height="16"
+                 style="max-width: max-content; position: relative;" alt="qr">
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="my-auto grid grid-cols-1 lg:grid-cols-2 mg-grid-cols-2 justify-end gap-4 pt-[40px] pb-[40px]">
+    <div class="bg-white rounded-lg">
+      <div class="flex gap-[10px] mb-2">
+        <h2 class="text-xl font-semibold" style="font-size: 26px; font-weight: 400">Last lab results</h2>
+        <div style="display: flex; align-items: center; margin-left: auto; padding-right: 10px">
+          <img src="data:image/svg+xml,%3csvg%20width='24'%20height='21'%20viewBox='0%200%2024%2021'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M23%2010.5L1%2010.5M1%2010.5L9.25%2020M1%2010.5L9.25%201'%20stroke='%233ECAE3'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e" alt="prev"
+               style="width: 16px; height: 22px; transform: rotate(180deg); cursor: pointer">
+        </div>
+      </div>
+      <p class="text-sm mb-4" style="font-size: 14px; font-weight: 400">Here are the results of the last three uploaded
+        tests. Please note that
+        results can be false-positive or false-negative; only regular testing can provide an accurate picture.</p>
+
+      <div class="space-y-4">
+        <div class="p-4 flex gap-2" style="background-color: #F9F9F9; border-radius: 22px">
+          <div>
+            <div style="background: #08C671; border-radius: 50%; width: 39px; height: 39px"></div>
+          </div>
+          <div>
+            <p class="font-medium" style="color: #08C671">Everything o-kay!</p>
+            <p class="text-sm text-gray-500">01:12:2024</p>
+          </div>
+        </div>
+        <div class="space-y-4">
+          <div class="p-4 flex flex-col gap-2 items-center" style="background-color: #F9F9F9; border-radius: 22px">
+            <div class="flex w-full gap-2">
+              <div>
+                <img src="data:image/svg+xml,%3csvg%20width='44'%20height='44'%20viewBox='0%200%2044%2044'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M4%2023L13%207.41154H31L40%2023L31%2038.5885H13L4%2023Z'%20fill='%23FF3E06'/%3e%3cpath%20d='M23.8118%2030.4015C23.8118%2030.8411%2023.611%2031.2626%2023.2535%2031.5734C22.8961%2031.8842%2022.4114%2032.0588%2021.9059%2032.0588C21.4004%2032.0588%2020.9156%2031.8842%2020.5582%2031.5734C20.2008%2031.2626%2020%2030.8411%2020%2030.4015C20%2029.962%2020.2008%2029.5405%2020.5582%2029.2297C20.9156%2028.9188%2021.4004%2028.7442%2021.9059%2028.7442C22.4114%2028.7442%2022.8961%2028.9188%2023.2535%2029.2297C23.611%2029.5405%2023.8118%2029.962%2023.8118%2030.4015ZM20.4765%2025.0153C20.4765%2025.345%2020.6271%2025.6612%2020.8951%2025.8943C21.1632%2026.1274%2021.5268%2026.2583%2021.9059%2026.2583C22.285%2026.2583%2022.6486%2026.1274%2022.9166%2025.8943C23.1847%2025.6612%2023.3353%2025.345%2023.3353%2025.0153V14.243C23.3353%2013.9133%2023.1847%2013.5972%2022.9166%2013.3641C22.6486%2013.131%2022.285%2013%2021.9059%2013C21.5268%2013%2021.1632%2013.131%2020.8951%2013.3641C20.6271%2013.5972%2020.4765%2013.9133%2020.4765%2014.243V25.0153Z'%20fill='white'/%3e%3c/svg%3e" alt="Be Aware Icon">
+              </div>
+
+              <!-- Текстовый контент -->
+              <div class="flex-1">
+                <p class="font-medium" style="color: #FF3E06">Be aware!</p>
+                <p class="text-sm" style="color: #888888; font-size: 14px">01:12:2024</p>
+              </div>
+
+              <!-- Кнопка справа -->
+              <button
+                onclick="toggleAccordion()"
+                class="p-2 focus:outline-none"
+                style="cursor: pointer"
+              >
+                <svg
+                  id="arrow"
+                  class="w-6 h-6 transform transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+            </div>
+
+            <div
+              id="accordionContent"
+              class="mt-2 rounded-lg hidden transition-all duration-300 flex gap-4 flex-col w-full"
+            >
+              <div class="flex gap-2 w-full">
+                <span class="text-sm pl-2 pr-2"
+                      style="background-color: #FFE2DA; border-radius: 20px; font-size: 12px; font-weight: 400; align-content: center; height: 19px">
+                    POS
+                </span>
+                <p>Syphilis</p>
+              </div>
+              <div class="flex gap-2 w-full">
+                <span class="text-sm pl-2 pr-2 h-[19px] w-[46px]"
+                      style="background-color: #DAF6EA; border-radius: 20px; font-weight: 400; align-content: center; height: 19px">
+                    NEG
+                </span>
+                <p>Hepatitis B (HBsAg, anti-HBs, anti-HBc IgM, anti-HBc total, HBeAg, anti-HBe)</p>
+              </div>
+              <button class="w-full py-2 px-4 transition duration-300"
+                      style="border-radius: 42px;  border: 1px solid #3ECAE3;color: #3ECAE3; cursor: pointer">
+                Download PDF
+              </button>
+            </div>
+          </div>
+
+          <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"
+                  style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer" onclick="onAddPartner(event)">
+            Upload new lab result
+          </button>
+          <!--          <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"-->
+          <!--                  style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer" onclick="onAddPartner(event)">-->
+          <!--            Upload new lab result-->
+          <!--          </button>-->
+          <!--          <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"-->
+          <!--                  style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer" onclick="onAddPartner(event)">-->
+          <!--            Upload new lab result-->
+          <!--          </button>-->
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg">
+      <div class="flex gap-[10px] mb-2">
+        <h2 class="text-xl font-semibold" style="font-size: 26px; font-weight: 400">Your partners</h2>
+        <div style="display: flex; align-items: center; margin-left: auto; padding-right: 10px">
+          <img src="data:image/svg+xml,%3csvg%20width='24'%20height='21'%20viewBox='0%200%2024%2021'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M23%2010.5L1%2010.5M1%2010.5L9.25%2020M1%2010.5L9.25%201'%20stroke='%233ECAE3'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e" alt="prev"
+               style="width: 16px; height: 22px; transform: rotate(180deg); cursor: pointer">
+        </div>
+      </div>
+      <p class="text-sm text-gray-600 mb-4">Remember that a diagnosed condition in a partner is a reason to retake your
+        own test, but it does not necessarily mean you are infected.</p>
+
+      <div class="flex flex-col">
+        <div class="bg-white rounded-lg mb-2 pb-3 " style="background-color: #F9F9F9; border-radius: 22px">
+          <div class="flex gap-4 items-center justify-between p-4">
+            <!-- Левая часть: аватар и информация -->
+            <div class="flex items-center flex-grow gap-4">
+              <div>
+                <img src="data:image/svg+xml,%3csvg%20width='48'%20height='48'%20viewBox='0%200%2048%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3crect%20width='48'%20height='48'%20rx='24'%20fill='%23C5EFF7'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M17.8575%2015.1205C17.8575%2011.7193%2020.6824%209%2024.1177%209C26.8741%209%2029.2367%2010.7493%2030.0644%2013.2009C30.0562%2013.2214%2030.0481%2013.242%2030.0402%2013.2626C30.2037%2013.8626%2030.291%2014.4941%2030.291%2015.1459C30.291%2015.7852%2030.2071%2016.4048%2030.0496%2016.9945C30.0551%2017.0087%2030.0608%2017.0229%2030.0664%2017.0371C29.2409%2019.4883%2026.8773%2021.241%2024.1194%2021.241C20.6824%2021.241%2017.8575%2018.5218%2017.8575%2015.1205ZM24.1194%2010.7487C21.6059%2010.7487%2019.6066%2012.7265%2019.6066%2015.1205C19.6066%2017.5145%2021.6059%2019.4923%2024.1177%2019.4923C26.6312%2019.4923%2028.6287%2017.5145%2028.6287%2015.1205C28.6287%2012.7265%2026.6312%2010.7487%2024.1194%2010.7487Z'%20fill='%233ECAE3'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M18.4435%2023.2591C19.353%2023.009%2020.2398%2023.3045%2020.8818%2023.719C21.5692%2024.1649%2022.7114%2024.714%2024.1194%2024.714C25.5275%2024.714%2026.6661%2024.1632%2027.3553%2023.719C27.9955%2023.3045%2028.8823%2023.009%2029.7918%2023.2591C30.0728%2023.336%2030.3521%2023.4188%2030.6297%2023.5074L32.3508%2024.06C34.3711%2024.7053%2035.9278%2026.3053%2036.4525%2028.3234L36.4648%2028.3706L37.1942%2033.5066C37.46%2035.3812%2036.428%2037.2768%2034.4165%2037.7437C32.3561%2038.2211%2029.0152%2038.7282%2024.1177%2038.7282C19.2201%2038.7282%2015.8792%2038.2211%2013.8188%2037.7437C11.809%2037.2768%2010.7753%2035.3812%2011.0411%2033.5066L11.7705%2028.3706L11.7828%2028.3234C12.3093%2026.3053%2013.8642%2024.707%2015.8845%2024.06L17.6074%2023.5074C17.8849%2023.4199%2018.1636%2023.3372%2018.4435%2023.2591ZM19.932%2025.1844C19.5489%2024.9378%2019.1781%2024.8679%2018.907%2024.9431V24.9448C18.6504%2025.0148%2018.3951%2025.0906%2018.1409%2025.1722L16.418%2025.723C14.9592%2026.1899%2013.8677%2027.3231%2013.4899%2028.7151L12.7728%2033.7514C12.6154%2034.8636%2013.2153%2035.8061%2014.2141%2036.0387C16.1346%2036.4829%2019.339%2036.9778%2024.1177%2036.9778C28.8963%2036.9778%2032.1024%2036.4829%2034.0212%2036.0387C35.0217%2035.8061%2035.6217%2034.8636%2035.4643%2033.7514L34.7471%2028.7151C34.3676%2027.3231%2033.2744%2026.1899%2031.8173%2025.723L30.0962%2025.1704C29.8408%2025.0888%2029.5849%2025.013%2029.3283%2024.9431C29.0572%2024.8696%2028.6864%2024.9396%2028.3051%2025.1844C27.4497%2025.7387%2025.9805%2026.461%2024.1177%2026.461C22.2566%2026.461%2020.7873%2025.7387%2019.932%2025.1844Z'%20fill='%233ECAE3'/%3e%3c/svg%3e" class="w-12 h-12 rounded-full" alt="Partner Avatar">
+              </div>
+              <div>
+                <div class="flex gap-2 items-center">
+                  <h3 class="font-medium text-gray-800" style="font-weight: 500; font-size: 18px">Partner #1</h3>
+                  <div class="w-2 h-2 bg-green-500 rounded-full"></div> <!-- Индикатор статуса -->
+                </div>
+                <p class="text-sm text-gray-500 mt-1 w-12px h-12px">Last Checkup 22.01.2025</p>
+              </div>
+            </div>
+            <!-- Правая часть: кнопка удаления -->
+            <div class="flex items-center">
+              <button
+                class="rounded-full w-7 h-7 flex items-center justify-center hover:bg-gray-200 transition duration-300"
+                id="delete-btn1"
+                style="cursor: pointer"
+                onclick="onDeletePopup(event,12)"
+              >
+                <p class="text-xs font-semibold text-gray-600 w-[12px] h-[12px]"><img src="data:image/svg+xml,%3csvg%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M13%2013L1%201M0.999999%2013L13%201'%20stroke='black'%20stroke-width='1.41667'%20stroke-linecap='round'/%3e%3c/svg%3e" alt="delete"></p>
+              </button>
+            </div>
+          </div>
+          <div class="flex gap-2 ml-3">
+            <div class="rounded-md py-0.5 px-2.5 border border-transparent text-sm transition-all flex gap-2"
+                 style="border-color: #FF3E06; color: #FF3E06; border-radius: 14px">
+              <img src="data:image/svg+xml,%3csvg%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M9.64256%2012.8572C9.64256%2013.0277%209.57483%2013.1912%209.45427%2013.3118C9.33371%2013.4323%209.17019%2013.5%208.9997%2013.5C8.8292%2013.5%208.66569%2013.4323%208.54513%2013.3118C8.42457%2013.1912%208.35684%2013.0277%208.35684%2012.8572C8.35684%2012.6867%208.42457%2012.5232%208.54513%2012.4026C8.66569%2012.2821%208.8292%2012.2143%208.9997%2012.2143C9.17019%2012.2143%209.33371%2012.2821%209.45427%2012.4026C9.57483%2012.5232%209.64256%2012.6867%209.64256%2012.8572ZM8.51756%2010.7679C8.51756%2010.8958%208.56835%2011.0184%208.65877%2011.1088C8.74919%2011.1992%208.87183%2011.25%208.9997%2011.25C9.12757%2011.25%209.25021%2011.1992%209.34062%2011.1088C9.43104%2011.0184%209.48184%2010.8958%209.48184%2010.7679V6.58932C9.48184%206.46145%209.43104%206.33882%209.34062%206.2484C9.25021%206.15798%209.12757%206.10718%208.9997%206.10718C8.87183%206.10718%208.74919%206.15798%208.65877%206.2484C8.56835%206.33882%208.51756%206.46145%208.51756%206.58932V10.7679ZM7.4517%202.68075C8.12413%201.46318%209.87527%201.46254%2010.5477%202.68075L16.4941%2013.4486C17.1447%2014.627%2016.2923%2016.0715%2014.9468%2016.0715H3.05777C1.71227%2016.0715%200.859198%2014.6276%201.50977%2013.4493L7.4517%202.68075ZM9.70298%203.14683C9.63352%203.02115%209.53164%202.91638%209.40796%202.84343C9.28427%202.77047%209.1433%202.73199%208.9997%202.73199C8.8561%202.73199%208.71512%202.77047%208.59144%202.84343C8.46776%202.91638%208.36588%203.02115%208.29641%203.14683L2.35384%2013.9153C2.2863%2014.0377%202.25185%2014.1756%202.25389%2014.3153C2.25593%2014.4551%202.29439%2014.5919%202.36547%2014.7123C2.43655%2014.8326%202.5378%2014.9323%202.65921%2015.0016C2.78062%2015.0709%202.91799%2015.1073%203.05777%2015.1072H14.9461C15.0858%2015.1071%2015.2231%2015.0707%2015.3445%2015.0014C15.4658%2014.9321%2015.5669%2014.8323%2015.6379%2014.712C15.709%2014.5917%2015.7474%2014.4549%2015.7494%2014.3152C15.7514%2014.1755%2015.7169%2014.0377%2015.6494%2013.9153L9.70298%203.14683Z'%20fill='%23FF3E06'/%3e%3c/svg%3e" alt="123123"/> Syphilis
+            </div>
+            <div class="rounded-md py-0.5 px-2.5 border border-transparent text-sm transition-all flex gap-2"
+                 style="border-color: #FF3E06; color: #FF3E06; border-radius: 14px">
+              <img src="data:image/svg+xml,%3csvg%20width='18'%20height='18'%20viewBox='0%200%2018%2018'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M9.64256%2012.8572C9.64256%2013.0277%209.57483%2013.1912%209.45427%2013.3118C9.33371%2013.4323%209.17019%2013.5%208.9997%2013.5C8.8292%2013.5%208.66569%2013.4323%208.54513%2013.3118C8.42457%2013.1912%208.35684%2013.0277%208.35684%2012.8572C8.35684%2012.6867%208.42457%2012.5232%208.54513%2012.4026C8.66569%2012.2821%208.8292%2012.2143%208.9997%2012.2143C9.17019%2012.2143%209.33371%2012.2821%209.45427%2012.4026C9.57483%2012.5232%209.64256%2012.6867%209.64256%2012.8572ZM8.51756%2010.7679C8.51756%2010.8958%208.56835%2011.0184%208.65877%2011.1088C8.74919%2011.1992%208.87183%2011.25%208.9997%2011.25C9.12757%2011.25%209.25021%2011.1992%209.34062%2011.1088C9.43104%2011.0184%209.48184%2010.8958%209.48184%2010.7679V6.58932C9.48184%206.46145%209.43104%206.33882%209.34062%206.2484C9.25021%206.15798%209.12757%206.10718%208.9997%206.10718C8.87183%206.10718%208.74919%206.15798%208.65877%206.2484C8.56835%206.33882%208.51756%206.46145%208.51756%206.58932V10.7679ZM7.4517%202.68075C8.12413%201.46318%209.87527%201.46254%2010.5477%202.68075L16.4941%2013.4486C17.1447%2014.627%2016.2923%2016.0715%2014.9468%2016.0715H3.05777C1.71227%2016.0715%200.859198%2014.6276%201.50977%2013.4493L7.4517%202.68075ZM9.70298%203.14683C9.63352%203.02115%209.53164%202.91638%209.40796%202.84343C9.28427%202.77047%209.1433%202.73199%208.9997%202.73199C8.8561%202.73199%208.71512%202.77047%208.59144%202.84343C8.46776%202.91638%208.36588%203.02115%208.29641%203.14683L2.35384%2013.9153C2.2863%2014.0377%202.25185%2014.1756%202.25389%2014.3153C2.25593%2014.4551%202.29439%2014.5919%202.36547%2014.7123C2.43655%2014.8326%202.5378%2014.9323%202.65921%2015.0016C2.78062%2015.0709%202.91799%2015.1073%203.05777%2015.1072H14.9461C15.0858%2015.1071%2015.2231%2015.0707%2015.3445%2015.0014C15.4658%2014.9321%2015.5669%2014.8323%2015.6379%2014.712C15.709%2014.5917%2015.7474%2014.4549%2015.7494%2014.3152C15.7514%2014.1755%2015.7169%2014.0377%2015.6494%2013.9153L9.70298%203.14683Z'%20fill='%23FF3E06'/%3e%3c/svg%3e" alt="123123"/>Chlamydia
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Partner #2 -->
+      <div class="flex gap-4 items-center justify-between p-4 bg-white rounded-lg"
+           style="background-color: #F9F9F9; border-radius: 22px">
+        <!-- Левая часть: аватар и информация -->
+        <div class="flex gap-4 items-center flex-grow">
+          <div>
+            <img src="data:image/svg+xml,%3csvg%20width='48'%20height='48'%20viewBox='0%200%2048%2048'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3crect%20width='48'%20height='48'%20rx='24'%20fill='%23C5EFF7'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M17.8575%2015.1205C17.8575%2011.7193%2020.6824%209%2024.1177%209C26.8741%209%2029.2367%2010.7493%2030.0644%2013.2009C30.0562%2013.2214%2030.0481%2013.242%2030.0402%2013.2626C30.2037%2013.8626%2030.291%2014.4941%2030.291%2015.1459C30.291%2015.7852%2030.2071%2016.4048%2030.0496%2016.9945C30.0551%2017.0087%2030.0608%2017.0229%2030.0664%2017.0371C29.2409%2019.4883%2026.8773%2021.241%2024.1194%2021.241C20.6824%2021.241%2017.8575%2018.5218%2017.8575%2015.1205ZM24.1194%2010.7487C21.6059%2010.7487%2019.6066%2012.7265%2019.6066%2015.1205C19.6066%2017.5145%2021.6059%2019.4923%2024.1177%2019.4923C26.6312%2019.4923%2028.6287%2017.5145%2028.6287%2015.1205C28.6287%2012.7265%2026.6312%2010.7487%2024.1194%2010.7487Z'%20fill='%233ECAE3'/%3e%3cpath%20fill-rule='evenodd'%20clip-rule='evenodd'%20d='M18.4435%2023.2591C19.353%2023.009%2020.2398%2023.3045%2020.8818%2023.719C21.5692%2024.1649%2022.7114%2024.714%2024.1194%2024.714C25.5275%2024.714%2026.6661%2024.1632%2027.3553%2023.719C27.9955%2023.3045%2028.8823%2023.009%2029.7918%2023.2591C30.0728%2023.336%2030.3521%2023.4188%2030.6297%2023.5074L32.3508%2024.06C34.3711%2024.7053%2035.9278%2026.3053%2036.4525%2028.3234L36.4648%2028.3706L37.1942%2033.5066C37.46%2035.3812%2036.428%2037.2768%2034.4165%2037.7437C32.3561%2038.2211%2029.0152%2038.7282%2024.1177%2038.7282C19.2201%2038.7282%2015.8792%2038.2211%2013.8188%2037.7437C11.809%2037.2768%2010.7753%2035.3812%2011.0411%2033.5066L11.7705%2028.3706L11.7828%2028.3234C12.3093%2026.3053%2013.8642%2024.707%2015.8845%2024.06L17.6074%2023.5074C17.8849%2023.4199%2018.1636%2023.3372%2018.4435%2023.2591ZM19.932%2025.1844C19.5489%2024.9378%2019.1781%2024.8679%2018.907%2024.9431V24.9448C18.6504%2025.0148%2018.3951%2025.0906%2018.1409%2025.1722L16.418%2025.723C14.9592%2026.1899%2013.8677%2027.3231%2013.4899%2028.7151L12.7728%2033.7514C12.6154%2034.8636%2013.2153%2035.8061%2014.2141%2036.0387C16.1346%2036.4829%2019.339%2036.9778%2024.1177%2036.9778C28.8963%2036.9778%2032.1024%2036.4829%2034.0212%2036.0387C35.0217%2035.8061%2035.6217%2034.8636%2035.4643%2033.7514L34.7471%2028.7151C34.3676%2027.3231%2033.2744%2026.1899%2031.8173%2025.723L30.0962%2025.1704C29.8408%2025.0888%2029.5849%2025.013%2029.3283%2024.9431C29.0572%2024.8696%2028.6864%2024.9396%2028.3051%2025.1844C27.4497%2025.7387%2025.9805%2026.461%2024.1177%2026.461C22.2566%2026.461%2020.7873%2025.7387%2019.932%2025.1844Z'%20fill='%233ECAE3'/%3e%3c/svg%3e" class="w-12 h-12 rounded-full" alt="Partner Avatar">
+          </div>
+          <div>
+            <div class="flex gap-2 items-center">
+              <h3 class="font-medium text-gray-800" style="font-weight: 500; font-size: 18px">Partner #2</h3>
+              <div class="w-2 h-2 bg-green-500 rounded-full"></div> <!-- Индикатор статуса -->
+            </div>
+            <p class="text-sm text-gray-500 mt-1">Last Checkup 22.01.2025</p>
+          </div>
+        </div>
+
+        <!-- Правая часть: кнопка удаления -->
+        <div class="flex items-center">
+          <button
+            class="rounded-full w-7 h-7 flex items-center justify-center hover:bg-gray-200 transition duration-300"
+            id="delete-btn2"
+            style="cursor: pointer"
+            onclick="onDeletePopup(event, 11)"
+          >
+            <p class="text-xs font-semibold text-gray-600"><img src="data:image/svg+xml,%3csvg%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M13%2013L1%201M0.999999%2013L13%201'%20stroke='black'%20stroke-width='1.41667'%20stroke-linecap='round'/%3e%3c/svg%3e" alt="delete"
+                                                                style="width: 12px; height: 12px; margin: 8px"></p>
+          </button>
+        </div>
+      </div>
+      <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"
+              style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer" onclick="onAddPartner(event)">
+        Add new partner
+      </button>
+      <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300 mt-[10px]"
+              style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer"
+              onclick="onRequestPartnership(event)">
+        Partnership request for ex
+      </button>
+    </div>
+    <div class="bg-white rounded-lg ">
+      <h2 class="pb-4 text-2xl font-medium leading-none tracking-tight text-900 md:text-2xl lg:text-2xl">
+        Laboratory's map
+      </h2>
+      <p class="text-sm text-gray-600 mb-4 pb-2">
+        Find out where you can get tested for one or more of the listed conditions near you.
+      </p>
+      <div class="space-y-4">
+        <!-- Select current positions -->
+        <h3 class="font-medium">Select current positions</h3>
+        <!-- Conditions -->
+        <div class="flex flex-wrap gap-2">
+          <div id="checkbox-container2"
+               class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm"
+               style="display: flex; gap: 5px; margin: 6px; border-radius: 24px; border-color: #3ECAE3; cursor: pointer"
+               onclick="toggleCheckbox(this)">
+            <div class="relative">
+              <input type="checkbox"
+                     class="w-5 h-5 appearance-none cursor-pointer border border-[#3ECAE3] rounded-md mr-2"
+                     id="checkbox-in-form2" style="border-radius: 20px; ">
+              <!-- SVG галочка -->
+              <svg
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0"
+                viewBox="0 0 16 16" fill="currentColor" id="checkmark" style="top: 9px;left: 9px; width: 11px; height: 11px;">
+                <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"/>
+              </svg>
+            </div>
+            Chlamydia
+          </div>
+          <div class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm"
+               style="display: flex; gap: 5px; margin: 6px; border-radius: 24px; border-color: #3ECAE3; cursor: pointer"
+               onclick="toggleCheckbox(this)">
+            <div class="relative">
+              <!--              border-color:#3ECAE3-->
+              <input type="checkbox"
+                     class="w-5 h-5 appearance-none cursor-pointer border border-[#3ECAE3] rounded-md mr-2"
+                     id="checkbox-in-form3" style="border-radius: 20px; ">
+              <!-- SVG галочка -->
+              <svg
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0"
+                viewBox="0 0 16 16" fill="currentColor" id="checkmark" style="top: 9px;left: 9px; width: 11px; height: 11px;">
+                <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"/>
+              </svg>
+            </div>
+            SIP
+          </div>
+        </div>
+        <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300" id="open-map"
+                style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer">
+          Show me labs
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/page2.js"></script>
+<script>
+  function toggleAccordion() {
+    const content = document.getElementById('accordionContent');
+    const arrow = document.getElementById('arrow');
+    content.classList.toggle('hidden');
+    arrow.classList.toggle('rotate-180');
+  }
+
+  let modal = document.getElementById('modal_map');
+  let btn = document.getElementById('open-map');
+  let button = document.getElementById('close-popup-btn');
+  let button2 = document.getElementById('ok-btn');
+  //
+  btn.onclick = function () {
+    modal.style.display = 'block';
+  };
+
+  button.onclick = function () {
+    modal.style.display = 'none';
+  };
+
+  button2.onclick = function () {
+    modal.style.display = 'none';
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+  // const checkbox = document.getElementById('checkbox-in-form2');
+  // const container = document.getElementById('checkbox-container2');
+  //
+  // checkbox.addEventListener('change', function () {
+  //   if (this.checked) {
+  //     container.classList.add('bg-[#3ECAE3]', 'text-white'); // Добавляем классы при checked
+  //     checkbox.classList.add('border-white');
+  //     checkbox.classList.remove('border-[#3ECAE3]');
+  //   } else {
+  //     container.classList.remove('bg-[#3ECAE3]', 'text-white');
+  //     checkbox.classList.add('border-[#3ECAE3]');
+  //     checkbox.classList.remove('border-white');
+  //   }
+  // });
+
+  function toggleCheckbox(container) {
+    console.log('toggleCheckbox')
+    // Находим чекбокс внутри контейнера
+    const checkbox = container.querySelector('input[type="checkbox"]');
+
+    // Переключаем состояние чекбокса
+    checkbox.checked = !checkbox.checked;
+
+    // Применяем стили в зависимости от состояния чекбокса
+    if (checkbox.checked) {
+      container.classList.add('bg-[#3ECAE3]', 'text-white'); // Добавляем классы при checked
+      checkbox.classList.add('border-white');
+      checkbox.classList.remove('border-[#3ECAE3]');
+    } else {
+      container.classList.remove('bg-[#3ECAE3]', 'text-white');
+      checkbox.classList.add('border-[#3ECAE3]');
+      checkbox.classList.remove('border-white');
+    }
+  }
+    // Переключаем состояние чекбокса
+    // if (checkbox) {
+    //   checkbox.checked = !checkbox.checked;
+    //
+    //   // Управляем видимостью галочки
+    //   if (checkbox.checked) {
+    //     checkmark.classList.remove('opacity-0');
+    //     checkmark.classList.add('opacity-100');
+    //   } else {
+    //     checkmark.classList.remove('opacity-100');
+    //     checkmark.classList.add('opacity-0');
+    //   }
+    // }
+  // }
+
+  const onLoginPopup = () => {
+    const modal = document.getElementById('dropdown-with-subheading');
+    if (modal.classList.contains('hidden')) {
+      modal.classList.remove('hidden');
+    } else {
+      modal.classList.add('hidden');
+    }
+  }
+
+  // delete
+  const onDeletePopup = (e, id) => {
+    console.log('id', id)
+    const modal = document.getElementById('modal_delete');
+    if (modal.style.display !== 'flex') {
+      modal.style.display = 'flex';
+    } else {
+      modal.style.display = 'none';
+    }
+  }
+
+  const onAddPartner = () => {
+    const modal = document.getElementById('modal_partner');
+    if (modal.style.display !== 'flex') {
+      modal.style.display = 'flex';
+    } else {
+      modal.style.display = 'none';
+    }
+  }
+
+  const onRequestPartnership = () => {
+    const modal = document.getElementById('partnership_request');
+    if (modal.style.display !== 'flex') {
+      modal.style.display = 'flex';
+    } else {
+      modal.style.display = 'none';
+    }
+  }
+
+  const onShowQr = () => {
+    const modal = document.getElementById('modal_qr');
+    if (modal.style.display !== 'flex') {
+      modal.style.display = 'flex';
+    } else {
+      modal.style.display = 'none';
+    }
+  }
+
+  function copyToClipboard() {
+    const input = document.getElementById('copy-input');
+    input.select();
+    document.execCommand('copy');
+  }
+</script>
+</body>
+</html>
