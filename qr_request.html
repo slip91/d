@@ -36,7 +36,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body style="overflow-x: hidden;">
-<div class="flex flex-col items-center justify-start p-2.5 bg-gray-100 min-h-screen bg-white">
+<div class="my-auto flex flex-col items-center justify-start p-2.5 bg-gray-100 min-h-screen bg-white">
   <div class="w-[100%] flex" style="justify-content: flex-end">
     <div id="back_profile"
          onclick="window.location.href='/index3.html'"
@@ -65,23 +65,30 @@
       </div>
     </div>
   </div>
-  <div class="flex flex-col justify-center items-center w-full mt-[20px]">
-    <div class="w-1/2 flex flex-col gap-[10px]">
-      <div class="flex justify-center w-full">
-        <img src="/img/profile_image.svg" style="height: 108px; width: 108px;" alt="user_img" />
+  <div class="flex flex-col justify-center items-center w-full mt-[20px] container">
+    <p style="font-size: 26px; font-weight: 400; line-height: 100%">
+      The requested user's results via QR code
+    </p>
+    <div style="margin-top: 20px">
+      <p style="color: #08C671; font-size: 20px">Status clear</p>
+      <p style="font-size: 12px; font-weight: 400; line-height: 100%">A negative test result for the listed infections is not an absolute guarantee of safety. Some infections may be in the incubation period or go undetected by certain tests. For maximum protection, it is recommended to use barrier methods of contraception (such as condoms). Taking care of your health requires a comprehensive approach! 💙</p>
+      <div class="flex flex-col mt-[20px]" style="background-color: #F9F9F9; border-radius: 22px; padding: 14px 12px 14px 10px;">
+        <div class="flex gap-2 w-full">
+                <span class="text-sm pl-2 pr-2 h-[19px] w-[46px]"
+                      style="background-color: #DAF6EA; border-radius: 20px; font-weight: 400; align-content: center; height: 19px">
+                    NEG
+                </span>
+          <p>Hepatitis B (HBsAg, anti-HBs, anti-HBc IgM, anti-HBc total, HBeAg, anti-HBe)</p>
+        </div>
+        <div class="flex gap-2 w-full">
+                <span class="text-sm pl-2 pr-2"
+                      style="background-color: #FFE2DA; border-radius: 20px; font-size: 12px; font-weight: 400; align-content: center; height: 19px">
+                    POS
+                </span>
+          <p>Syphilis</p>
+        </div>
       </div>
-      <div class="flex justify-center"
-      style="font-size: 20px; line-height: 100%"
-      >HealthMate</div>
-      <div class="text-gray-600 mb-4 text-center"
-        style="color: #646464; font-size: 14px; line-height: 100%"
-      >usermail1234@gmail.com</div>
     </div>
-    <button class="w-full h-[56px] py-2 px-4 transition duration-300 flex flex-row gap-4 items-center"
-            style="border-radius: 18px;  border: 1px solid #3ECAE3;color: #3ECAE3; cursor: pointer" id="open-btn2">
-      <img src="/img/log_out.svg" alt="log out"/>
-      Log out
-    </button>
   </div>
 </div>
 </body>

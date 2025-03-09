@@ -72,7 +72,7 @@ input:checked + #checkmark {
 .leaflet-control-custom {
   position: absolute;
   right: 10px;
-  top: 50vh;
+  top: 30vh;
   z-index: 1000;
   background: white;
   cursor: pointer;

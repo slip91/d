@@ -274,7 +274,14 @@
   <!-- Блок для информации о лаборатории на мобильных устройствах -->
   <div id="mobile_lab_info" class="fixed bottom-0 left-0 w-full bg-white p-4 shadow-lg hidden sm:hidden">
     <div class="flex" style="justify-content: flex-end">
-      <button onclick="closeMobileLabInfo()" class="text-gray-500">X</button>
+      <button class="rounded-full w-[28px] h-[28px] duration-300"
+              style="background-color: #F9F9F9; cursor: pointer"
+              onclick="closeMobileLabInfo()"
+      >
+        <p style="font-size: 10px; color: #4F4F4F; font-weight: 650;">
+          <img src="img/x.svg" alt="close" style="height: 12px; width: 12px; margin: 8px">
+        </p>
+      </button>
     </div>
     <div id="mobile_lab_content"></div>
   </div>
@@ -301,8 +308,13 @@
           </div>
         </div>
       </div>
-      <a href="#" class="flex items-center">
-        <img src="/img/avatar.png" class="mr-3 h-[48px] w-[48ox] sm:h-9" alt="Health Mates" onclick="onLoginPopup()"/>
+      <a href="#" class=" items-center hidden md:flex lg:flex" onclick="onLoginPopup()">
+        <img src="/img/avatar.png" class="mr-3 h-[48px] w-[48ox] sm:h-9" alt="Health Mates" />
+        <span class="self-center font-semibold whitespace-nowrap text-black"
+              style="font-size: 18px; line-height: 24px; font-weight: 400">Health Mates</span>
+      </a>
+      <a href="/profile.html" class="items-center flex md:hidden lg:hidden">
+        <img src="/img/avatar.png" class="mr-3 h-[48px] w-[48ox] sm:h-9" alt="Health Mates" />
         <span class="self-center font-semibold whitespace-nowrap text-black"
               style="font-size: 18px; line-height: 24px; font-weight: 400">Health Mates</span>
       </a>

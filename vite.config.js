@@ -13,6 +13,7 @@ export default defineConfig({
         labList: './lab_result.html',
         profile: './profile.html',
         youPartners: './your_partners.html',
+        qeResult: './qr_request.html',
       }
     }
   }
