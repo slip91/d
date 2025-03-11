@@ -59,71 +59,40 @@ window.labs = [
   },
 ];
 
-document.addEventListener("DOMContentLoaded", (event) => {
-  const map = L.map('map', {
-    zoomControl: false,
-    attributionControl:false
-  }).setView([51.958, 9.141], 13);
-  setTimeout(function () { map.invalidateSize() }, 400);
+const map = L.map('map', {
+  zoomControl: false,
+  attributionControl:false
+}).setView([51.958, 9.141], 13);
+setTimeout(function () { map.invalidateSize() }, 400);
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-  }).addTo(map);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+}).addTo(map);
 
-  const locateButton = L.Control.extend({
-    onAdd: function (map) {
-      const container = L.DomUtil.create('div', 'leaflet-control-custom block lg: top-[0px]');
-      container.innerHTML = `<img src="/img/location.svg" alt="location">`;
-      container.onclick = () => {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const {latitude, longitude} = position.coords;
-            map.setView([latitude, longitude], 13);
-            L.marker([latitude, longitude]).addTo(map);
-          },
-          (error) => {
-            console.error("Error getting location:", error);
-            alert("Unable to retrieve your location.");
-          }
-        );
-      };
-      return container;
-    },
-  });
+const locateButton = L.Control.extend({
+  onAdd: function (map) {
+    const container = L.DomUtil.create('div', 'leaflet-control-custom block lg: top-[0px]');
+    container.innerHTML = `<img src="/img/location.svg" alt="location">`;
+    container.onclick = () => {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const {latitude, longitude} = position.coords;
+          map.setView([latitude, longitude], 13);
+          L.marker([latitude, longitude]).addTo(map);
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+          alert("Unable to retrieve your location.");
+        }
+      );
+    };
+    return container;
+  },
+});
 
-  new locateButton({position: 'topright'}).addTo(map);
-
-  document.getElementById("close-popup-btn").addEventListener("click", () => {
-    document.getElementById("modal_map").classList.add("hidden");
-  });
-
-  let selectedMarker = null;
-
-  labs.forEach((lab) => {
-    const customIcon = L.divIcon({
-      className: 'custom-marker',
-      html: `
-      <div class="marker-container">
-        <img src="/img/storePin.svg" alt="Marker" class="marker-icon" />
-        <div class="info-box">
-          <h3 style="font-size: 20px; font-weight: 500; color: black">Laboratory</h3>
-          <p style="font-weight: 400; font-size: 15px; color: #818181 ">Closes 11PM</p>
-        </div>
-      </div>
-    `,
-      iconSize: [170, 69],
-    });
-    const marker = L.marker(lab.coordinates, {icon: customIcon, data: lab }).addTo(map);
-    selectedMarker = marker;
-    marker.on("click", (e) => {
-      updateLabInfo(e.target.options.data);
-      return false;
-    });
-  });
-
-  function updateLabInfo(lab) {
-    const labInfo = document.getElementById("card1");
-    labInfo.innerHTML = `
+function updateLabInfo(lab) {
+  const labInfo = document.getElementById("card1");
+  labInfo.innerHTML = `
         <div class="flex gap-2">
           <div style="width: 40px; height: 40px; border-radius: 12px; background-color: #3ECAE3"></div>
           <div style="display: flex; text-align: center; align-items: center;">
@@ -189,19 +158,64 @@ document.addEventListener("DOMContentLoaded", (event) => {
         </button>
       `;
 
-    const mobileLabContent = document.getElementById("mobile_lab_content");
-    mobileLabContent.innerHTML = labInfo.innerHTML;
-    document.getElementById("mobile_lab_info").classList.remove("hidden");
+  const mobileLabContent = document.getElementById("mobile_lab_content");
+  mobileLabContent.innerHTML = labInfo.innerHTML;
+  document.getElementById("mobile_lab_info").classList.remove("hidden");
 
-    // Показываем правую панель на десктопе
-    document.getElementById("info_panel").classList.remove("hidden");
-  }
+  // Показываем правую панель на десктопе
+  document.getElementById("info_panel").classList.remove("hidden");
+}
+
+const initMap = (labs) => {
+  map.eachLayer(function (layer) {
+    map.removeLayer(layer);
+  });
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+  }).addTo(map);
+
+  new locateButton({position: 'topright'}).addTo(map);
+
+  document.getElementById("close-popup-btn").addEventListener("click", () => {
+    document.getElementById("modal_map").classList.add("hidden");
+  });
+
+  let selectedMarker = null;
+
+  labs.forEach((lab) => {
+    const customIcon = L.divIcon({
+      className: 'custom-marker',
+      html: `
+      <div class="marker-container">
+        <img src="/img/storePin.svg" alt="Marker" class="marker-icon" />
+        <div class="info-box">
+          <h3 style="font-size: 20px; font-weight: 500; color: black">Laboratory</h3>
+          <p style="font-weight: 400; font-size: 15px; color: #818181 ">Closes 11PM</p>
+        </div>
+      </div>
+    `,
+      iconSize: [170, 69],
+    });
+    const marker = L.marker(lab.coordinates, {icon: customIcon, data: lab }).addTo(map);
+    selectedMarker = marker;
+    marker.on("click", (e) => {
+      updateLabInfo(e.target.options.data);
+      return false;
+    });
+  });
+
+
 
   // Скрываем правую панель, если маркер не выбран
   if (!selectedMarker) {
     document.getElementById("info_panel").classList.add("hidden");
   }
+}
 
+document.addEventListener("DOMContentLoaded", (event) => {
+
+  initMap(window.labs);
   let modal = document.getElementById('modal_map');
   let btn = document.getElementById('open-map');
   let button = document.getElementById('close-popup-btn');
@@ -209,11 +223,30 @@ document.addEventListener("DOMContentLoaded", (event) => {
   //
   btn.onclick = function () {
     const tags =  Array.from(document.querySelectorAll('[data-tag]'));
-    const listFilerLab= tags.filter((e) => e.checked);
-    window.labs = window.labs.filter((lab) => {
-          lab.tests.some(test =>listFilerLab.includes(test));
+    const listFilerLab= tags.filter((e) => e.checked).map(e => {
+      return e.getAttribute('data-tag');
+    });
+    const labs_local = window.labs.filter((lab) => {
+
+      const test= window.labs.filter(({ tests }) => {
+
+        // console.log('listFilerLab', listFilerLab);
+        // console.log('listFilerLab.includes(e)', listFilerLab.includes(e));
+        return listFilerLab.includes(tests)
+      });
+
+      // const test = listFilerLab.includes();
+      //   console.log('lab', lab);
+        console.log('test', test);
+
+
+        return true;
       }
     );
+
+    console.log('labs_local', labs_local);
+
+    initMap(window.labs);
 
     modal.style.display = 'block';
     document.body.classList.add('no-scroll');
