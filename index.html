@@ -31,7 +31,7 @@
   <link href="css/style.css" rel="stylesheet">
   <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
-<body style="overflow-x: hidden;">
+<body style="overflow-x: hidden; ">
 <div class="fixed hidden inset-0  bg-opacity-50 overflow-y-auto  h-full w-full" id="login"
      style="overflow: hidden;z-index: 100; background-color: rgba(0, 0, 0, 0.3)">
   <div
@@ -345,7 +345,6 @@
         </div>
         <div class="ml-auto hidden lg:flex">
           <button
-            onclick="closeBurger()"
             class="bg-white py-2 px-4 rounded-full border hover:bg-gray-50 transition duration-300 lg:w-[200px] sm:w-[116px]"
             style="color: #3ECAE3" id="open-btn">
             Sign In
@@ -554,7 +553,7 @@
     <div class="my-auto px-[20px] container justify-start h-[650px] lg:h-[704px] md:h-[704px] sm:col-span-1 lg:col-span-2 md:col-span-2 w-[100vw]"
          style="padding-top: 40px">
       <div class="w-[100vw]  h-[650px] lg:h-[704px] md:h-[704px]  sm z-0" style="background: #F16B8F; position: absolute; left: 0; right: 0; width: 100vw"></div>
-      <div id="map" class="w-[100%] h-[376px]" style="position: absolute;right: 0;left: 0; margin-top: 50px "></div>
+      <div id="map" class="w-[700px] h-[376px]" style="position: absolute;right: 0;left: 0; margin-top: 50px "></div>
       <div class="flex w-[90vw] md:w-full lg:w-full" style="justify-content: center; margin-top: 454px">
         <div class="flex flex-wrap flex-col items-center" style="z-index: 100">
           <p class="mb-6 leading-[100%] text-600 text-[27px] md:text-[36px] lg:text-[56px] tracking-tight text-600 text-white w-[70vw] md:w-full lg:w-full" style="font-weight: 600">
@@ -576,9 +575,9 @@
 </body>
 <script src="js/app.js" type="module"></script>
 <script>
-
   let modal2 = document.getElementById('login');
   let btn = document.getElementById('open-btn');
+  let btn2 = document.getElementById('open-btn2');
   let button = document.getElementById('ok-btn');
 
   btn.onclick = function () {
@@ -594,28 +593,6 @@
   window.onclick = function (event) {
     if (event.target == modal) {
       modal2.style.display = "none";
-      document.body.classList.remove('no-scroll');
-    }
-  }
-
-  //дубль
-  let modal3 = document.getElementById('login');
-  let btn2 = document.getElementById('open-btn2');
-  let button2 = document.getElementById('ok-btn');
-
-  btn2.onclick = function () {
-    modal3.style.display = 'flex';
-    document.body.classList.add('no-scroll')
-  };
-
-  button2.onclick = function () {
-    modal3.style.display = 'none';
-    document.body.classList.remove('no-scroll');
-  };
-
-  window.onclick = function (event) {
-    if (event.target == modal) {
-      modal3.style.display = "none";
       document.body.classList.remove('no-scroll');
     }
   }

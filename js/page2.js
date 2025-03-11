@@ -24,6 +24,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
     zoomControl: false,
     attributionControl:false
   }).setView([51.958, 9.141], 13);
+  setTimeout(function () { map.invalidateSize() }, 400);
+
+  map.scrollWheelZoom.disable()
+  map.keyboard.disable()
+  if(map.tap)
+    map.tap.disable()
+  map.doubleClickZoom.disable();
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -103,6 +110,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
     selectedMarker = marker;
     marker.on("click", () => {
       updateLabInfo(lab);
+      map.panTo(lab.coordinates); // Плавно перемещаем карту к координатам маркера
+      return false;
     });
   });
 
@@ -184,5 +193,33 @@ document.addEventListener("DOMContentLoaded", (event) => {
   // Скрываем правую панель, если маркер не выбран
   if (!selectedMarker) {
     document.getElementById("info_panel").classList.add("hidden");
+  }
+
+  let modal = document.getElementById('modal_map');
+  let btn = document.getElementById('open-map');
+  let button = document.getElementById('close-popup-btn');
+  let button2 = document.getElementById('ok-btn');
+  //
+  btn.onclick = function () {
+    modal.style.display = 'block';
+    document.body.classList.add('no-scroll');
+    setTimeout(function () { map.invalidateSize() }, 100);
+  };
+
+  button.onclick = function () {
+    modal.style.display = 'none';
+    document.body.classList.remove('no-scroll');
+  };
+
+  button2.onclick = function () {
+    modal.style.display = 'none';
+    document.body.classList.remove('no-scroll');
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+      document.body.classList.remove('no-scroll');
+    }
   }
 });
