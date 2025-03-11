@@ -221,8 +221,6 @@ const initMap = (labs) => {
     });
   });
 
-
-
   // Скрываем правую панель, если маркер не выбран
   if (!selectedMarker) {
     document.getElementById("info_panel").classList.add("hidden");
@@ -236,25 +234,26 @@ document.addEventListener("DOMContentLoaded", (event) => {
   let btn = document.getElementById('open-map');
   let button = document.getElementById('close-popup-btn');
   let button2 = document.getElementById('ok-btn');
-  //
+
+
   btn.onclick = function () {
     const tags =  Array.from(document.querySelectorAll('[data-tag]'));
-    const clearTags= tags.filter((e) => e.checked).map(e => {
-      return e.getAttribute('data-tag');
-    });
+    const clearTags= tags.filter((e) => e.checked).map(e => e.getAttribute('data-tag'));
 
+    if(clearTags.length > 0) {
+      const filteredLab= window.labs.filter((lab) =>
+        clearTags.some((tag) => lab.tests.find(testLab => testLab === tag)));
+
+      initMap(filteredLab);
+    } else {
+      initMap(window.labs);
+    }
     // логика фильтрации
-    const filteredLab= window.labs.filter((lab) => {
-      return clearTags.some((tag) => lab.tests.find(testLab => testLab === tag));
-    });
 
-    initMap(filteredLab);
 
     modal.style.display = 'block';
     document.body.classList.add('no-scroll');
     setTimeout(function () { map.invalidateSize() }, 100);
-
-    console.log('labs', labs)
   };
 
   button.onclick = function () {
