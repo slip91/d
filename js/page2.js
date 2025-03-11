@@ -106,11 +106,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
     `,
       iconSize: [170, 69],
     });
-    const marker = L.marker(lab.coordinates, {icon: customIcon}).addTo(map);
+    const marker = L.marker(lab.coordinates, {icon: customIcon, data: lab }).addTo(map);
     selectedMarker = marker;
-    marker.on("click", () => {
-      updateLabInfo(lab);
-      map.panTo(lab.coordinates); // Плавно перемещаем карту к координатам маркера
+    marker.on("click", (e) => {
+
+      updateLabInfo(e.target.options.data);
+      map.panTo(e.target.options.data.coordinates); // Плавно перемещаем карту к координатам маркера
       return false;
     });
   });
