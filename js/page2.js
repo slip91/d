@@ -223,30 +223,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
   //
   btn.onclick = function () {
     const tags =  Array.from(document.querySelectorAll('[data-tag]'));
-    const listFilerLab= tags.filter((e) => e.checked).map(e => {
+    const clearTags= tags.filter((e) => e.checked).map(e => {
       return e.getAttribute('data-tag');
     });
-    const labs_local = window.labs.filter((lab) => {
 
-      const test= window.labs.filter(({ tests }) => {
+    // логика фильтрации
+    const filteredLab= window.labs.filter((lab) => {
+      return clearTags.some((tag) => lab.tests.find(testLab => testLab === tag));
+    });
 
-        // console.log('listFilerLab', listFilerLab);
-        // console.log('listFilerLab.includes(e)', listFilerLab.includes(e));
-        return listFilerLab.includes(tests)
-      });
-
-      // const test = listFilerLab.includes();
-      //   console.log('lab', lab);
-        console.log('test', test);
-
-
-        return true;
-      }
-    );
-
-    console.log('labs_local', labs_local);
-
-    initMap(window.labs);
+    initMap(filteredLab);
 
     modal.style.display = 'block';
     document.body.classList.add('no-scroll');
