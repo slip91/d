@@ -266,7 +266,6 @@
       <img src="/img/arrow.svg" style="color: white; fill: white; margin-left: 1px; height: 16px; width: 16px" alt="prev">
     </div>
   </div>
-
   <div class="container mx-auto">
     <nav class="bg-white px-4 pt-5 lg:px-6 py-2.5 dark:bg-gray-800" style="background-color: #3ECAE3">
       <div class="flex flex-wrap justify-between items-center mx-auto w-full">
@@ -414,13 +413,13 @@
   </div>
 </div>
 <div>
-  <div class="m-auto grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-0 h-[1020px] md:h-[700px] lg:h-[700px] lg:w-[1000px] sm:w-[99vw] container" id="principles">
+  <div class="m-auto grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2  gap-0 h-[1020px] md:h-[700px] lg:h-[700px] lg:w-[1000px] sm:w-[99vw] container" id="principles">
     <div class="hidden lg:block" style="position: absolute; transform: rotate(0deg); right: 0;">
       <img src="/img/circle.svg" alt="">
     </div>
     <!-- Блок с картинкой -->
     <div class="my-auto grid justify-center md:justify-bottom md:justify-end overflow-hidden; mb-[0px] lg:mb-[80px] mt-[20px] lg:mt-[80px] min-h-[450px]" style="align-items: center">
-      <div class="w-[90vw] lg:h-[570px] h-[570px] md:h-[60vh] sm:h-[60vh] md:w-[90vw] lg:w-[412px] sm:overflow-hidden  bg-cover md:bg-contain lg:bg-contain"
+      <div class="w-[90vw] lg:h-[570px] h-[570px] md:h-[80%] sm:h-[60vh] md:w-[90vw] lg:w-[412px] sm:overflow-hidden  bg-cover md:bg-contain lg:bg-contain"
            style="background-image: url(/img/phone.png); background-position: top; background-repeat: no-repeat">
       </div>
     </div>
@@ -453,13 +452,13 @@
       <img src="/img/circle.svg" alt="circle">
     </div>
   </div>
-  <div class="m-auto grid grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-0 sm:h-[100vh] sm:w-[99vw] container" id="privacy_and_anonymise">
-    <div class="w-[100%] md:w-[50%] lg:w-[50%] h-[697px] md:h-[765px] lg:h-[765px] z-0" style="background: #F16B8F; position: absolute; left: 0;"></div>
+  <div class="m-auto grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-0 sm:h-[100vh] sm:w-[99vw] container" id="privacy_and_anonymise">
     <!-- Первый блок -->
-    <div class="sm:px-[20px] sm:pr-0 grid justify-end md:h-[100%] lg:h-[100%] sm:h-[652px] w-[100vw] lg:w-[100%] md:w-[100%] container" style=" overflow: hidden; z-index: 100;">
+    <div class="w-[100%] md:w-[50%] lg:w-[50%] h-[697px] md:h-[765px] lg:h-[765px] z-0" style="background: #F16B8F; position: absolute; left: 0; z-index: -1"></div>
+    <div class="sm:px-[20px] sm:pr-0 grid justify-end md:h-[100%] lg:h-[100%] sm:h-[652px] w-[100vw] lg:w-[100%] md:w-[100%] container" style="overflow: hidden;">
       <div class="h-[652px] md:h-[765px] lg:h-[765px] sm:w-[100%] md:w-[90%] lg:w-[95%]" style="margin-top: 40px">
         <div class="px-4 gap-1 flex flex-col pb-5 sm:mt-[0px] lg:mt-[0px] w-[86%] lg:w-full md:w-full">
-          <div  class="w-[40px] md:w-[60px] lg:w-[60px] mb-[10px]">
+          <div class="w-[40px] md:w-[60px] lg:w-[60px] mb-[10px]">
             <img src="/img/warning.svg" alt="warning">
           </div>
           <p class="mb-6 text-white text-[42px] md:text-[42px] lg:text-[56px] leading-[100%]" style="word-break: break-word; font-weight: 600;">
@@ -485,11 +484,11 @@
     </div>
 
     <!-- Второй блок -->
-    <div class="sm:pr-0 grid justify-start md:h-[765px] lg:h-[765px] sm:h-[546px] sm:w-[80vw] md:w-[100%] lg:w-[100%] container" style="background: #3ECAE3; z-index: 50">
-      <div class="w-[100vw] md:w-[50vw] lg:w-[50vw] h-[546px] md:h-[765px] lg:h-[765px] z-0" style="background: #3ECAE3; position: absolute; right: 0; "></div>
-      <div class="sm:pl-[20px] sm:pr-[20px] sm:mt-0 md:ml-[20px] lg:ml-[30px] sm:gap-[5px] lg:gap-[33px] w-[80vw] md:w-[90%] lg:w-[90%] sm:h-[100%] gap-[20px] " style="z-index: 100; display: flex; flex-direction: column;"   >
-        <div class="px-[20px] md:px-[0px] w-[100vw] sm:w-full md:w-[35vw] lg:w-[400px] h-[70%] md:h-[373px] lg:h-[373px] sm:pl-[20px] sm:mb-0 md:mb-[20px] lg:mb-[20px]" style="line-height: 40px; margin-top: 40px;"> <!-- Убрана фиксированная ширина -->
-          <div  class="w-[40px] md:w-[60px] lg:w-[60px] mb-[10px]">
+    <div class="sm:pr-0 grid justify-start md:h-[765px] lg:h-[765px] sm:h-[546px] sm:w-[80vw] md:w-[100%] lg:w-[100%] container bg-[#3ECAE3]">
+      <div class="w-[100vw] md:w-[50vw] lg:w-[50vw] h-[546px] md:h-[765px] lg:h-[765px] z-0" style="background: #3ECAE3; position: absolute; right: 0; z-index: -1"></div>
+      <div class="sm:pl-[20px] sm:pr-[20px] sm:mt-0 md:ml-[20px] lg:ml-[30px] sm:gap-[5px] lg:gap-[33px] w-[80vw] md:w-[90%] lg:w-[90%] sm:h-[100%] gap-[20px]" style="z-index: 100; display: flex; flex-direction: column;">
+        <div class="px-[20px] md:px-[0px] w-[100vw] sm:w-full md:w-[35vw] lg:w-[400px] sm:pl-[20px] sm:mb-0 md:mb-[20px] lg:mb-[20px]" style="line-height: 40px; margin-top: 40px;">
+          <div class="w-[40px] md:w-[60px] lg:w-[60px] mb-[10px]">
             <img src="/img/watch.svg" alt="watch">
           </div>
           <div>
@@ -504,10 +503,8 @@
             </p>
           </div>
         </div>
-        <div class="flex h-[40%] md:h-[40%] lg:h-[40%] items-end px-[20px] md:px-[0px] w-[100vw] md:w-[90%] lg:mb-[20px]">
-          <div class="h-[109px] w-[90vw] md:w-[79%] lg:w-[441px] sm:w-[90%]"
-               style="background-image: url('/img/notification_container.png'); background-position: 70%; background-size: contain; background-repeat: no-repeat;">
-          </div>
+        <div class="flex h-[40%] md:h-[40%] lg:h-[40%] items-end px-[20px] md:px-[0px] w-[100vw] sm:w-[80vw] md:w-[90%] lg:mb-[20px] pb-[20px]" style="max-width: 441px">
+          <img src="/img/notification_container.png" alt="Notification" class="w-full h-auto">
         </div>
       </div>
     </div>
@@ -554,9 +551,9 @@
         </div>
       </div>
     </div>
-    <div class="my-auto px-[20px] container justify-start h-[650px] lg:h-[704px] sm:col-span-2 lg:col-span-2 w-[100vw]"
+    <div class="my-auto px-[20px] container justify-start h-[650px] lg:h-[704px] md:h-[704px] sm:col-span-1 lg:col-span-2 md:col-span-2 w-[100vw]"
          style="padding-top: 40px">
-      <div class="w-[100vw] h-[650px] md:h-full lg:h-full sm z-0" style="background: #F16B8F; position: absolute; left: 0; right: 0; height: 745px; width: 100vw"></div>
+      <div class="w-[100vw]  h-[650px] lg:h-[704px] md:h-[704px]  sm z-0" style="background: #F16B8F; position: absolute; left: 0; right: 0; width: 100vw"></div>
       <div id="map" class="w-[100%] h-[376px]" style="position: absolute;right: 0;left: 0; margin-top: 50px "></div>
       <div class="flex w-[90vw] md:w-full lg:w-full" style="justify-content: center; margin-top: 454px">
         <div class="flex flex-wrap flex-col items-center" style="z-index: 100">
