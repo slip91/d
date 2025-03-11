@@ -42,11 +42,12 @@ input:checked + #checkmark {
   border-bottom-right-radius: 21px;
   padding-left: 34px;
 }
-@media (max-width: 640px) {
+@media (max-width: 720px) {
   #mobile_lab_info {
     z-index: 101; /* Выше карты */
     border-radius: 16px 16px 0 0 ;
     height: 60vh;
+    /*display: block !important;*/
   }
   #modal_map .flex-col {
     flex-direction: column;
@@ -59,6 +60,51 @@ input:checked + #checkmark {
     display: none; /* Скрываем правый блок на мобильных */
   }
 }
+@media (max-width: 767px) and (min-width: 720px) {
+  #make_appointment_btn {
+    width: 30%;
+  }
+
+  #close-popup-btn {
+    display: none;
+  }
+
+  #mobile_lab_info {
+    display: none;
+  }
+
+  #choose_lab {
+    display: block;
+    margin-top: 20px;
+  }
+
+  #modal_content {
+    border-radius: 16px ;
+  }
+
+  #modal_content {
+    width: 90vw;
+    height: 570px;
+  }
+
+  #modal_content_lvl3 {
+    height: 570px;
+    border-radius: 16px 16px ;
+  }
+
+  #info_panel_close {
+    display: flex;
+  }
+
+  #map {
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px
+  }
+
+  #info_panel {
+    display: flex;
+  }
+}
 
 #close-popup-btn {
   z-index: 1000; /* Чтобы кнопка была выше карты */
@@ -67,12 +113,15 @@ input:checked + #checkmark {
   border-radius: 50%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  margin-top: 10px;
+  top: 0;
 }
 
 .leaflet-control-custom {
   position: absolute;
   right: 10px;
-  top: 30vh;
+  /*top: 30vh;*/
+  /*top: 0;*/
   z-index: 1000;
   background: white;
   cursor: pointer;
@@ -89,10 +138,10 @@ input:checked + #checkmark {
   cursor: pointer;
 }
 
-@media (min-width: 641px) {
-  #close-popup-btn {
-    display: none;
-  }
-}
+/*@media (min-width: 641px) {*/
+/*  #close-popup-btn {*/
+/*    display: none;*/
+/*  }*/
+/*}*/
 
 

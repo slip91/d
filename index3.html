@@ -221,17 +221,20 @@
      style="overflow: hidden; z-index: 100; background-color: rgba(0, 0, 0, 0.3)">
   <!-- Контейнер модального окна -->
   <div
-    class="relative mx-auto w-full h-full sm:h-auto lg:h-[692px] w-[692px] bg-white shadow-lg max-w-[1311px] md:w-[90%] my-0 ld:my-4 md:my-4 sm:my-8 rounded-[0px] md:rounded-[16px] lg:rounded-[16px]"
+    id="modal_content"
+    class="relative mx-auto w-full h-full sm:h-auto lg:h-[692px] w-[692px] bg-white shadow-lg max-w-[1311px] md:w-[90%] my-0 ld:my-4 md:my-4 rounded-[0px] md:rounded-[16px] lg:rounded-[16px]"
     onclick="event.stopPropagation();"
     style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
     <!-- Flex-контейнер для содержимого -->
-    <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto md:h-[100%] lg:h-[100%]">
+    <div class="flex flex-col w-full h-full sm:flex-row sm:h-auto md:h-[100%] lg:h-[100%]" id="modal_content_lvl2">
       <!-- Карта -->
       <div
-        class="w-full h-48 h-[60vh] md:h-[692px] lg:h-auto sm:w-2/3 flex justify-center items-center text-black sm:text-white rounded-t-md sm:rounded-l-md sm:rounded-tr-none bg-white sm:bg-[#3ECAE3] rounded-bl-[0px] md:rounded-tl-[16px] md:rounded-bl-[16px] lg:rounded-tl-[16px] lg:rounded-bl-[16px]">
+        class="w-full h-48 h-[60vh] md:h-[692px] lg:h-auto sm:w-2/3 flex justify-center items-center text-black sm:text-white rounded-t-md sm:rounded-l-md sm:rounded-tr-none bg-white sm:bg-[#3ECAE3] rounded-bl-[0px] md:rounded-tl-[16px] md:rounded-bl-[16px] lg:rounded-tl-[16px] lg:rounded-bl-[16px]"
+        id="modal_content_lvl3"
+      >
         <!-- Кнопка закрытия попапа -->
         <div id="close-popup-btn"
-             class="absolute top-[66px] left-2 z-[1000] bg-white p-2 rounded-full shadow-lg cursor-pointer"
+             class="absolute top-[66px] left-2 z-[1000] bg-white p-2 rounded-full shadow-lg cursor-pointer block sm:hidden"
              style="width: 44px;height: 44px; padding: 13px;">
           <img src="/img/arrow_map.svg" alt="prev">
         </div>
@@ -240,10 +243,10 @@
       </div>
 
       <!-- Правая часть (форма) -->
-      <div id="info_panel" class="w-full h-auto p-4 sm:p-0 sm:w-1/3 overflow-y-auto sm:min-h-[400px] rounded-[16px] overflow-scroll flex flex-col ">
+      <div id="info_panel" class="w-full h-auto p-4 sm:p-0 sm:w-1/3 overflow-y-auto sm:min-h-[400px] rounded-[16px] overflow-scroll flex-col hidden md:flex " style="overflow-y:hidden; overflow-x:auto;">
         <!-- Карточка с информацией -->
         <!-- Кнопка закрытия -->
-        <div class="hidden  pr-4 pt-2 right-[30px] lg:sm:right-auto lg:flex md:flex mb-0 justify-end">
+        <div id="info_panel_close" class="hidden pr-4 pt-2 right-[30px] lg:sm:right-auto lg:flex md:flex mb-0 justify-end">
           <button
             class="rounded-full w-[28px] h-[28px] duration-300" id="ok-btn"
             style="background-color: #F9F9F9; cursor: pointer"
@@ -256,7 +259,7 @@
         </div>
 
         <!-- Заголовок и описание (скрыто на мобильных) -->
-        <div class="px-4 hidden lg:block md:block mt-[10px]">
+        <div id="choose_lab" class="px-4 hidden lg:block md:block mt-[10px]">
           <p
             class="mb-2 text-400"
             style="font-size: 26px; font-weight: 400; line-height: 100%">
@@ -275,7 +278,8 @@
     </div>
   </div>
   <!-- Блок для информации о лаборатории на мобильных устройствах -->
-  <div id="mobile_lab_info" class="fixed bottom-0 left-0 w-full bg-white p-4 shadow-lg hidden sm:hidden">
+<!--  block md:hidden-->
+  <div id="mobile_lab_info" class="fixed bottom-0 left-0 w-full bg-white p-4 shadow-lg hidden md:hidden">
     <div class="flex" style="justify-content: flex-end">
       <button class="rounded-full w-[28px] h-[28px] duration-300"
               style="background-color: #F9F9F9; cursor: pointer"
@@ -642,9 +646,11 @@
                style="display: flex; gap: 5px; margin: 6px; border-radius: 24px; border-color: #3ECAE3; cursor: pointer"
                onclick="toggleCheckbox(this)">
             <div class="relative">
-              <input type="checkbox"
+              <input data-tag="Chlamydia"
+                     type="checkbox"
                      class="w-5 h-5 appearance-none cursor-pointer border border-[#3ECAE3] rounded-md mr-2"
-                     id="checkbox-in-form2" style="border-radius: 20px; ">
+                     id="checkbox-in-form2" style="border-radius: 20px;"
+              >
               <!-- SVG галочка -->
               <svg
                 class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0"
@@ -661,7 +667,7 @@
                onclick="toggleCheckbox(this)">
             <div class="relative">
               <!--              border-color:#3ECAE3-->
-              <input type="checkbox"
+              <input data-tag="SIP" type="checkbox"
                      class="w-5 h-5 appearance-none cursor-pointer border border-[#3ECAE3] rounded-md mr-2"
                      id="checkbox-in-form3" style="border-radius: 20px; ">
               <!-- SVG галочка -->
@@ -675,7 +681,27 @@
             </div>
             SIP
           </div>
+          <div class="pt-[5px] py-0.5 px-2.5 border border-transparent text-sm transition-all shadow-sm"
+               style="display: flex; gap: 5px; margin: 6px; border-radius: 24px; border-color: #3ECAE3; cursor: pointer"
+               onclick="toggleCheckbox(this)">
+            <div class="relative">
+              <!--              border-color:#3ECAE3-->
+              <input data-tag="Syphilis" type="checkbox"
+                     class="w-5 h-5 appearance-none cursor-pointer border border-[#3ECAE3] rounded-md mr-2"
+                     id="checkbox-in-form4" style="border-radius: 20px; ">
+              <!-- SVG галочка -->
+              <svg
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-white opacity-0"
+                viewBox="0 0 16 16" fill="currentColor" id="checkmark" style="top: 9px;left: 9px; width: 11px; height: 11px;">
+                <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"/>
+              </svg>
+            </div>
+            Syphilis
+          </div>
         </div>
+
         <button class="w-full text-white py-2 px-4 hover:bg-blue-600 transition duration-300" id="open-map"
                 style="background-color: #3ECAE3; border-radius: 42px; cursor: pointer">
           Show me labs

@@ -4,18 +4,60 @@ function toggleAccordionLab() {
   const content = document.getElementById('accordionContentLab');
   const arrow = document.getElementById('arrow');
 
-  content.classList.toggle('hidden');
+  console.log('content.classList', content.classList);
+  console.log('content.classList.contains(\'hidden\')', content.classList.contains('hidden'));
+
+  if(content.classList.contains('hidden')) {
+    content.classList.remove('hidden');
+  } else {
+    content.classList.add('hidden');
+  }
+
+  // content.classList.toggle('hidden');
   arrow.classList.toggle('rotate-180');
 }
 
 function closeMobileLabInfo() {
   const mobileLabInfo = document.getElementById('mobile_lab_info');
   const info_panel = document.getElementById('info_panel');
+
+  console.log('mobile_lab_info', mobileLabInfo);
+
   if (mobileLabInfo) {
     mobileLabInfo.classList.add('hidden');
     info_panel.classList.add('hidden');
   }
+
+  document.getElementById("mobile_lab_content").innerHTML = '';
+  document.getElementById("card1").innerHTML = '';
 }
+
+window.labs = [
+  {
+    id: 1,
+    name: "Lab 1",
+    coordinates: [51.958, 9.141],
+    address: "Hradešínská 1930/63, 101 Vinohrady",
+    status: "Open now",
+    schedule: [
+      {day: "Monday", hours: "9 AM - 11 PM"},
+      {day: "Tuesday", hours: "9 AM - 11 PM"},
+    ],
+    tests: ["Syphilis", "HIV"],
+  },
+  {
+    id: 2,
+    name: "Lab 2",
+    coordinates: [51.96, 9.15],
+    address: "Another Address, 102 Vinohrady",
+    status: "Closed now",
+    schedule: [
+      {day: "Monday", hours: "10 AM - 8 PM"},
+      {day: "Tuesday", hours: "10 AM - 8 PM"},
+    ],
+    tests: ["COVID-19", "Flu"],
+  },
+];
 
 document.addEventListener("DOMContentLoaded", (event) => {
   const map = L.map('map', {
@@ -30,7 +72,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   const locateButton = L.Control.extend({
     onAdd: function (map) {
-      const container = L.DomUtil.create('div', 'leaflet-control-custom block md:hidden lg:hidden');
+      const container = L.DomUtil.create('div', 'leaflet-control-custom block lg: top-[0px]');
       container.innerHTML = `<img src="/img/location.svg" alt="location">`;
       container.onclick = () => {
         navigator.geolocation.getCurrentPosition(
@@ -55,33 +97,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     document.getElementById("modal_map").classList.add("hidden");
   });
 
-  const labs = [
-    {
-      id: 1,
-      name: "Lab 1",
-      coordinates: [51.958, 9.141],
-      address: "Hradešínská 1930/63, 101 Vinohrady",
-      status: "Open now",
-      schedule: [
-        {day: "Monday", hours: "9 AM - 11 PM"},
-        {day: "Tuesday", hours: "9 AM - 11 PM"},
-      ],
-      tests: ["Syphilis", "HIV"],
-    },
-    {
-      id: 2,
-      name: "Lab 2",
-      coordinates: [51.96, 9.15],
-      address: "Another Address, 102 Vinohrady",
-      status: "Closed now",
-      schedule: [
-        {day: "Monday", hours: "10 AM - 8 PM"},
-        {day: "Tuesday", hours: "10 AM - 8 PM"},
-      ],
-      tests: ["COVID-19", "Flu"],
-    },
-  ];
-
   let selectedMarker = null;
 
   labs.forEach((lab) => {
@@ -101,9 +116,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const marker = L.marker(lab.coordinates, {icon: customIcon, data: lab }).addTo(map);
     selectedMarker = marker;
     marker.on("click", (e) => {
-
       updateLabInfo(e.target.options.data);
-      map.panTo(e.target.options.data.coordinates); // Плавно перемещаем карту к координатам маркера
       return false;
     });
   });
@@ -128,7 +141,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
             </svg>
           </button>
         </div>
-<!--        transition-all duration-300 flex gap-2 flex-col w-full ml-[20px]-->
         <div id="accordionContentLab" class="mt-2 rounded-lg hidden ">
             <div class="grid grid-cols-2" style="width: 80%; row-gap: 10px">
               ${lab.schedule.map((item) => `
@@ -169,8 +181,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
           </div>
         </div>
         <button
-          class="bg-white py-2 px-4 rounded-full border transition duration-300 text-white w-[93%] md:w-[30%] lg:w-[30%]"
-          style="background-color: #3ECAE3;position: absolute; bottom: 10px; ">
+          class="bg-white py-2 px-4 rounded-full border transition duration-300 text-white  w-[93%] md:w-[30%] lg:w-[30%]"
+          style="background-color: #3ECAE3;position: absolute; bottom: 10px;"
+          id="make_appointment_btn"
+        >
           Make an appointment
         </button>
       `;
@@ -194,9 +208,18 @@ document.addEventListener("DOMContentLoaded", (event) => {
   let button2 = document.getElementById('ok-btn');
   //
   btn.onclick = function () {
+    const tags =  Array.from(document.querySelectorAll('[data-tag]'));
+    const listFilerLab= tags.filter((e) => e.checked);
+    window.labs = window.labs.filter((lab) => {
+          lab.tests.some(test =>listFilerLab.includes(test));
+      }
+    );
+
     modal.style.display = 'block';
     document.body.classList.add('no-scroll');
     setTimeout(function () { map.invalidateSize() }, 100);
+
+    console.log('labs', labs)
   };
 
   button.onclick = function () {
