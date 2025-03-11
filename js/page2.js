@@ -2,10 +2,13 @@ function toggleAccordionLab() {
   console.log('toggleAccordionLab()');
 
   const content = document.getElementById('accordionContentLab');
+  const content_mobile = document.getElementById('accordionContentLab_mobile');
   const arrow = document.getElementById('arrow');
+  const arrow_mobile = document.getElementById('arrow_mobile');
 
   console.log('content.classList', content.classList);
   console.log('content.classList.contains(\'hidden\')', content.classList.contains('hidden'));
+
 
   if(content.classList.contains('hidden')) {
     content.classList.remove('hidden');
@@ -15,6 +18,15 @@ function toggleAccordionLab() {
 
   // content.classList.toggle('hidden');
   arrow.classList.toggle('rotate-180');
+
+  if(content_mobile.classList.contains('hidden')) {
+    content_mobile.classList.remove('hidden');
+  } else {
+    content_mobile.classList.add('hidden');
+  }
+
+  // content.classList.toggle('hidden');
+  arrow_mobile.classList.toggle('rotate-180');
 }
 
 function closeMobileLabInfo() {
@@ -90,9 +102,8 @@ const locateButton = L.Control.extend({
   },
 });
 
-function updateLabInfo(lab) {
-  const labInfo = document.getElementById("card1");
-  labInfo.innerHTML = `
+const getHtmlLabTab= (lab, idPostFixMobile = '') => {
+  return `
         <div class="flex gap-2">
           <div style="width: 40px; height: 40px; border-radius: 12px; background-color: #3ECAE3"></div>
           <div style="display: flex; text-align: center; align-items: center;">
@@ -105,12 +116,12 @@ function updateLabInfo(lab) {
             <p class="font-medium" style="font-size: 14px; color: #08C671; margin-top: 0; font-weight: 400; line-height: 100%">${lab.status}</p>
           </div>
           <button onclick="toggleAccordionLab()" class="p-2 focus:outline-none" style="cursor: pointer; margin-left: 13%">
-            <svg id="arrow" class="w-5 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg id="arrow${idPostFixMobile}" class="w-5 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
             </svg>
           </button>
         </div>
-        <div id="accordionContentLab" class="mt-2 rounded-lg hidden ">
+        <div id="accordionContentLab${idPostFixMobile}" class="mt-2 rounded-lg hidden ">
             <div class="grid grid-cols-2" style="width: 80%; row-gap: 10px">
               ${lab.schedule.map((item) => `
                   <div class="flex" style="width: 50px">
@@ -156,10 +167,15 @@ function updateLabInfo(lab) {
         >
           Make an appointment
         </button>
-      `;
+      `
+}
+
+function updateLabInfo(lab) {
+  const labInfo = document.getElementById("card1");
+  labInfo.innerHTML = getHtmlLabTab(lab);
 
   const mobileLabContent = document.getElementById("mobile_lab_content");
-  mobileLabContent.innerHTML = labInfo.innerHTML;
+  mobileLabContent.innerHTML =  getHtmlLabTab(lab, '_mobile');
   document.getElementById("mobile_lab_info").classList.remove("hidden");
 
   // Показываем правую панель на десктопе
