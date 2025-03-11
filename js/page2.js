@@ -4,8 +4,6 @@ function toggleAccordionLab() {
   const content = document.getElementById('accordionContentLab');
   const arrow = document.getElementById('arrow');
 
-  console.log('content.classList', content.classList);
-
   content.classList.toggle('hidden');
   arrow.classList.toggle('rotate-180');
 }
@@ -25,12 +23,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     attributionControl:false
   }).setView([51.958, 9.141], 13);
   setTimeout(function () { map.invalidateSize() }, 400);
-
-  map.scrollWheelZoom.disable()
-  map.keyboard.disable()
-  if(map.tap)
-    map.tap.disable()
-  map.doubleClickZoom.disable();
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
