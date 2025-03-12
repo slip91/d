@@ -182,6 +182,7 @@ function updateLabInfo(lab) {
   document.getElementById("info_panel").classList.remove("hidden");
 }
 
+let originalMapCenter = null; // Храним исходное положение карты
 const initMap = (labs) => {
   map.eachLayer(function (layer) {
     map.removeLayer(layer);
@@ -216,6 +217,26 @@ const initMap = (labs) => {
     const marker = L.marker(lab.coordinates, {icon: customIcon, data: lab }).addTo(map);
     selectedMarker = marker;
     marker.on("click", (e) => {
+      const markerLatLng = e.target.getLatLng();
+
+      // Если исходное положение карты не запомнено, запоминаем его
+      if (!originalMapCenter) {
+        originalMapCenter = map.getCenter(); // Запоминаем текущий центр карты
+      }
+
+      // 1. Возвращаем карту в исходное положение
+      map.setView(originalMapCenter, map.getZoom());
+
+      // 2. Рассчитываем смещение в градусах широты
+      const offset = 60000 / (256 * Math.pow(2, map.getZoom())); // 400px в градусах
+
+      // 3. Создаем новые координаты с учетом смещения вверх
+      const newLatLng = L.latLng(markerLatLng.lat - offset, markerLatLng.lng);
+
+      // 4. Центрируем карту на новых координатах
+      map.setView(newLatLng, map.getZoom(), { animate: true });
+
+      // 5. Обновляем информацию о лаборатории
       updateLabInfo(e.target.options.data);
       return false;
     });
