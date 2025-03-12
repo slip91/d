@@ -138,10 +138,10 @@ input:checked + #checkmark {
   cursor: pointer;
 }
 
-/*@media (min-width: 641px) {*/
-/*  #close-popup-btn {*/
-/*    display: none;*/
-/*  }*/
-/*}*/
+@media (min-width: 641px) and (max-width: 720px){
+  #close-popup-btn {
+    display: block;
+  }
+}
 
 
