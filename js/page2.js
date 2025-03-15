@@ -60,7 +60,7 @@ window.labs = [
   {
     id: 2,
     name: "Lab 2",
-    coordinates: [51.96, 9.15],
+    coordinates: [51.9572053, 9.1270341], //51.9572053,9.1270341
     address: "Another Address, 102 Vinohrady",
     status: "Closed now",
     schedule: [
@@ -199,35 +199,35 @@ const initMap = (labs) => {
     document.getElementById("modal_map").classList.add("hidden");
   });
 
-  map.on('zoomend', function () {
-    console.log('zoomend');
-
-    const zoomLevel = map.getZoom();
-
-    for (const marker of markers) {
-      const element = marker.getElement();
-      if (element) {
-        const iconElement = element.querySelector('.marker-icon'); // Иконка
-        const infoBoxElement = element.querySelector('.info-box'); // Info-block
-
-        // Удаляем старые классы
-        iconElement.classList.remove('zoom-level-1', 'zoom-level-2', 'zoom-level-3');
-        infoBoxElement.classList.remove('zoom-level-1', 'zoom-level-2', 'zoom-level-3');
-
-        // Добавляем новый класс в зависимости от уровня масштабирования
-        if (zoomLevel <= 10) {
-          iconElement.classList.add('zoom-level-3');
-          infoBoxElement.classList.add('zoom-level-3');
-        } else if (zoomLevel <= 12) {
-          iconElement.classList.add('zoom-level-2');
-          infoBoxElement.classList.add('zoom-level-2');
-        } else {
-          iconElement.classList.add('zoom-level-1');
-          infoBoxElement.classList.add('zoom-level-1');
-        }
-      }
-    }
-  });
+  // map.on('zoomend', function () {
+  //
+  //   const zoomLevel = map.getZoom();
+  //
+  //   for (const marker of markers) {
+  //     const element = marker.getElement();
+  //     if (element) {
+  //       const iconElement = element.querySelector('.marker-icon'); // Иконка
+  //       const infoBoxElement = element.querySelector('.info-box'); // Info-block
+  //       const innerElement = element.querySelector('.marker-inner');
+  //
+  //       // Удаляем старые классы
+  //       iconElement.classList.remove('zoom-level-1', 'zoom-level-2', 'zoom-level-3');
+  //       infoBoxElement.classList.remove('zoom-level-1', 'zoom-level-2', 'zoom-level-3');
+  //
+  //       // Добавляем новый класс в зависимости от уровня масштабирования
+  //       if (zoomLevel <= 10) {
+  //         iconElement.classList.add('zoom-level-3');
+  //         infoBoxElement.classList.add('zoom-level-3');
+  //       } else if (zoomLevel <= 12) {
+  //         iconElement.classList.add('zoom-level-2');
+  //         infoBoxElement.classList.add('zoom-level-2');
+  //       } else {
+  //         iconElement.classList.add('zoom-level-1');
+  //         infoBoxElement.classList.add('zoom-level-1');
+  //       }
+  //     }
+  //   }
+  // });
 
   let selectedMarker = null;
 
@@ -243,7 +243,8 @@ const initMap = (labs) => {
         </div>
       </div>
     `,
-      iconSize: 'auto'
+      iconAnchor: [25, 60],
+      iconSize: [50, 65]
     });
     const marker = L.marker(lab.coordinates, {icon: customIcon, data: lab }).addTo(map);
     markers.push(marker);
