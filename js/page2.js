@@ -184,6 +184,7 @@ function updateLabInfo(lab) {
 
 let originalMapCenter = null; // Храним исходное положение карты
 const initMap = (labs) => {
+  const markers =[];
   map.eachLayer(function (layer) {
     map.removeLayer(layer);
   });
@@ -198,6 +199,36 @@ const initMap = (labs) => {
     document.getElementById("modal_map").classList.add("hidden");
   });
 
+  map.on('zoomend', function () {
+    console.log('zoomend');
+
+    const zoomLevel = map.getZoom();
+
+    for (const marker of markers) {
+      const element = marker.getElement();
+      if (element) {
+        const iconElement = element.querySelector('.marker-icon'); // Иконка
+        const infoBoxElement = element.querySelector('.info-box'); // Info-block
+
+        // Удаляем старые классы
+        iconElement.classList.remove('zoom-level-1', 'zoom-level-2', 'zoom-level-3');
+        infoBoxElement.classList.remove('zoom-level-1', 'zoom-level-2', 'zoom-level-3');
+
+        // Добавляем новый класс в зависимости от уровня масштабирования
+        if (zoomLevel <= 10) {
+          iconElement.classList.add('zoom-level-3');
+          infoBoxElement.classList.add('zoom-level-3');
+        } else if (zoomLevel <= 12) {
+          iconElement.classList.add('zoom-level-2');
+          infoBoxElement.classList.add('zoom-level-2');
+        } else {
+          iconElement.classList.add('zoom-level-1');
+          infoBoxElement.classList.add('zoom-level-1');
+        }
+      }
+    }
+  });
+
   let selectedMarker = null;
 
   labs.forEach((lab) => {
@@ -207,14 +238,16 @@ const initMap = (labs) => {
       <div class="marker-container">
         <img src="/img/storePin.svg" alt="Marker" class="marker-icon" />
         <div class="info-box">
-          <h3 style="font-size: 20px; font-weight: 500; color: black">Laboratory</h3>
-          <p style="font-weight: 400; font-size: 15px; color: #818181 ">Closes 11PM</p>
+          <h3 style="font-weight: 500; color: black">Laboratory</h3>
+          <p style="font-weight: 400; color: #818181 ">Closes 11PM</p>
         </div>
       </div>
     `,
-      iconSize: [170, 69],
+      iconSize: 'auto'
     });
     const marker = L.marker(lab.coordinates, {icon: customIcon, data: lab }).addTo(map);
+    markers.push(marker);
+
     selectedMarker = marker;
     marker.on("click", (e) => {
       const markerLatLng = e.target.getLatLng();

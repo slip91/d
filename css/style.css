@@ -21,6 +21,36 @@ input:checked + #checkmark {
   border: none;
 }
 
+/* Стили для уровня масштабирования 1 (zoomLevel <= 10) */
+.zoom-level-1.marker-icon {
+  width: 57px;
+  height: 69px;
+}
+
+.zoom-level-1 .info-box {
+  display: none;
+}
+
+/* Стили для уровня масштабирования 2 (10 < zoomLevel <= 15) */
+.zoom-level-2.marker-icon {
+  width: 26px;
+  height: 35px;
+}
+
+.zoom-level-2.info-box {
+  display: none;
+}
+
+/* Стили для уровня масштабирования 3 (zoomLevel > 15) */
+.zoom-level-3.marker-icon {
+  width: 13px;
+  height: 17px;
+}
+
+.zoom-level-3.info-box {
+  display: none;
+}
+
 .marker-container {
   display: flex;
   align-items: center;
@@ -41,6 +71,13 @@ input:checked + #checkmark {
   border-top-right-radius: 21px;
   border-bottom-right-radius: 21px;
   padding-left: 34px;
+
+  h3 {
+    font-size: 20px;
+  }
+  p {
+    font-size: 15px;
+  }
 }
 @media (max-width: 720px) {
   #mobile_lab_info {
