@@ -243,8 +243,8 @@ const initMap = (labs) => {
         </div>
       </div>
     `,
-      iconAnchor: [25, 60],
-      iconSize: [50, 65]
+      iconAnchor: [30, 62],
+      iconSize: [30, 65]
     });
     const marker = L.marker(lab.coordinates, {icon: customIcon, data: lab }).addTo(map);
     markers.push(marker);
