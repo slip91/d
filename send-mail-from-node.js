@@ -57,6 +57,11 @@ const message = {
       filename: 'noti_block.png',
       path: 'C:\\Users\\user\\WebstormProjects\\denis\\img\\noti_block.png',
       cid: 'noti_block' //same cid value as in the html img src
+    },
+    {
+      filename: 'unilab.png',
+      path: 'C:\\Users\\user\\WebstormProjects\\denis\\img\\unilab.png',
+      cid: 'unilab' //same cid value as in the html img src
     }
   ]
 };

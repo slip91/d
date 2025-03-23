@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Health Mates</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+    html {
+      font-family: "Montserrat", sans-serif !important;
+    }
+
     /* Встроенные стили для поддержки Outlook */
     .button {
       background-color: white;
@@ -18,19 +23,6 @@
       width: 116px;
       text-align: center;
     }
-    .button-secondary {
-      background-color: white;
-      color: #F16B8F;
-      padding: 8px 16px;
-      border-radius: 9999px;
-      border: 1px solid white;
-      text-decoration: none;
-      font-size: 16px;
-      display: inline-block;
-      width: 80vw;
-      max-width: 424px;
-      text-align: center;
-    }
 
     /* Медиа-запросы для мобильных устройств */
     @media only screen and (max-width: 600px) {
@@ -39,22 +31,115 @@
         width: 100% !important;
         text-align: center !important;
       }
+
       .mobile-center {
         text-align: center !important;
       }
+
       .mobile-padding {
         padding-left: 20px !important;
         padding-right: 20px !important;
       }
+
       .mobile-stack-item {
         display: block !important;
         width: 100% !important;
         border-right: none !important; /* Убираем правую границу */
         border-bottom: none !important; /* Убираем нижнюю границу */
       }
+
       .notiblock {
+        height: 100% !important;
+        width: 100% !important;
+      }
+
+      .notiblockimg {
         width: 100% !important; /* Картинка на всю ширину */
-        background-size: 250% 250%; /* Растягиваем картинку */
+        background-size: 100% 100% !important; /* Растягиваем картинку */
+      }
+
+      .block1_title {
+        font-weight: 600;
+        font-size: 30px;
+        line-height: 100%;
+        letter-spacing: 0;
+        text-align: center !important;
+      }
+
+      .block1_desc {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 100%;
+        letter-spacing: 0;
+        text-align: center !important;
+      }
+
+      .block2_title {
+        font-weight: 600;
+        font-size: 30px;
+        line-height: 100%;
+        letter-spacing: 0;
+
+      }
+
+      .block2_desc {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 100%;
+        letter-spacing: 0;
+      }
+
+      .block3_title {
+        font-weight: 600;
+        font-size: 30px;
+        line-height: 100%;
+        letter-spacing: 0;
+        text-align: center;
+      }
+
+      .block3_desc {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 100%;
+        letter-spacing: 0;
+        text-align: center;
+
+      }
+
+      .block4_title {
+        font-weight: 600;
+        font-size: 30px;
+        line-height: 100%;
+        letter-spacing: 0;
+        text-align: center;
+
+      }
+
+      .block4_desc {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 100%;
+        letter-spacing: 0;
+        text-align: center;
+      }
+
+      .block5_title {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 100%;
+        letter-spacing: 0;
+        text-align: center;
+
+
+      }
+
+      .block5_desc {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 100%;
+        letter-spacing: 0;
+        text-align: center;
+
       }
     }
   </style>
@@ -64,7 +149,8 @@
 <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color: #3ECAE3;">
   <tr>
     <td style="padding: 20px;">
-      <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width: 1200px; margin: 0 auto;">
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
+             style="max-width: 1200px; margin: 0 auto;">
         <tr>
           <td style="padding: 0;">
             <!-- Логотип -->
@@ -100,17 +186,21 @@
     </td>
   </tr>
 </table>
-<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color: #3ECAE3; height: 500px">
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%"
+       style="background-color: #3ECAE3; height: 520px">
   <tr>
     <td style="padding-left: 20px; padding-right: 20px; padding-top: 20px" class="mobile-padding">
-      <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width: 1000px; margin: 0 auto;">
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
+             style="max-width: 1000px; margin: 0 auto;">
         <tr>
           <!-- Текст -->
           <td style="padding: 0; vertical-align: middle; width: 100%;" class="mobile-stack mobile-center">
-            <p style="text-align: left; margin-bottom: 24px; color: white; font-size: 36px; font-weight: 600; line-height: 42px;">
+            <p class="block1_title"
+               style="text-align: left; margin-bottom: 24px; color: white; font-weight: 600; font-size: 26px; line-height: 42px; letter-spacing: 0">
               Thank You for Registering Enjoy 15% Off Your STI Test!
             </p>
-            <p style="text-align: left; margin-bottom: 16px; color: white; font-size: 14px; line-height: 20px;">
+            <p class="block1_desc"
+               style="text-align: left; margin-bottom: 16px; color: white; font-weight: 400; font-size: 14px; line-height: 20px; letter-spacing: 0">
               You’ve successfully signed up! As a thank-you gift, here’s 15% off your STI test.
             </p>
           </td>
@@ -137,21 +227,25 @@
 </table>
 
 <!-- Блок с картинкой и текстом -->
-<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color: white; height: 600px; position: sticky">
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%"
+       style="background-color: white; height: 500px; position: sticky">
   <tr>
     <td style="padding: 20px;" class="mobile-padding">
-      <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width: 1200px; margin: 0 auto;">
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
+             style="max-width: 1200px; margin: 0 auto;">
         <tr>
           <!-- Текст -->
-          <td style="padding: 0; vertical-align: middle; width: 50%; padding-right: 20px;" class="mobile-stack mobile-center">
+          <td style="vertical-align: middle; width: 50%; padding-right: 20px;"
+              class="mobile-stack mobile-center">
             <div style="text-align: left; margin-bottom: 80px">
               <div style="width: 60px;">
                 <p style="width: 166px; height: 46px; font-size: 46px;">👋</p>
               </div>
-              <h3 style="margin-bottom: 16px; font-size: 32px; font-weight: 700; line-height: 100%;">
+              <h3 class="block2_title"
+                  style="margin-bottom: 16px; font-size: 32px; font-weight: 700; line-height: 100%;">
                 Hi, [Name]
               </h3>
-              <p style="margin-bottom: 16px; font-size: 16px; line-height: 100%; font-weight: 400;">
+              <p class="block2_desc" style="margin-bottom: 16px; font-size: 16px; line-height: 100%; font-weight: 400;">
                 Thank you for signing up! Whether we met at Erotic Fest Prague or you found us through our flyer, we’re
                 thrilled to have you on board.
               </p>
@@ -166,13 +260,16 @@
                 <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
                   <tr>
                     <td>
-                      <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border-radius: 22px; height: 600px">
+                      <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
+                             style="border-radius: 22px; height: 600px">
                         <tr>
                           <td>
                             <!-- Основное изображение -->
-                            <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="width: 100%; height: 68%;">
+                            <table class="notiblock" role="presentation" cellpadding="0" cellspacing="0" width="100%"
+                                   style="width: 100%; height: 68%;">
                               <tr>
-                                <td class="notiblock" style="background-image: url('cid:noti_block'); background-size: 90% 100%; background-position: center; background-repeat: no-repeat; height: 240px;"></td>
+                                <td class="notiblockimg"
+                                    style="background-image: url('cid:noti_block'); background-size: contain; background-position: center; background-repeat: no-repeat; height: 240px;"></td>
                               </tr>
                             </table>
                           </td>
@@ -191,23 +288,31 @@
 </table>
 
 <!-- Основной контент -->
-<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color: #3ECAE3; height: 600px;">
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%"
+       style="background-color: #3ECAE3; height: 500px;">
   <tr>
     <td style="padding: 20px;" class="mobile-padding">
-      <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width: 1200px; margin: 0 auto; width: 55%">
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
+             style="max-width: 1200px; margin: 0 auto; width: 55%">
         <tr>
           <td style="padding: 0;" class="mobile-center">
-            <p style="text-align: center; margin-bottom: 24px; color: white; font-size: 46px; font-weight: 600; line-height: 100%;">
+            <p class="block3_title" style="text-align: center; margin-bottom: 24px; color: white; font-weight: 700; font-size: 22px;line-height: 100%; letter-spacing: 0; text-transform: capitalize;">
               Your personal discount code
             </p>
-            <p style="text-align: center; margin-bottom: 16px; color: white; font-size: 18px; line-height: 40px; word-break: break-word;">
+            <p class="block3_desc" style="text-align: center; margin-bottom: 16px; color: white;font-weight: 400; font-size: 16px; line-height: 100%; letter-spacing: 0; text-transform: capitalize; word-break: break-word;">
               Use This Code When Booking Your Test on the laboratory’s website
             </p>
             <p style="text-align: center; margin-bottom: 16px; color: white; font-size: 18px; line-height: 40px; word-break: break-word;">
               Supported by
+              <img
+                src="cid:unilab"
+                style="width: 67px; height: 36px; vertical-align: middle;"
+                alt="unilab"
+              />
             </p>
             <div style="border-bottom: 2px solid white; margin-bottom: 40px;">
-              <p style="text-align: center; margin-bottom: 24px; color: white; font-size: 46px; font-weight: 600; line-height: 100%;">
+              <p
+                style="text-align: center; margin-bottom: 24px; color: white; font-size: 48px; line-height: 100%; font-weight: 600;">
                 3 8 4 7 9 2
               </p>
             </div>
@@ -225,19 +330,20 @@
     </td>
   </tr>
 </table>
-
-
-<!-- Ваш блок -->
-<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F16B8F; height: 600px;">
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%"
+       style="background-color: #F16B8F; height: 500px;">
   <tr>
     <td style="padding: 20px;" class="mobile-padding">
-      <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width: 1200px; margin: 0 auto;  width: 55%">
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
+             style="max-width: 1200px; margin: 0 auto;  width: 55%">
         <tr>
           <td style="padding: 0;" class="mobile-center">
-            <p style="text-align: center; margin-bottom: 24px; color: white; font-size: 46px; font-weight: 600; line-height: 100%;">
+            <p class="block4_title"
+               style="text-align: center; margin-bottom: 24px; color: white; font-size: 24px; font-weight: 700; line-height: 100%;">
               We’re preparing even more gifts for you!
             </p>
-            <p style="text-align: center; margin-bottom: 16px; color: white; font-size: 18px; line-height: 40px; word-break: break-word;">
+            <p class="block4_desc"
+               style="text-align: center; margin-bottom: 16px; color: white; font-size: 16px; line-height: 100%; word-break: break-word;">
               Exclusive discounts, invites to private events, and useful information about sexual health.
             </p>
             <div style="text-align: center;">
@@ -254,18 +360,20 @@
     </td>
   </tr>
 </table>
-
-<!-- Блок с текстом "We hope this is just the beginning..." -->
-<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color: #ffffff; height: 500px;">
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%"
+       style="background-color: #ffffff; height: 300px;">
   <tr>
     <td style="padding: 20px;" class="mobile-padding">
-      <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width: 1200px; margin: 0 auto; width: 55%">
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
+             style="max-width: 1200px; margin: 0 auto; width: 55%">
         <tr>
           <td style="padding: 0;" class="mobile-center">
-            <p style="text-align: center; margin-bottom: 24px; color: black; font-size: 56px; font-weight: 600; line-height: 100%;">
+            <p class="block5_title"
+               style="text-align: center; margin-bottom: 24px; color: black; font-size: 20px; font-weight: 600; line-height: 100%;">
               We hope this is just the beginning of our journey together!
             </p>
-            <p style="text-align: center; margin-bottom: 16px; color: black; font-size: 16px; line-height: 100%;">
+            <p class="block5_desc"
+               style="text-align: center; margin-bottom: 16px; color: black; font-size: 16px; line-height: 100%;">
               If you have any questions, feel free to reach out.
             </p>
           </td>
@@ -274,12 +382,12 @@
     </td>
   </tr>
 </table>
-
-<!-- Футер -->
-<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background-color: #3ECAE3; height: auto;">
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%"
+       style="background-color: #3ECAE3; height: auto;">
   <tr>
     <td style="padding: 20px;" class="mobile-padding">
-      <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width: 1200px; margin: 0 auto;">
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
+             style="max-width: 1200px; margin: 0 auto;">
         <tr>
           <td style="padding: 0;">
             <nav style="background-color: #3ECAE3; padding: 20px 16px;">
