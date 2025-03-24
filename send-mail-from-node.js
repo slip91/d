@@ -36,7 +36,7 @@ const message = {
     {
       filename: 'top_short.png',
       path: 'C:\\Users\\user\\WebstormProjects\\denis\\img\\top_short.png',
-      cid: 'top_short2' //same cid value as in the html img src
+      cid: 'top_short3' //same cid value as in the html img src
     },
     {
       filename: 'phone.png',
