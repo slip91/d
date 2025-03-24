@@ -18,9 +18,9 @@ const transporter = nodemailer.createTransport({
 
 const message = {
   from: 'Fannnyyy@yandex.ru',
-  to: `"slip912@gmail.com`,
-  subject: "Hi Sir!3",
-  text: "test",
+  to: `d@it-dk.com`, /// d@it-dk.com slip912@gmail.com
+  subject: "Hi Sir!2",
+  text: "Text if the HTML dont load2",
   html: content,
   attachments: [
     {
@@ -56,7 +56,7 @@ const message = {
     {
       filename: 'noti_block.png',
       path: 'C:\\Users\\user\\WebstormProjects\\denis\\img\\noti_block.png',
-      cid: 'noti_block' //same cid value as in the html img src
+      cid: 'noti_block2' //same cid value as in the html img src
     },
     {
       filename: 'unilab.png',

@@ -3,11 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light only">
+  <meta name="supported-color-schemes" content="light only">
   <title>Health Mates</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
     html {
       font-family: "Montserrat", sans-serif !important;
+    }
+
+    :root {
+      color-scheme: light only;
+      supported-color-schemes: light only;
+    }
+    body {
+      background-color: #ffffff !important;
+      color: #000000 !important;
+    }
+    @media (prefers-color-scheme: dark) {
+      body, .email-container {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+      }
     }
 
     /* Встроенные стили для поддержки Outlook */
@@ -268,7 +285,7 @@
                                      style="width: 100%; height: 68%;">
                                 <tr>
                                   <td class="notiblockimg"
-                                      style="background-image: url('cid:noti_block'); background-size: contain; background-position: center; background-repeat: no-repeat; height: 240px;"></td>
+                                      style="background-image: url('cid:noti_block2'); background-size: contain; background-position: center; background-repeat: no-repeat; height: 240px;"></td>
                                 </tr>
                               </table>
                             </td>
