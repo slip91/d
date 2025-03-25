@@ -13,8 +13,8 @@
     }
 
     :root {
-      color-scheme: light dark;
-      supported-color-schemes: light dark;
+      color-scheme: light ;
+      supported-color-schemes: light;
     }
     body {
       background-color: #ffffff !important;
@@ -162,8 +162,22 @@
         letter-spacing: 0 !important;
         text-align: center !important;
       }
+
+
     }
     u + .body .button { background: #f6f6f6 !important; mix-blend-mode:screen; background-image:linear-gradient(#ffffff, #ffffff) !important;}
+
+    @media (prefers-color-scheme: dark) {
+      .darkmode-invert {
+        filter: invert(100%) hue-rotate(180deg);
+      }
+      .darkmode-bg {
+        background-color: #ffffff !important;
+      }
+      .darkmode-text {
+        color: #000000 !important;
+      }
+    }
   </style>
 </head>
 <body class="body" style="margin: 0; padding: 0; background-color: #3ECAE3; overflow-x: hidden">
