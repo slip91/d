@@ -19,42 +19,10 @@ const transporter = nodemailer.createTransport({
 
 const message = {
   from: 'Fannnyyy@yandex.ru',
-  to: `slip912@gmail.com`, /// d@it-dk.com slip912@gmail.com
+  to: `d@it-dk.com`, /// d@it-dk.com slip912@gmail.com
   subject: "test",
   text: "test",
   html: content,
-  attachments: [
-    {
-      filename: 'logopinkwhite.png',
-      path: 'C:\\Users\\user\\WebstormProjects\\denis\\img\\logopinkwhite.png',
-      cid: 'logopinkwhite', //same cid value as in the html img src
-      contentType: "image/png"
-    },
-    {
-      filename: 'topshort.png',
-      path: 'C:\\Users\\user\\WebstormProjects\\denis\\img\\topshort.png',
-      cid: 'topshort3',//same cid value as in the html img src
-      contentType: "image/png"
-    },
-    {
-      filename: 'phone.png',
-      path: 'C:\\Users\\user\\WebstormProjects\\denis\\img\\phone.png',
-      cid: 'phone', //same cid value as in the html img src
-      contentType: "image/png"
-    },
-    {
-      filename: 'notiblock.png',
-      path: 'C:\\Users\\user\\WebstormProjects\\denis\\img\\notiblock.png',
-      cid: 'notiblock', //same cid value as in the html img src
-      contentType: "image/png"
-    },
-    {
-      filename: 'unilab.png',
-      path: 'C:\\Users\\user\\WebstormProjects\\denis\\img\\unilab.png',
-      cid: 'unilab', //same cid value as in the html img src
-      contentType: "image/png"
-    }
-  ]
 };
 
 transporter.sendMail(message, (error, info) => {
