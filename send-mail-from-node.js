@@ -19,8 +19,8 @@ const transporter = nodemailer.createTransport({
 
 const message = {
   from: 'Fannnyyy@yandex.ru',
-  to: `d@it-dk.com`, /// d@it-dk.com slip912@gmail.com
-  subject: "test",
+  to: `slip912@gmail.com`, /// d@it-dk.com slip912@gmail.com
+  subject: "fix version 8",
   text: "test",
   html: content,
 };
